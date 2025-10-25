@@ -2,7 +2,7 @@
   <img src="assets/logo.png?raw=true" width="180" alt="Exolyte Logo">
 </p>
 
-<h1 align="center">Exolyte Studios</h1>
+<h1 align="center">Exolyte Studios Website</h1>
 <p align="center">Tworzymy nowoczesne strony internetowe i aplikacje webowe 🚀</p>
 
 <p align="center">
