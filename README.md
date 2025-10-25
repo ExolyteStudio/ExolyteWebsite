@@ -24,5 +24,5 @@
 </p>
 
 <p align="center">
-  <sub>© 2025 Exolyte Studios – Wszystkie prawa zastrzeżone</sub>
+  <sub> © 2025 Exolyte Studios – Wszystkie prawa zastrzeżone</sub>
 </p>
