@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cennik Usług - Exolyte Studios</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html">
+                    <span class="logo-text">EXOLYTE</span>
+                    <div class="logo-dot"></div>
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../index.html#about" class="nav-link">O Nas</a>
+                <a href="../index.html#services" class="nav-link">Usługi</a>
+                <a href="../index.html#portfolio" class="nav-link">Portfolio</a>
+                <a href="../index.html#contact" class="nav-link">Kontakt</a>
+                <a href="../zamowienie.html" class="nav-link">Złóż Zamówienie</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Pricing Header -->
+    <section class="pricing-header">
+        <div class="section-container">
+            <div class="pricing-hero">
+                <h1>Cennik Naszych Usług</h1>
+                <p>Indywidualne podejście do każdego projektu - ceny dostosowane do Twoich potrzeb</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Calculator -->
+    <section class="pricing-calculator">
+        <div class="section-container">
+            <div class="calculator-container">
+                <h2>Kalkulator Wyceny</h2>
+                <p class="calculator-description">
+                    Skorzystaj z naszego kalkulatora, aby otrzymać przybliżoną wycenę Twojego projektu
+                </p>
+
+                <div class="calculator-form">
+                    <div class="form-step active" id="step1">
+                        <h3>Wybierz typ projektu</h3>
+                        <div class="project-types">
+                            <div class="project-type" data-type="wizytowka" data-price="1500">
+                                <i class="fas fa-id-card"></i>
+                                <h4>Strona Wizytówka</h4>
+                                <p>Od 1 500 zł</p>
+                                <ul>
+                                    <li>Do 5 podstron</li>
+                                    <li>Responsywny design</li>
+                                    <li>Formularz kontaktowy</li>
+                                    <li>Podstawowe SEO</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-type" data-type="firmowa" data-price="3000">
+                                <i class="fas fa-building"></i>
+                                <h4>Strona Firmowa</h4>
+                                <p>Od 3 000 zł</p>
+                                <ul>
+                                    <li>Do 10 podstron</li>
+                                    <li>Zaawansowany design</li>
+                                    <li>System CMS</li>
+                                    <li>Galeria zdjęć</li>
+                                    <li>Zaawansowane SEO</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-type" data-type="sklep" data-price="5000">
+                                <i class="fas fa-shopping-cart"></i>
+                                <h4>Sklep Internetowy</h4>
+                                <p>Od 5 000 zł</p>
+                                <ul>
+                                    <li>Nieograniczona liczba produktów</li>
+                                    <li>System płatności</li>
+                                    <li>Panel administracyjny</li>
+                                    <li>Integracje z social media</li>
+                                    <li>Zaawansowane SEO</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-type" data-type="inne" data-price="0">
+                                <i class="fas fa-star"></i>
+                                <h4>Inny Projekt</h4>
+                                <p>Indywidualna wycena</p>
+                                <ul>
+                                    <li>Aplikacje webowe</li>
+                                    <li>Systemy dedykowane</li>
+                                    <li>Portale internetowe</li>
+                                    <li>Projekty specjalne</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-step" id="step2">
+                        <h3>Dodatkowe funkcjonalności</h3>
+                        <div class="features-grid">
+                            <div class="feature-checkbox">
+                                <input type="checkbox" id="feature-seo" data-price="500">
+                                <label for="feature-seo">
+                                    <i class="fas fa-search"></i>
+                                    <span>Zaawansowane SEO (+500 zł)</span>
+                                </label>
+                            </div>
+
+                            <div class="feature-checkbox">
+                                <input type="checkbox" id="feature-blog" data-price="800">
+                                <label for="feature-blog">
+                                    <i class="fas fa-blog"></i>
+                                    <span>System bloga (+800 zł)</span>
+                                </label>
+                            </div>
+
+                            <div class="feature-checkbox">
+                                <input type="checkbox" id="feature-multilang" data-price="1200">
+                                <label for="feature-multilang">
+                                    <i class="fas fa-language"></i>
+                                    <span>Wielojęzyczność (+1 200 zł)</span>
+                                </label>
+                            </div>
+
+                            <div class="feature-checkbox">
+                                <input type="checkbox" id="feature-ecommerce" data-price="2000">
+                                <label for="feature-ecommerce">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>System e-commerce (+2 000 zł)</span>
+                                </label>
+                            </div>
+
+                            <div class="feature-checkbox">
+                                <input type="checkbox" id="feature-admin" data-price="1500">
+                                <label for="feature-admin">
+                                    <i class="fas fa-cog"></i>
+                                    <span>Zaawansowany panel admin (+1 500 zł)</span>
+                                </label>
+                            </div>
+
+                            <div class="feature-checkbox">
+                                <input type="checkbox" id="feature-api" data-price="2500">
+                                <label for="feature-api">
+                                    <i class="fas fa-code"></i>
+                                    <span>Integracja z API (+2 500 zł)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calculator-summary" id="step3">
+                        <h3>Podsumowanie Wyceny</h3>
+                        <div class="summary-details">
+                            <div class="summary-item">
+                                <span>Typ projektu:</span>
+                                <span id="summary-type">-</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Dodatkowe funkcje:</span>
+                                <span id="summary-features">-</span>
+                            </div>
+                            <div class="summary-item total">
+                                <span>Szacunkowa cena:</span>
+                                <span id="summary-total">0 zł</span>
+                            </div>
+                        </div>
+                        <div class="summary-note">
+                            <p><strong>Uwaga:</strong> Jest to wycena orientacyjna. Ostateczna cena zostanie ustalona po szczegółowej analizie wymagań.</p>
+                        </div>
+                    </div>
+
+                    <div class="calculator-controls">
+                        <button class="btn btn-secondary" id="prev-btn" style="display: none;">
+                            <i class="fas fa-arrow-left"></i>
+                            Wstecz
+                        </button>
+                        <button class="btn btn-primary" id="next-btn">
+                            Dalej
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <a href="../zamowienie.html" class="btn btn-primary" id="order-btn" style="display: none;">
+                            <i class="fas fa-shopping-cart"></i>
+                            Złóż Zamówienie
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Factors -->
+    <section class="pricing-factors">
+        <div class="section-container">
+            <h2>Od Czego Zależą Ceny?</h2>
+            <div class="factors-grid">
+                <div class="factor-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Czas Realizacji</h3>
+                    <p>Im bardziej złożony projekt, tym więcej czasu potrzebujemy na jego realizację</p>
+                </div>
+
+                <div class="factor-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Złożoność Techniczna</h3>
+                    <p>Zaawansowane funkcjonalności wymagają więcej pracy programistycznej</p>
+                </div>
+
+                <div class="factor-card">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Projekt Graficzny</h3>
+                    <p>Indywidualny, custom design jest droższy od szablonów</p>
+                </div>
+
+                <div class="factor-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Responsywność</h3>
+                    <p>Dostosowanie do różnych urządzeń wpływa na cenę</p>
+                </div>
+
+                <div class="factor-card">
+                    <i class="fas fa-database"></i>
+                    <h3>Integracje</h3>
+                    <p>Połączenia z zewnętrznymi systemami zwiększają koszty</p>
+                </div>
+
+                <div class="factor-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Wsparcie Po Wdrożeniu</h3>
+                    <p>Długoterminowe wsparcie techniczne to dodatkowy koszt</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Price Packages -->
+    <section class="price-packages">
+        <div class="section-container">
+            <h2>Pakietowe Rozwiązania</h2>
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Podstawowy</h3>
+                        <div class="package-price">
+                            <span class="price">1 500 zł</span>
+                            <span class="period">jednorazowo</span>
+                        </div>
+                    </div>
+                    <div class="package-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Do 5 podstron</li>
+                            <li><i class="fas fa-check"></i> Responsywny design</li>
+                            <li><i class="fas fa-check"></i> Formularz kontaktowy</li>
+                            <li><i class="fas fa-check"></i> Podstawowe SEO</li>
+                            <li><i class="fas fa-times"></i> System CMS</li>
+                            <li><i class="fas fa-times"></i> Galeria zdjęć</li>
+                        </ul>
+                    </div>
+                    <div class="package-actions">
+                        <a href="../zamowienie.html" class="btn btn-primary">Wybieram</a>
+                    </div>
+                </div>
+
+                <div class="package-card popular">
+                    <div class="package-badge">Najpopularniejszy</div>
+                    <div class="package-header">
+                        <h3>Firmowy</h3>
+                        <div class="package-price">
+                            <span class="price">3 000 zł</span>
+                            <span class="period">jednorazowo</span>
+                        </div>
+                    </div>
+                    <div class="package-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Do 10 podstron</li>
+                            <li><i class="fas fa-check"></i> Zaawansowany design</li>
+                            <li><i class="fas fa-check"></i> System CMS</li>
+                            <li><i class="fas fa-check"></i> Galeria zdjęć</li>
+                            <li><i class="fas fa-check"></i> Zaawansowane SEO</li>
+                            <li><i class="fas fa-times"></i> Sklep internetowy</li>
+                        </ul>
+                    </div>
+                    <div class="package-actions">
+                        <a href="../zamowienie.html" class="btn btn-primary">Wybieram</a>
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Premium</h3>
+                        <div class="package-price">
+                            <span class="price">5 000 zł</span>
+                            <span class="period">jednorazowo</span>
+                        </div>
+                    </div>
+                    <div class="package-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Nieograniczona liczba podstron</li>
+                            <li><i class="fas fa-check"></i> Custom design</li>
+                            <li><i class="fas fa-check"></i> Zaawansowany CMS</li>
+                            <li><i class="fas fa-check"></i> System e-commerce</li>
+                            <li><i class="fas fa-check"></i> Integracje z API</li>
+                            <li><i class="fas fa-check"></i> Wsparcie 30 dni</li>
+                        </ul>
+                    </div>
+                    <div class="package-actions">
+                        <a href="../zamowienie.html" class="btn btn-primary">Wybieram</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="pricing-cta">
+        <div class="section-container">
+            <div class="cta-content">
+                <h2>Nie Znalazłeś Tego Czego Szukasz?</h2>
+                <p>Każdy projekt jest wyjątkowy. Skontaktuj się z nami, a przygotujemy indywidualną wycenę dostosowaną do Twoich potrzeb.</p>
+                <div class="cta-actions">
+                    <a href="../index.html#contact" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i>
+                        Skontaktuj Się
+                    </a>
+                    <a href="../zamowienie.html" class="btn btn-secondary">
+                        <i class="fas fa-shopping-cart"></i>
+                        Złóż Zamówienie
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Footer content -->
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="pricing.js"></script>
+</body>
+</html>

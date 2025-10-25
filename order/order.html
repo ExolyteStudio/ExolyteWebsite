@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Złóż Zamówienie - Exolyte Studios</title>
+    <link rel="stylesheet" href="order.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Złóż Zamówienie</h1>
+        <form action="request.php" method="post" id="orderForm">
+            <div class="form-group">
+                <label for="kontakt">Jak mamy się z tobą skontaktować? (podaj email lub nick mediów społecznościowych) *</label>
+                <input type="text" id="kontakt" name="kontakt" required>
+            </div>
+
+            <div class="form-group">
+                <label for="projekt">Typ projektu *</label>
+                <select id="projekt" name="projekt" required onchange="toggleInne()">
+                    <option value="">-- Wybierz typ projektu --</option>
+                    <option value="Wizytówka">Wizytówka</option>
+                    <option value="Strona Firmowa">Strona Firmowa</option>
+                    <option value="Sklep internetowy">Sklep internetowy</option>
+                    <option value="Inne">Inne</option>
+                </select>
+            </div>
+
+            <div class="form-group hidden" id="inne-grupa">
+                <label for="inne_szczegoly">Jeśli wybrałeś "Inne", opisz krótko czego oczekujesz:</label>
+                <textarea id="inne_szczegoly" name="inne_szczegoly"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="budzet">Planowany budżet (zł) *</label>
+                <input type="text" id="budzet" name="budzet" required>
+            </div>
+
+            <div class="form-group">
+                <label for="opis">Opisz stronę *</label>
+                <textarea id="opis" name="opis" required placeholder="Opisz, jak ma wyglądać Twoja strona, jaka ma być jej zawartość, cel itp."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="wymagania">Wymagania funkcjonalne strony *</label>
+                <textarea id="wymagania" name="wymagania" required placeholder="Jakie funkcje ma mieć strona? (np. formularz kontaktowy, galeria, system rezerwacji, integracja z social media)"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="uwagi">Dodatkowe uwagi</label>
+                <textarea id="uwagi" name="uwagi" placeholder="Inne informacje, które chcesz nam przekazać..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" onclick="window.location.href='cos.html'">Prześlij Zamówienie</button>
+        </form>
+    </div>
+
+    <script src="order.js"></script>
+</body>
+</html>

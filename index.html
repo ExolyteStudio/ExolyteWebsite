@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exolyte Studios - Tworzenie Stron Internetowych</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo">
+                <span class="logo-text">EXOLYTE</span>
+                <div class="logo-dot"></div>
+            </div>
+            <div class="preloader-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">
+                    <span class="logo-text">EXOLYTE</span>
+                    <div class="logo-dot"></div>
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">O Nas</a>
+                <a href="#services" class="nav-link">Usługi</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#process" class="nav-link">Proces</a>
+                <a href="#team" class="nav-link">Zespół</a>
+                <a href="#testimonials" class="nav-link">Opinie</a>
+                <a href="#contact" class="nav-link">Kontakt</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">Tworzymy</span>
+                    <span class="title-line">Niezwykłe</span>
+                    <span class="title-line">Doświadczenia</span>
+                    <span class="title-line highlight">Digital</span>
+                </h1>
+                <p class="hero-description">
+                    Exolyte Studios to agencja specjalizująca się w tworzeniu nowoczesnych, responsywnych stron internetowych, które wyróżniają się na tle konkurencji i przynoszą realne rezultaty.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#portfolio" class="btn btn-primary">Zobacz Portfolio</a>
+                    <a href="#contact" class="btn btn-secondary">Skontaktuj Się</a>
+                    <a href="pricing/pricing.html" class="btn btn-secondary">Wyceń Stronę</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                    <div class="shape shape-4"></div>
+                </div>
+                <div class="image-container">
+                    <div class="image-placeholder"></div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>Przewiń w dół</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">O Exolyte Studios</h2>
+                <p class="section-subtitle">Tworzymy przyszłość w cyfrowym świecie</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Kim Jesteśmy?</h3>
+                    <p>Exolyte Studios to zespół pasjonatów technologii i designu, którzy łączą kreatywność z nowoczesnymi rozwiązaniami programistycznymi. Nasza misja to tworzenie stron internetowych, które nie tylko zachwycają wyglądem, ale także zapewniają doskonałe doświadczenia użytkownika.</p>
+                    
+                    <div class="stats-container">
+                        <div class="stat">
+                            <div class="stat-number" data-count="10">0</div>
+                            <div class="stat-label">Zrealizowanych Projektów</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-count="8">0</div>
+                            <div class="stat-label">Zadowolonych Klientów</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-count="2">0</div>
+                            <div class="stat-label">Lata Doświadczenia</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-count="24">0</div>
+                            <div class="stat-label">Godziny Wsparcia</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="visual-container">
+                        <div class="floating-card card-1">
+                            <i class="fas fa-code"></i>
+                            <h4>Czysty Kod</h4>
+                        </div>
+                        <div class="floating-card card-2">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Responsywność</h4>
+                        </div>
+                        <div class="floating-card card-3">
+                            <i class="fas fa-rocket"></i>
+                            <h4>Wydajność</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Nasze Usługi</h2>
+                <p class="section-subtitle">Kompleksowe rozwiązania dla Twojego biznesu</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Projektowanie Stron WWW</h3>
+                    <p>Tworzymy nowoczesne, responsywne strony internetowe dopasowane do Twoich potrzeb i celów biznesowych.</p>
+                    <ul class="service-features">
+                        <li>Projekt UI/UX</li>
+                        <li>Responsywność</li>
+                        <li>Optymalizacja SEO</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Dowiedz się więcej <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Sklepy Internetowe</h3>
+                    <p>Kompleksowe rozwiązania e-commerce, które zwiększają sprzedaż i poprawiają doświadczenia zakupowe.</p>
+                    <ul class="service-features">
+                        <li>Integracja płatności</li>
+                        <li>Panel administracyjny</li>
+                        <li>Analiza sprzedaży</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Dowiedz się więcej <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Aplikacje Mobilne</h3>
+                    <p>Tworzymy natywne i hybrydowe aplikacje mobilne dla systemów iOS i Android.</p>
+                    <ul class="service-features">
+                        <li>Projekt UX</li>
+                        <li>Wydajność</li>
+                        <li>Bezpieczeństwo</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Dowiedz się więcej <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Pozycjonowanie SEO</h3>
+                    <p>Zwiększamy widoczność Twojej strony w wynikach wyszukiwania i przyciągamy więcej klientów.</p>
+                    <ul class="service-features">
+                        <li>Audyt SEO</li>
+                        <li>Optymalizacja treści</li>
+                        <li>Link building</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Dowiedz się więcej <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Identyfikacja Wizualna</h3>
+                    <p>Tworzymy spójną identyfikację wizualną, która buduje rozpoznawalność Twojej marki.</p>
+                    <ul class="service-features">
+                        <li>Logo i branding</li>
+                        <li>Materiały marketingowe</li>
+                        <li>Style guide</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Dowiedz się więcej <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Marketing Digital</h3>
+                    <p>Kompleksowe strategie marketingowe, które zwiększają ruch na stronie i generują leady.</p>
+                    <ul class="service-features">
+                        <li>Social Media</li>
+                        <li>Google Ads</li>
+                        <li>Email Marketing</li>
+                    </ul>
+                    <a href="#contact" class="service-link">Dowiedz się więcej <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Nasze Portfolio</h2>
+                <p class="section-subtitle">Zobacz nasze najnowsze projekty</p>
+            </div>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">Wszystkie</button>
+                <button class="filter-btn" data-filter="web">Strony WWW</button>
+                <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+                <button class="filter-btn" data-filter="mobile">Aplikacje</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/web/1.png" alt="Project Image">
+                        <div class="portfolio-overlay">
+                            <h3>Modern Finance</h3>
+                            <p>Strona internetowa dla firmy finansowej</p>
+                            <a href="#" class="portfolio-link">Zobacz projekt</a>
+                        </div>
+                    </div>
+                </div>
+                
+            <!--
+                <div class="portfolio-item" data-category="ecommerce">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder"></div>
+                        <div class="portfolio-overlay">
+                            <h3>Fashion Store</h3>
+                            <p>Sklep internetowy z odzieżą</p>
+                            <a href="#" class="portfolio-link">Zobacz projekt</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="mobile">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder"></div>
+                        <div class="portfolio-overlay">
+                            <h3>Health Tracker</h3>
+                            <p>Aplikacja do śledzenia zdrowia</p>
+                            <a href="#" class="portfolio-link">Zobacz projekt</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder"></div>
+                        <div class="portfolio-overlay">
+                            <h3>Tech Startup</h3>
+                            <p>Identyfikacja wizualna dla startupu</p>
+                            <a href="#" class="portfolio-link">Zobacz projekt</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder"></div>
+                        <div class="portfolio-overlay">
+                            <h3>Creative Agency</h3>
+                            <p>Strona dla agencji kreatywnej</p>
+                            <a href="#" class="portfolio-link">Zobacz projekt</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="ecommerce">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder"></div>
+                        <div class="portfolio-overlay">
+                            <h3>Electro Shop</h3>
+                            <p>Sklep z elektroniką</p>
+                            <a href="#" class="portfolio-link">Zobacz projekt</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            -->
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Nasz Proces Pracy</h2>
+                <p class="section-subtitle">Jak tworzymy Twoją idealną stronę internetową</p>
+            </div>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Konsultacja i Analiza</h3>
+                        <p>Rozmawiamy o Twoich celach, potrzebach i wizji. Analizujemy konkurencję i tworzymy strategię.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Projekt i Prototyp</h3>
+                        <p>Tworzymy makietę i prototyp strony, który pokazuje układ i funkcjonalności.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Rozwój i Programowanie</h3>
+                        <p>Implementujemy projekt, tworząc responsywną i wydajną stronę internetową.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Testowanie i Optymalizacja</h3>
+                        <p>Testujemy stronę na różnych urządzeniach i przeglądarkach, optymalizujemy pod kątem SEO.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <h3>Wdrożenie i Wsparcie</h3>
+                        <p>Wdrażamy stronę na serwerze i zapewniamy wsparcie techniczne po uruchomieniu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Nasz Zespół</h2>
+                <p class="section-subtitle">Poznaj ekspertów stojących za naszymi projektami</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="assets/team/acarto.png" class="image-placeholder" alt="Team Member">
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-discord"></i></a>
+                            <a href="#"><i class="fab fa-envelope"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Fryze10</h3>
+                        <p>Developer</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="assets/team/acarto.png" class="image-placeholder" alt="Team Member">
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-discord"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Acarto</h3>
+                        <p>Developer</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="assets/team/Cezary19.jpeg" class="image-placeholder" alt="Team Member">
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>cezaryy19</h3>
+                        <p>Developer</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="assets/team/acarto.png" class="image-placeholder" alt="Team Member">
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-behance"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <div class="hero-buttons"> <a href="pricing/pricing.html" class="btn btn-secondary">Dołącz do zespołu!</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Co Mówią Nasi Klienci</h2>
+                <p class="section-subtitle">Opinie zadowolonych partnerów biznesowych</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-slide active">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">Exolyte Studios stworzyło dla nas niesamowitą stronę internetową, która znacząco zwiększyła naszą sprzedaż. Profesjonalne podejście i terminowość to ich znaki rozpoznawcze.</p>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <div class="image-placeholder"></div>
+                            </div>
+                            <div class="author-info">
+                                <h4>Michał Nowak</h4>
+                                <p>CEO, TechSolutions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">Współpraca z Exolyte Studios to była najlepsza decyzja dla naszego biznesu. Strona nie tylko wygląda fantastycznie, ale także jest bardzo funkcjonalna i przyjazna dla użytkownika.</p>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <div class="image-placeholder"></div>
+                            </div>
+                            <div class="author-info">
+                                <h4>Katarzyna Lewandowska</h4>
+                                <p>Marketing Director, FashionBrand</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">Jesteśmy pod ogromnym wrażeniem profesjonalizmu i kreatywności zespołu Exolyte Studios. Strona, którą dla nas stworzyli, znacznie przewyższyła nasze oczekiwania.</p>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <div class="image-placeholder"></div>
+                            </div>
+                            <div class="author-info">
+                                <h4>Adam Kowalczyk</h4>
+                                <p>Founder, StartupInnovation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-controls">
+                    <button class="slider-prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                
+                <div class="slider-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Skontaktuj Się z Nami</h2>
+                <p class="section-subtitle">Wybierz dogodny dla Ciebie sposób kontaktu</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Porozmawiajmy o Twoim projekcie</h3>
+                    <p>Masz pomysł na stronę internetową lub aplikację? Skontaktuj się z nami, a my pomożemy Ci go zrealizować.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Adres</h4>
+                                <p>ul. Nowoczesna 123, 00-001 Warszawa</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Telefon</h4>
+                                <p>+48 123 456 789</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>kontakt@exolytestudios.pl</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 20px; color: var(--text-color);">Wybierz sposób kontaktu</h3>
+                    <p style="color: var(--gray); margin-bottom: 30px;">Kliknij w wybrany przycisk, aby przejść do rozmowy</p>
+                    
+                    <div class="social-buttons">
+                        <a href="https://facebook.com/exolytestudios" target="_blank" class="social-button facebook">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+                        
+                        <a href="https://instagram.com/exolytestudios" target="_blank" class="social-button instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        
+                        <a href="https://linkedin.com/company/exolytestudios" target="_blank" class="social-button linkedin">
+                            <i class="fab fa-linkedin-in"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        
+                        <a href="https://twitter.com/exolytestudios" target="_blank" class="social-button twitter">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                        
+                        <a href="https://wa.me/48123456789" target="_blank" class="social-button whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp</span>
+                        </a>
+                        
+                        <a href="mailto:kontakt@exolytestudios.pl" class="social-button email">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#home">
+                        <span class="logo-text">EXOLYTE</span>
+                        <div class="logo-dot"></div>
+                    </a>
+                    <p>Tworzymy nowoczesne strony internetowe, które przynoszą rezultaty.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Szybkie Linki</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">O Nas</a></li>
+                            <li><a href="#services">Usługi</a></li>
+                            <li><a href="#portfolio">Portfolio</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Usługi</h4>
+                        <ul>
+                            <li><a href="#services">Strony WWW</a></li>
+                            <li><a href="#services">Sklepy Internetowe</a></li>
+                            <li><a href="#services">Aplikacje Mobilne</a></li>
+                            <li><a href="#services">SEO</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Kontakt</h4>
+                        <ul>
+                            <li><a href="mailto:kontakt@exolytestudios.pl">kontakt@exolytestudios.pl</a></li>
+                            <li><a href="tel:+48123456789">+48 123 456 789</a></li>
+                            <li>ul. Nowoczesna 123, Warszawa</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Exolyte Studios. Wszelkie prawa zastrzeżone.</p>
+                <div class="footer-bottom-links">
+                    <a href="info/rules/policy.html">Polityka Prywatności</a>
+                    <a href="info/rules/terms.html">Warunki Korzystania</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
