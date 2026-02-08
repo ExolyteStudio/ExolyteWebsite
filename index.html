@@ -1,1221 +1,711 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WudArt – Sztuka do kupienia | Malarstwo, grafika, sztuka użytkowa</title>
-  <meta name="description" content="WudArt – oryginalna sztuka do kupienia. Malarstwo, grafika, sztuka użytkowa. Płatność BLIK i kartą. Zapraszamy.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #faf8f5;
-      --bg-dark: #1a1816;
-      --text: #2c2825;
-      --text-light: #5c5652;
-      --accent: #e91e63;
-      --accent-soft: #9c27b0;
-      --border: #e8e4df;
-      --white: #fff;
-      --gradient: linear-gradient(135deg, #e91e63, #9c27b0, #673ab7);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 400;
-      font-size: 1rem;
-      line-height: 1.6;
-      color: var(--text);
-      background: var(--bg);
-    }
-
-    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
-    h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); letter-spacing: 0.02em; }
-    h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin: 0 0 1.5rem; }
-    h3 { font-size: 1.25rem; margin: 0 0 0.5rem; }
-
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { color: var(--accent-soft); text-decoration: underline; }
-
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
-
-    /* Header */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: rgba(250, 248, 245, 0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-    }
-    header .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 0.75rem;
-      padding-bottom: 0.75rem;
-    }
-    .logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .logo a { color: inherit; text-decoration: none; }
-    .logo a:hover { text-decoration: none; color: var(--accent); }
-    
-    /* Navigation */
-    .nav-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      padding: 0.5rem;
-      background: none;
-      border: none;
-    }
-    .nav-toggle span {
-      width: 25px;
-      height: 3px;
-      background: var(--text);
-      margin: 3px 0;
-      transition: 0.3s;
-      border-radius: 2px;
-    }
-    .nav-toggle.active span:nth-child(1) {
-      transform: rotate(-45deg) translate(-5px, 6px);
-    }
-    .nav-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .nav-toggle.active span:nth-child(3) {
-      transform: rotate(45deg) translate(-5px, -6px);
-    }
-    
-    nav {
-      display: flex;
-      align-items: center;
-    }
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 2rem;
-    }
-    nav a {
-      color: var(--text-light);
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: color 0.2s;
-    }
-    nav a:hover { 
-      color: var(--accent); 
-      text-decoration: none; 
-    }
-    nav a.active {
-      color: var(--accent);
-    }
-
-    /* Mobile Navigation */
-    @media (max-width: 768px) {
-      .nav-toggle {
-        display: flex;
-      }
-      nav ul {
-        position: fixed;
-        top: 70px;
-        right: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background: rgba(250, 248, 245, 0.98);
-        backdrop-filter: blur(10px);
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        padding-top: 2rem;
-        gap: 1rem;
-        transition: right 0.3s ease;
-      }
-      nav ul.active {
-        right: 0;
-      }
-      nav a {
-        font-size: 1.1rem;
-        padding: 1rem 2rem;
-        width: 200px;
-        text-align: center;
-      }
-    }
-
-    .header-auth {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .btn-login {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.5rem;
-      background: var(--accent);
-      color: var(--white);
-      border: 1px solid var(--accent);
-      border-radius: 6px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      font-family: inherit;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .btn-login:hover { 
-      background: var(--accent-soft); 
-      border-color: var(--accent-soft); 
-    }
-    .btn-google, .btn-email {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.875rem 1.5rem;
-      background: var(--white);
-      color: var(--text);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      cursor: pointer;
-      font-family: inherit;
-      transition: all 0.2s ease;
-      width: 100%;
-      justify-content: center;
-      margin-bottom: 0.75rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .btn-google:hover, .btn-email:hover { 
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    }
-    .btn-google svg { width: 20px; height: 20px; }
-    .btn-google { 
-      background: #fff; 
-      color: #333; 
-      border-color: #dadce0; 
-    }
-    .btn-google:hover { 
-      background: #f8f9fa; 
-      border-color: #dadce0; 
-    }
-    .btn-facebook {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.875rem 1.5rem;
-      background: #1877f2;
-      color: #fff;
-      border: 1px solid #1877f2;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      cursor: pointer;
-      font-family: inherit;
-      transition: all 0.2s ease;
-      width: 100%;
-      justify-content: center;
-      margin-bottom: 0.75rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .btn-facebook:hover {
-      background: #166fe5;
-      border-color: #166fe5;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    }
-    .btn-facebook svg { width: 20px; height: 20px; }
-    .user-menu {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.9rem;
-    }
-    .user-menu .name { color: var(--text); font-weight: 500; }
-    .user-menu .btn-out { padding: 0.4rem 0.8rem; background: transparent; color: var(--text-light); border: 1px solid var(--border); border-radius: 4px; cursor: pointer; font-size: 0.85rem; font-family: inherit; }
-    .user-menu .btn-out:hover { background: var(--border); color: var(--text); }
-
-    /* Hero */
-    .hero {
-      min-height: 85vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 6rem 1.5rem 4rem;
-      background: linear-gradient(135deg, #ff1744, #e91e63, #9c27b0, #673ab7, #3f51b5);
-      position: relative;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(10px);
-    }
-    .hero > div {
-      position: relative;
-      z-index: 1;
-    }
-    .hero h1 { margin: 0 0 0.5rem; color: var(--text); }
-    .hero .tagline {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-      font-style: italic;
-      color: var(--text-light);
-      margin: 0 0 2rem;
-    }
-    .hero p {
-      color: var(--text-light);
-    }
-    .hero .cta {
-      display: inline-block;
-      padding: 0.9rem 2rem;
-      background: var(--accent);
-      color: var(--white) !important;
-      font-weight: 500;
-      border-radius: 4px;
-      transition: background 0.2s;
-    }
-    .hero .cta:hover { background: var(--accent-soft); text-decoration: none; }
-
-    /* Sections */
-    section { padding: 4rem 0; }
-    section.dark { 
-      background: linear-gradient(135deg, #3f51b5, #673ab7, #9c27b0, #e91e63, #ff1744); 
-      position: relative;
-    }
-    section.dark::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(8px);
-    }
-    section.dark .container {
-      position: relative;
-      z-index: 1;
-    }
-    section.dark h2 { color: var(--text); }
-    section.dark .text-light { color: var(--text-light); }
-    section.dark a { color: var(--accent); }
-    section.dark .art-card { color: var(--text); }
-    section.dark .art-card h3 { color: var(--text); }
-    section.dark .art-card .meta { color: var(--text-light); }
-    section.dark .art-card .price { color: var(--accent); }
-
-    .section-title { text-align: center; margin-bottom: 3rem; }
-    .section-title p { color: var(--text-light); margin: 0.5rem 0 0; max-width: 500px; margin-left: auto; margin-right: auto; }
-    section.dark .section-title p { color: rgba(255,255,255,0.7); }
-
-    /* O nas */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
-    .about-text p { margin: 0 0 1rem; }
-    .about-list { list-style: none; padding: 0; margin: 1.5rem 0 0; }
-    .about-list li {
-      padding: 0.5rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-    }
-    .about-list li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.9rem;
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-    }
-    .about-img {
-      aspect-ratio: 3.5/4;
-      background: var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      align-self: start;
-    }
-    .about-img img { width: 100%; height: 100%; object-fit: cover; }
-
-    /* Galeria / Sklep – grid prac */
-    .art-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-    .art-card {
-      background: var(--white);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .art-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
-    }
-    .art-card-image {
-      aspect-ratio: 1;
-      background: var(--border);
-      overflow: hidden;
-    }
-    .art-card-image img { width: 100%; height: 100%; object-fit: cover; }
-    .art-card-body { padding: 1.25rem; }
-    .art-card-body h3 { font-family: 'Outfit', sans-serif; font-weight: 600; }
-    .art-card-body .meta { color: var(--text-light); font-size: 0.9rem; margin: 0.25rem 0 0.5rem; }
-    .art-card-body .price { font-weight: 600; font-size: 1.15rem; color: var(--accent); margin: 0.5rem 0 0; }
-    .art-card-body .btn-buy {
-      display: inline-block;
-      margin-top: 0.75rem;
-      padding: 0.6rem 1.25rem;
-      background: var(--text);
-      color: var(--white) !important;
-      font-size: 0.9rem;
-      font-weight: 500;
-      border-radius: 4px;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .art-card-body .btn-buy:hover { background: var(--accent); text-decoration: none; color: var(--white); }
-
-    /* Terapie grid */
-    .therapy-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-    .therapy-card {
-      background: var(--white);
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .therapy-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
-    }
-    .therapy-card h3 { color: var(--accent); margin-bottom: 1rem; }
-    .therapy-card .price { font-weight: 600; font-size: 1.2rem; color: var(--accent); margin: 1rem 0; }
-    .therapy-card .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background: var(--accent);
-      color: var(--white) !important;
-      border-radius: 6px;
-      font-weight: 500;
-      margin-top: 1rem;
-      transition: background 0.2s;
-      text-decoration: none;
-    }
-    .therapy-card .btn:hover { background: var(--accent-soft); text-decoration: none; }
-
-    /* Kontakt */
-    .contact-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-    @media (max-width: 768px) { .contact-wrap { grid-template-columns: 1fr; } }
-    .contact-info p { margin: 0 0 0.5rem; }
-    .contact-form label { display: block; margin-bottom: 0.25rem; font-weight: 500; }
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 0.6rem 0.75rem;
-      margin-bottom: 1rem;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      font-family: inherit;
-      font-size: 1rem;
-    }
-    .contact-form textarea { min-height: 120px; resize: vertical; }
-    .contact-form button {
-      padding: 0.75rem 1.5rem;
-      background: var(--accent);
-      color: var(--white);
-      border: none;
-      border-radius: 4px;
-      font-weight: 500;
-      cursor: pointer;
-      font-family: inherit;
-    }
-    .contact-form button:hover { background: var(--accent-soft); }
-    .payment-info {
-      margin-top: 1.5rem;
-      padding: 1rem;
-      background: rgba(201, 162, 39, 0.15);
-      border-radius: 6px;
-      font-size: 0.95rem;
-    }
-    .payment-info strong { display: block; margin-bottom: 0.25rem; }
-
-    /* Modal styles */
-    .payment-modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      overflow-y: auto;
-    }
-    .payment-modal-overlay.active { display: flex; }
-    .payment-modal {
-      background: var(--white);
-      border-radius: 12px;
-      max-width: 480px;
-      width: 100%;
-      padding: 1.5rem;
-      margin: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    }
-    .payment-modal h3 { margin: 0 0 0.25rem; font-size: 1.25rem; }
-    .payment-modal .payment-actions {
-      display: flex;
-      gap: 0.75rem;
-      margin-top: 1rem;
-    }
-    .payment-modal .btn-pay {
-      flex: 1;
-      padding: 0.75rem 1.25rem;
-      background: var(--accent);
-      color: var(--white);
-      border: none;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      font-family: inherit;
-    }
-    .payment-modal .btn-pay:hover { background: var(--accent-soft); }
-    .payment-modal .btn-cancel {
-      padding: 0.75rem 1.25rem;
-      background: var(--border);
-      color: var(--text);
-      border: none;
-      border-radius: 6px;
-      font-weight: 500;
-      cursor: pointer;
-      font-family: inherit;
-    }
-    .payment-modal .btn-cancel:hover { background: #ddd; }
-    .payment-modal .payment-error { color: #c00; font-size: 0.9rem; margin-top: 0.5rem; }
-
-    /* Footer */
-    footer {
-      background: var(--bg-dark);
-      color: rgba(255,255,255,0.7);
-      padding: 2rem 0;
-      text-align: center;
-      font-size: 0.9rem;
-    }
-    footer a { color: var(--accent-soft); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exolyte Studios - Profesjonalne strony internetowe</title>
+    <link rel="icon" type="image/png" href="assets/main/logo.png">
+    <meta name="description" content="Exolyte Studios - Tworzymy nowoczesne strony internetowe, aplikacje webowe i rozwiązania e-commerce. Profesjonalny design, optymalizacja SEO i wsparcie techniczne.">
+    <meta name="keywords" content="strony internetowe, tworzenie stron, aplikacje web, e-commerce, SEO, web development">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // Natychmiastowe przewinięcie na górę przy odświeżaniu
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
+    </script>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <div class="logo">
-        <a href="#" style="display: flex; align-items: center; gap: 0.5rem;">
-          <img src="logo.png" alt="WudArt Logo" style="height: 36px; width: auto;" onerror="this.style.display='none'">
-          <span style="color: var(--text); font-weight: 600;">WudArt</span>
-        </a>
-      </div>
-      <button class="nav-toggle" id="nav-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav>
-        <ul id="nav-menu">
-          <li><a href="#o-nas">O nas</a></li>
-          <li><a href="#galeria">Galeria</a></li>
-          <li><a href="#terapie">Terapie</a></li>
-          <li><a href="#kontakt">Kontakt</a></li>
-        </ul>
-      </nav>
-      <div class="header-auth" id="header-auth">
-        <div id="auth-signed-out">
-          <button type="button" class="btn-login" id="btn-login">
-            Zaloguj się
-          </button>
-        </div>
-        <div class="user-menu" id="user-menu" style="display: none;">
-          <span class="name" id="user-name"></span>
-          <button type="button" class="btn-out" id="btn-logout">Wyloguj</button>
-        </div>
-      </div>
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle" id="darkModeToggle" aria-label="Przełącz tryb ciemny">
+        <i class="fas fa-moon"></i>
     </div>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div>
-        <h1>WudArt</h1>
-        <p class="tagline">Emocje mają wiele języków – jednym z nich jest sztuka. Nie naprawiam – pomagam zrozumieć.</p>
-        <p style="max-width: 520px; margin: 0 auto 1.5rem; color: var(--text-light);">Materiały powstają z doświadczenia pracy z dziećmi i realnych potrzeb, a nie z gotowego szablonu</p>
-        <a href="#galeria" class="cta">Zobacz pliki do kupienia</a>
-      </div>
-    </section>
-
-    <section id="o-nas">
-      <div class="container">
-        <div class="section-title">
-          <h2>O mnie</h2>
-          <p>Iwona Bodziuch Wudzińska</p>
-        </div>
-        <div class="about-grid">
-          <div class="about-text">
-            <br>
-            <p>Z wykształcenia i zamiłowania jestem arteterapeutą, pedagogiem i surdopedagogiem, terapeutą integracji sensorycznej oraz trenerem biofeedback (EEG i HEG).
-Na co dzień pracuję z dziećmi i młodzieżą, towarzysząc im w rozwoju, regulacji emocji i budowaniu poczucia bezpieczeństwa.
-
-W swojej pracy łączę wiedzę pedagogiczną, arteterapię, elementy neuroterapii i podejście psychologiczne. Wierzę, że każde dziecko ma w sobie potencjał – potrzebuje jedynie odpowiednich warunków, relacji i czasu, by mógł się ujawnić.
-Dlatego działam uważnie, indywidualnie i z dużym szacunkiem do dziecięcej wrażliwości.
-
-Nieustannie poszerzam swoją wiedzę – m.in. studiując psychologię – bo rozwój, tak jak terapia, jest procesem, który nigdy się nie kończy.</p>
-            <ul class="about-list">
-              <li>Indywidualne podejście do klienta</li>
-              <li>Możliwość dostosowania bajki do potrzeb dziecka</li>
-              <li>Bajki terapeutyczne w pliku .pdf do samodzielnego druku</li>
-              <li>Możliwość płatności kartą/blik</li>
-            </ul>
-          </div>
-          <div class="about-img">
-            <img src="pliki/zdj1.jpg" alt="zdj1">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="galeria" class="dark">
-      <div class="container">
-        <div class="section-title">
-          <h2>Galeria</h2>
-          <p style="color: var(--text-light);">Dostępne materiały</p>
-        </div>
-        
-        <div class="art-grid" role="list">
-          <article class="art-card" role="listitem">
-            <div class="art-card-image">
-              <img src="pliki/przedmiot1.jpg" alt="Bajka o Zosii i schodkach które uczyły odwagi">
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo">
+                <span class="logo-text">EXOLYTE</span>
+                <div class="logo-dot"></div>
             </div>
-            <div class="art-card-body">
-              <h3>Bajka o Zosii i schodkach które uczyły odwagi</h3>
-              <p class="meta">Bajka pomaga uczyć dziecko odwagi nie poddawania się w trudnych sytuacjach.</p>
-              <p class="price">8 zł</p>
-              <a href="https://buy.stripe.com/dRm4gse2b4erh1X1GG3gk01" class="btn-buy" target="_blank">Kup</a>
+            <div class="preloader-progress">
+                <div class="progress-bar"></div>
             </div>
-          </article>
-          
-          <article class="art-card" role="listitem">
-            <div class="art-card-image">
-              <img src="pliki/przedmiot2.jpg" alt="Bajka o Małym Misiu i świecącej gwieździe">
-            </div>
-            <div class="art-card-body">
-              <h3>Bajka o Małym Misiu i świecącej gwieździe</h3>
-              <p class="meta">Problemy z koszmarami sennymi</p>
-              <p class="price">8 zł</p>
-              <a href="https://buy.stripe.com/7sYcMY7DNeT5cLHbhg3gk02" class="btn-buy" target="_blank">Kup</a>
-            </div>
-          </article>
-          
-          <article class="art-card" role="listitem">
-            <div class="art-card-image">
-              <img src="pliki/przedmiot3.jpg" alt="Seduszko, które pamięta" >
-            </div>
-            <div class="art-card-body">
-              <h3>Serduszko, które pamięta</h3>
-              <p class="meta">Tworzenie wspomnieńm ciepło, poczucie bezpieczeństwa</p>
-              <p class="price">8 zł</p>
-              <a href="https://buy.stripe.com/test_6oU4gAg8yeA72C51UU4ko00" class="btn-buy" target="_blank">NIEAKTUALNE</a>
-            </div>
-          </article>
-          
-          <article class="art-card" role="listitem">
-            <div class="art-card-image">
-              <img src="pliki/przedmiot4.jpg" alt="Bal Karnawałowy Małego Jeżyka">
-            </div>
-            <div class="art-card-body">
-              <h3>Bal Karnawałowy Małego Jeżyka</h3>
-              <p class="meta">Wejście do grupy, wsparcie rówieśnicze, odwaga</p>
-              <p class="price">8 zł</p>
-              <a href="https://buy.stripe.com/eVqcMY8HR4erfXTfxw3gk03" class="btn-buy" target="_blank">Kup</a>
-            </div>
-          </article>
         </div>
-      </div>
-    </section>
-
-    <section id="terapie">
-      <div class="container">
-        <div class="section-title">
-          <h2>Terapie</h2>
-          <p>Profesjonalne wsparcie psychologiczne przez sztukę i rozmowę</p>
-        </div>
-        
-        <div class="therapy-grid">
-          <div class="therapy-card">
-            <h3>Arteterapia indywidualna</h3>
-            <p>Terapia przez sztukę dla dzieci i młodzieży. Pomaga w wyrażaniu emocji, budowaniu pewności siebie i radzeniu sobie z trudnościami.</p>
-            <a href="#kontakt" class="btn">Skontaktuj się</a>
-          </div>
-          
-          <div class="therapy-card">
-            <h3>Terapia integracji sensorycznej</h3>
-            <p>Wsparcie dla dzieci z trudnościami w przetwarzaniu bodźców sensorycznych. Pomaga w lepszym funkcjonowaniu w codziennym życiu.</p>
-            <a href="#kontakt" class="btn">Skontaktuj się</a>
-          </div>
-          
-          <div class="therapy-card">
-            <h3>Konsultacje pedagogiczne</h3>
-            <p>Indywidualne konsultacje dla rodziców i nauczycieli. Pomoc w zrozumieniu potrzeb dziecka i doborze odpowiednich metod wsparcia.</p>
-            <a href="#kontakt" class="btn">Skontaktuj się</a>
-          </div>
-        </div>
-        
-        <div style="text-align: center; margin-top: 2rem;">
-          <a href="#kontakt" style="display: inline-block; padding: 1rem 2rem; background: var(--accent); color: var(--white); border-radius: 6px; text-decoration: none; font-weight: 500;">Umów konsultację</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="kontakt">
-      <div class="container">
-        <div class="section-title">
-          <h2>Kontakt</h2>
-          <p>Masz pytania? Skontaktuj się z nami!</p>
-        </div>
-        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-          <div style="background: var(--white); padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
-            <p><strong>WudArt</strong></p>
-            <p>Email: <a href="mailto:iwona.wudart@gmail.com">iwona.wudart@gmail.com</a></p>
-            <p>Telefon: <a href="tel:+48782417158">+48 782 417 158</a></p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>© 2026 WudArt. Wszystkie prawa zastrzeżone.</p>
-      <p><a href="#kontakt">Kontakt</a></p>
     </div>
-  </footer>
 
-  <!-- Modal logowania -->
-  <div class="payment-modal-overlay" id="login-modal" aria-hidden="true">
-    <div class="payment-modal" role="dialog" aria-labelledby="login-title" aria-modal="true">
-      <h3 id="login-title">Zaloguj się</h3>
-      
-      <!-- Logowanie przez Google -->
-      <button type="button" class="btn-google" id="btn-google">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-        </svg>
-        Kontynuuj przez Google
-      </button>
-      
-      <!-- Facebook - ukryty na razie -->
-      <!-- <button type="button" class="btn-facebook" id="btn-facebook" style="display: none;">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        Kontynuuj przez Facebook
-      </button> -->
-      
-      <!-- Separator -->
-      <div style="text-align: center; margin: 1rem 0; position: relative;">
-        <div style="height: 1px; background: var(--border);"></div>
-        <span style="background: var(--white); padding: 0 1rem; color: var(--text-light); font-size: 0.9rem; position: absolute; top: -0.5rem; left: 50%; transform: translateX(-50%);">lub</span>
-      </div>
-      
-      <!-- Logowanie przez email -->
-      <form id="email-login-form">
-        <label for="login-email">Email:</label>
-        <input type="email" id="login-email" required style="width: 100%; padding: 0.75rem; margin: 0.5rem 0 1rem; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem;">
-        <label for="login-password">Hasło:</label>
-        <input type="password" id="login-password" required style="width: 100%; padding: 0.75rem; margin: 0.5rem 0 0.5rem; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem;">
-        
-        <!-- Link zapomniałem hasło -->
-        <div style="text-align: right; margin-bottom: 1rem;">
-          <button type="button" class="btn-forgot-password" id="btn-forgot-password" style="background: none; border: none; color: var(--accent); font-size: 0.9rem; cursor: pointer; text-decoration: underline;">Zapomniałem hasło</button>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home" aria-label="Strona główna Exolyte Studios">
+                    <span class="logo-text">EXOLYTE</span>
+                    <div class="logo-dot"></div>
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Start</a>
+                <a href="#about" class="nav-link">O Nas</a>
+                <a href="#services" class="nav-link">Usługi</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#team" class="nav-link">Zespół</a>
+                <a href="#contact" class="nav-link">Kontakt</a>
+                <a href="pricing/pricing.html" class="nav-link nav-cta">Wycena</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle" aria-label="Menu mobilne">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
-        
-        <p class="payment-error" id="email-login-error" role="alert"></p>
-        <div class="payment-actions">
-          <button type="button" class="btn-cancel" id="login-cancel">Anuluj</button>
-          <button type="submit" class="btn-pay">Zaloguj się</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-award"></i>
+                    <span>Profesjonalne rozwiązania webowe</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line">Tworzymy</span>
+                    <span class="title-line">Wyjątkowe</span>
+                    <span class="title-line highlight">Strony Internetowe</span>
+                </h1>
+                <p class="hero-description">
+                    Specjalizujemy się w projektowaniu i tworzeniu nowoczesnych, responsywnych stron internetowych oraz aplikacji webowych. 
+                    Łączymy kreatywny design z zaawansowanymi technologiami, aby dostarczyć rozwiązania, które wyróżniają Twoją markę i zwiększają konwersję.
+                </p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Projektów</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Satysfakcji</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Wsparcie</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <span>Rozpocznij Projekt</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#portfolio" class="btn btn-secondary">
+                        <span>Zobacz Realizacje</span>
+                        <i class="fas fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                    <div class="shape shape-4"></div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="assets/main/baner.png" alt="Exolyte Studios - Profesjonalne strony internetowe" class="hero-image">
+                </div>
+            </div>
         </div>
-      </form>
-      
-      <!-- Link do rejestracji -->
-      <div style="text-align: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);">
-        <p style="margin: 0 0 0.5rem; color: var(--text-light); font-size: 0.9rem;">Nie masz jeszcze konta?</p>
-        <button type="button" class="btn-register-link" id="btn-register-link" style="background: none; border: none; color: var(--accent); font-weight: 500; cursor: pointer; text-decoration: underline; font-size: 0.95rem;">Zarejestruj się</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal rejestracji -->
-  <div class="payment-modal-overlay" id="register-modal" aria-hidden="true">
-    <div class="payment-modal" role="dialog" aria-labelledby="register-title" aria-modal="true">
-      <h3 id="register-title">Zarejestruj się</h3>
-      
-      <form id="register-form">
-        <label for="register-email">Email:</label>
-        <input type="email" id="register-email" required style="width: 100%; padding: 0.75rem; margin: 0.5rem 0 1rem; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem;">
-        <label for="register-password">Hasło:</label>
-        <input type="password" id="register-password" required style="width: 100%; padding: 0.75rem; margin: 0.5rem 0 1rem; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem;">
-        <label for="register-password-confirm">Potwierdź hasło:</label>
-        <input type="password" id="register-password-confirm" required style="width: 100%; padding: 0.75rem; margin: 0.5rem 0 1rem; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem;">
-        <p class="payment-error" id="register-error" role="alert"></p>
-        <div class="payment-actions">
-          <button type="button" class="btn-cancel" id="register-cancel">Anuluj</button>
-          <button type="submit" class="btn-pay">Zarejestruj się</button>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>Przewiń w dół</span>
         </div>
-      </form>
-      
-      <!-- Link do logowania -->
-      <div style="text-align: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);">
-        <p style="margin: 0 0 0.5rem; color: var(--text-light); font-size: 0.9rem;">Masz już konto?</p>
-        <button type="button" class="btn-register-link" id="btn-login-link" style="background: none; border: none; color: var(--accent); font-weight: 500; cursor: pointer; text-decoration: underline; font-size: 0.95rem;">Zaloguj się</button>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- Firebase Auth -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
-  <script>
-    // Konfiguracja Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyA7rAK1ry4MLb7XWbtfuaU2UuYnNu05wIw",
-      authDomain: "wudart-art.firebaseapp.com",
-      projectId: "wudart-art",
-      storageBucket: "wudart-art.firebasestorage.app",
-      messagingSenderId: "488482505548",
-      appId: "1:488482505548:web:19d8d3a6274acddb68c5e9",
-      measurementId: "G-NY7PCBDHFK"
-    };
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">O Nas</span>
+                <h2 class="section-title">Poznaj Exolyte Studios</h2>
+                <p class="section-subtitle">Pasja, doświadczenie i innowacyjne podejście do tworzenia stron internetowych</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Dlaczego Warto Wybrać Nas?</h3>
+                    <p>
+                        Exolyte Studios to zespół doświadczonych programistów i designerów, którzy łączą technologiczną wiedzę 
+                        z kreatywnością. Tworzymy strony internetowe, które nie tylko pięknie wyglądają, ale przede wszystkim 
+                        skutecznie realizują cele biznesowe naszych klientów.
+                    </p>
+                    <p>
+                        Każdy projekt traktujemy indywidualnie, dostosowując rozwiązania do specyficznych potrzeb i oczekiwań. 
+                        Stawiamy na nowoczesne technologie, optymalizację wydajności oraz intuicyjny interfejs użytkownika.
+                    </p>
+                    
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Responsywny Design</h4>
+                                <p>Strony działające perfekcyjnie na wszystkich urządzeniach</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Optymalizacja SEO</h4>
+                                <p>Wysoka pozycja w wyszukiwarkach Google</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Szybkie Ładowanie</h4>
+                                <p>Zoptymalizowana wydajność i krótki czas ładowania</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Bezpieczeństwo</h4>
+                                <p>Najwyższe standardy zabezpieczeń i ochrony danych</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-container">
+                        <div class="stat">
+                            <div class="stat-number" data-count="10">0</div>
+                            <div class="stat-label">Zrealizowanych Projektów</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-count="8">0</div>
+                            <div class="stat-label">Zadowolonych Klientów</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-count="2">0</div>
+                            <div class="stat-label">Lata Doświadczenia</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-count="100">0</div>
+                            <div class="stat-label">% Satysfakcji</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="visual-container">
+                        <div class="floating-card card-1">
+                            <i class="fas fa-code"></i>
+                            <h4>Czysty Kod</h4>
+                            <p>Zgodny ze standardami</p>
+                        </div>
+                        <div class="floating-card card-2">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Mobile First</h4>
+                            <p>Priorytet dla urządzeń mobilnych</p>
+                        </div>
+                        <div class="floating-card card-3">
+                            <i class="fas fa-rocket"></i>
+                            <h4>Wysoka Wydajność</h4>
+                            <p>Błyskawiczne ładowanie</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    // Inicjalizacja Firebase
-    firebase.initializeApp(firebaseConfig);
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Usługi</span>
+                <h2 class="section-title">Co Oferujemy?</h2>
+                <p class="section-subtitle">Kompleksowe rozwiązania webowe dostosowane do Twoich potrzeb</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Strony Internetowe</h3>
+                    <p>Tworzymy strony, które nie tylko wyglądają świetnie, ale przede wszystkim sprzedają. Każdy projekt to połączenie nowoczesnego designu z psychologią użytkownika - Twoi klienci będą zachwyceni, a Ty zobaczysz realne rezultaty.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Design, który sprzedaje i buduje zaufanie</li>
+                        <li><i class="fas fa-check"></i> Błyskawiczne ładowanie - klienci nie czekają</li>
+                        <li><i class="fas fa-check"></i> Wysoka pozycja w Google od pierwszego dnia</li>
+                        <li><i class="fas fa-check"></i> Perfekcyjny wygląd na każdym urządzeniu</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        <span>Zamów Stronę</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Sklepy Internetowe</h3>
+                    <p>Twój sklep online, który sprzedaje 24/7. Intuicyjny panel, automatyzacja procesów i integracje, które oszczędzają Twój czas. Zacznij zarabiać w internecie już dziś - my zajmiemy się całą technologią.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Gotowe integracje z płatnościami i kurierami</li>
+                        <li><i class="fas fa-check"></i> Automatyczne zarządzanie zamówieniami</li>
+                        <li><i class="fas fa-check"></i> Analityka sprzedaży w czasie rzeczywistym</li>
+                        <li><i class="fas fa-check"></i> Mobilny panel - zarządzaj z telefonu</li>
+                    </ul>
+                    <a href="#contact" class="service-link service-link-disabled">
+                        <span>Wkrótce Dostępne</span>
+                        <i class="fas fa-clock"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Aplikacje Webowe</h3>
+                    <p>Potrzebujesz czegoś więcej niż strona? Stworzymy dedykowaną aplikację, która automatyzuje Twój biznes. CRM, systemy rezerwacji, panele zarządzania - wszystko dopasowane do Twoich potrzeb.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Rozwiązania szyte na miarę Twojego biznesu</li>
+                        <li><i class="fas fa-check"></i> Automatyzacja powtarzalnych zadań</li>
+                        <li><i class="fas fa-check"></i> Bezpieczne API i integracje zewnętrzne</li>
+                        <li><i class="fas fa-check"></i> Skalowalność - rośnij bez ograniczeń</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        <span>Zapytaj o Ofertę</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Optymalizacja SEO</h3>
+                    <p>Twoja strona na pierwszej stronie Google? To możliwe! Profesjonalna optymalizacja SEO, która przyciąga klientów szukających dokładnie tego, co oferujesz. Więcej ruchu = więcej sprzedaży.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Pierwsza strona Google w Twojej branży</li>
+                        <li><i class="fas fa-check"></i> Więcej klientów bez płacenia za reklamy</li>
+                        <li><i class="fas fa-check"></i> Szczegółowe raporty i monitoring pozycji</li>
+                        <li><i class="fas fa-check"></i> Długoterminowe rezultaty i wzrost ruchu</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        <span>Zwiększ Widoczność</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Branding & Design</h3>
+                    <p>Wyróżnij się na tle konkurencji! Tworzymy spójną identyfikację wizualną, która zostaje w pamięci. Logo, materiały marketingowe, social media - wszystko w jednym stylu, który buduje rozpoznawalność.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Logo, które zapadnie w pamięć</li>
+                        <li><i class="fas fa-check"></i> Kompletna identyfikacja wizualna marki</li>
+                        <li><i class="fas fa-check"></i> Materiały gotowe do druku i social media</li>
+                        <li><i class="fas fa-check"></i> Księga znaku - spójność na lata</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        <span>Stwórz Markę</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Wsparcie Techniczne</h3>
+                    <p>Nie zostawiamy Cię samego! Wsparcie 24/7, regularne aktualizacje i monitoring bezpieczeństwa. Śpij spokojnie - my pilnujemy, żeby Twoja strona działała bez zarzutu.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Odpowiedź w ciągu 24h - zawsze</li>
+                        <li><i class="fas fa-check"></i> Automatyczne backupy i aktualizacje</li>
+                        <li><i class="fas fa-check"></i> Monitoring 24/7 - wykrywamy problemy wcześniej</li>
+                        <li><i class="fas fa-check"></i> Szybkie poprawki i rozbudowa funkcji</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        <span>Zapewnij Wsparcie</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    // Scroll na górę po załadowaniu strony
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        window.scrollTo(0, 0);
-      }, 100);
-    });
-
-    // Zapobieganie zachowywaniu pozycji scroll
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
-
-    // Elementy DOM
-    const authSignedOut = document.getElementById('auth-signed-out');
-    const btnLogin = document.getElementById('btn-login');
-    const btnGoogle = document.getElementById('btn-google');
-    const btnFacebook = document.getElementById('btn-facebook');
-    const btnForgotPassword = document.getElementById('btn-forgot-password');
-    const userMenu = document.getElementById('user-menu');
-    const userName = document.getElementById('user-name');
-    const btnLogout = document.getElementById('btn-logout');
-    
-    // Hamburger menu
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    
-    // Modalne okna
-    const loginModal = document.getElementById('login-modal');
-    const registerModal = document.getElementById('register-modal');
-    
-    // Formularze
-    const emailForm = document.getElementById('email-login-form');
-    const registerForm = document.getElementById('register-form');
-    
-    // Błędy
-    const emailError = document.getElementById('email-login-error');
-    const registerError = document.getElementById('register-error');
-    
-    // Przyciski
-    const loginCancel = document.getElementById('login-cancel');
-    const registerCancel = document.getElementById('register-cancel');
-    const btnRegisterLink = document.getElementById('btn-register-link');
-    const btnLoginLink = document.getElementById('btn-login-link');
-
-    // Funkcje
-    function showSignedOut() {
-      if (authSignedOut) authSignedOut.style.display = 'flex';
-      if (userMenu) userMenu.style.display = 'none';
-    }
-
-    function showSignedIn(name) {
-      if (authSignedOut) authSignedOut.style.display = 'none';
-      if (userMenu) userMenu.style.display = 'flex';
-      if (userName) userName.textContent = 'Witaj, ' + (name || 'użytkowniku');
-    }
-
-    function openLoginModal() {
-      console.log('Otwieranie modala logowania');
-      if (loginModal) {
-        console.log('Modal znaleziony, dodaję klasę active');
-        loginModal.classList.add('active');
-        loginModal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-      } else {
-        console.log('Nie znaleziono modala logowania');
-      }
-    }
-
-    function closeLoginModal() {
-      if (loginModal) {
-        loginModal.classList.remove('active');
-        loginModal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        if (emailError) emailError.textContent = '';
-      }
-    }
-
-    function openRegisterModal() {
-      closeLoginModal();
-      if (registerModal) {
-        registerModal.classList.add('active');
-        registerModal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function closeRegisterModal() {
-      if (registerModal) {
-        registerModal.classList.remove('active');
-        registerModal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        if (registerError) registerError.textContent = '';
-      }
-    }
-
-    // Obsługa stanu logowania
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        const name = user.displayName || user.email || 'użytkowniku';
-        showSignedIn(name);
-        closeLoginModal();
-        closeRegisterModal();
-      } else {
-        showSignedOut();
-      }
-    });
-
-    // Otwieranie modala logowania
-    if (btnLogin) {
-      console.log('Guzik logowania znaleziony');
-      btnLogin.addEventListener('click', function() {
-        console.log('Kliknięto guzik logowania');
-        openLoginModal();
-      });
-    } else {
-      console.log('Nie znaleziono guzika logowania');
-    }
-
-    // Hamburger menu
-    if (navToggle && navMenu) {
-      navToggle.addEventListener('click', function() {
-        navToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-      });
-
-      // Zamykanie menu po kliknięciu w link
-      navMenu.addEventListener('click', function(e) {
-        if (e.target.tagName === 'A') {
-          navToggle.classList.remove('active');
-          navMenu.classList.remove('active');
-        }
-      });
-
-      // Zamykanie menu po kliknięciu poza nim
-      document.addEventListener('click', function(e) {
-        if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
-          navToggle.classList.remove('active');
-          navMenu.classList.remove('active');
-        }
-      });
-    }
-
-    // Logowanie Google
-    if (btnGoogle) {
-      btnGoogle.addEventListener('click', function() {
-        const provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider)
-          .then(function(result) {
-            console.log('Zalogowano:', result.user.displayName);
-          })
-          .catch(function(error) {
-            console.error('Błąd logowania:', error.message);
-            let errorMessage = 'Błąd logowania Google';
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Portfolio</span>
+                <h2 class="section-title">Nasze Realizacje</h2>
+                <p class="section-subtitle">Zobacz projekty, które stworzyliśmy dla naszych klientów</p>
+            </div>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">Wszystkie</button>
+                <button class="filter-btn" data-filter="web">Strony WWW</button>
+                <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+                <button class="filter-btn" data-filter="app">Aplikacje</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+            </div>
             
-            switch(error.code) {
-              case 'auth/popup-closed-by-user':
-                errorMessage = 'Logowanie zostało anulowane';
-                break;
-              case 'auth/popup-blocked':
-                errorMessage = 'Popup został zablokowany przez przeglądarkę';
-                break;
-              case 'auth/network-request-failed':
-                errorMessage = 'Błąd połączenia internetowego';
-                break;
-              default:
-                errorMessage = 'Błąd logowania Google: ' + error.message;
-            }
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/web/1.png" alt="Modern Finance - Strona internetowa dla firmy finansowej">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <span class="portfolio-category">Strona WWW</span>
+                                <h3>Modern Finance</h3>
+                                <p>Nowoczesna strona internetowa dla firmy finansowej z intuicyjnym interfejsem i zaawansowanymi funkcjami.</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">HTML5</span>
+                                    <span class="tag">CSS3</span>
+                                    <span class="tag">JavaScript</span>
+                                    <span class="tag">Responsive</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <div class="portfolio-placeholder">
+                            <i class="fas fa-image"></i>
+                            <p>Wkrótce więcej projektów</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <span class="portfolio-category">Strona WWW</span>
+                                <h3>Kolejny Projekt</h3>
+                                <p>Pracujemy nad kolejnymi ekscytującymi projektami dla naszych klientów.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-image">
+                        <div class="portfolio-placeholder">
+                            <i class="fas fa-palette"></i>
+                            <p>Projekty brandingowe</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <span class="portfolio-category">Branding</span>
+                                <h3>Identyfikacja Wizualna</h3>
+                                <p>Kompleksowe projekty brandingowe dla różnych branż.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            if (emailError) {
-              emailError.style.color = '#c00';
-              emailError.textContent = errorMessage;
-            }
-          });
-      });
-    }
+            <div class="portfolio-cta">
+                <p>Chcesz zobaczyć więcej naszych prac?</p>
+                <a href="#contact" class="btn btn-primary">Skontaktuj się z nami</a>
+            </div>
+        </div>
+    </section>
 
-    // Logowanie Facebook
-    if (btnFacebook) {
-      btnFacebook.addEventListener('click', function() {
-        const provider = new firebase.auth.FacebookAuthProvider();
-        firebase.auth().signInWithPopup(provider)
-          .then(function(result) {
-            console.log('Zalogowano przez Facebook:', result.user.displayName);
-          })
-          .catch(function(error) {
-            console.error('Błąd logowania Facebook:', error.message);
-            let errorMessage = 'Błąd logowania Facebook';
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Zespół</span>
+                <h2 class="section-title">Poznaj Nasz Zespół</h2>
+                <p class="section-subtitle">Pasjonaci technologii i designu, którzy tworzą wyjątkowe projekty</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="assets/team/fryze10.jpeg" alt="Fryze10 - Full Stack Developer w Exolyte Studios">
+                        <div class="member-social">
+                            <a href="https://discord.com/users/1011610256574529577" aria-label="Discord Fryze10" title="Discord">
+                                <i class="fab fa-discord"></i>
+                            </a>
+                            <a href="mailto:fryze10@exolyte.pl" aria-label="Email Fryze10" title="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://github.com/FryZe10D" aria-label="GitHub Fryze10" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Fryze10</h3>
+                        <p class="member-role">Full Stack Developer</p>
+                        <p class="member-description">Specjalista od front-endu i back-endu, tworzy kompleksowe rozwiązania webowe.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="assets/team/acarto.png" alt="Acarto - Web Developer w Exolyte Studios">
+                        <div class="member-social">
+                            <a href="https://discord.com/users/1264899470357696522" aria-label="Discord Acarto" title="Discord">
+                                <i class="fab fa-discord"></i>
+                            </a>
+                            <a href="mailto:acarto@exolyte.pl" aria-label="Email Acarto" title="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://github.com/acartok" aria-label="GitHub Acarto" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Acarto</h3>
+                        <p class="member-role">Web Developer</p>
+                        <p class="member-description">Ekspert w tworzeniu responsywnych i wydajnych stron internetowych.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="assets/team/Cezary19.jpeg" alt="Cezaryy19 - Frontend Developer w Exolyte Studios">
+                        <div class="member-social">
+                            <a href="https://discord.com/users/1309590575774826547" aria-label="Discord Cezaryy19" title="Discord">
+                                <i class="fab fa-discord"></i>
+                            </a>
+                            <a href="mailto:cezary@exolyte.pl" aria-label="Email Cezaryy19" title="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://github.com/Cezary19" aria-label="GitHub Cezaryy19" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Cezaryy19</h3>
+                        <p class="member-role">Frontend Developer</p>
+                        <p class="member-description">Specjalista od interfejsów użytkownika i doświadczeń UX.</p>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Kontakt</span>
+                <h2 class="section-title">Skontaktuj Się z Nami</h2>
+                <p class="section-subtitle">Masz pytania? Chcesz rozpocząć projekt? Jesteśmy do Twojej dyspozycji!</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Porozmawiajmy o Twoim Projekcie</h3>
+                    <p>
+                        Masz pomysł na stronę internetową lub aplikację? A może potrzebujesz wsparcia przy istniejącym projekcie? 
+                        Skontaktuj się z nami, a my pomożemy Ci zrealizować Twoje cele biznesowe.
+                    </p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p><a href="mailto:kontakt@exolyte.pl">kontakt@exolyte.pl</a></p>
+                                <p><a href="mailto:zamowienia@exolyte.pl">zamowienia@exolyte.pl</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Godziny Pracy</h4>
+                                <p>Poniedziałek - Piątek: 9:00 - 18:00</p>
+                                <p>Wsparcie 24/7 przez Discord</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Wsparcie Techniczne</h4>
+                                <p>Dostępne przez Discord i Email</p>
+                                <p>Szybka odpowiedź w ciągu 24h</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61582608156964" target="_blank" rel="noopener" aria-label="Facebook Exolyte Studios">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/exolyte.studios/" target="_blank" rel="noopener" aria-label="Instagram Exolyte Studios">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://dc.exolyte.pl" target="_blank" rel="noopener" aria-label="Discord Exolyte Studios">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://github.com/exolyte-studios" target="_blank" rel="noopener" aria-label="GitHub Exolyte Studios">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-wrapper">
+                    <h3>Wybierz Sposób Kontaktu</h3>
+                    <p>Kliknij w wybrany przycisk, aby rozpocząć rozmowę</p>
+                    
+                    <div class="social-buttons">
+                        <a href="https://www.facebook.com/profile.php?id=61582608156964" target="_blank" rel="noopener" class="social-button facebook">
+                            <i class="fab fa-facebook-f"></i>
+                            <div>
+                                <span class="button-title">Facebook</span>
+                                <span class="button-subtitle">Messenger</span>
+                            </div>
+                        </a>
+                        
+                        <a href="https://www.instagram.com/exolyte.studios/" target="_blank" rel="noopener" class="social-button instagram">
+                            <i class="fab fa-instagram"></i>
+                            <div>
+                                <span class="button-title">Instagram</span>
+                                <span class="button-subtitle">Direct Message</span>
+                            </div>
+                        </a>
+                        
+                        <a href="https://dc.exolyte.pl" target="_blank" rel="noopener" class="social-button discord">
+                            <i class="fab fa-discord"></i>
+                            <div>
+                                <span class="button-title">Discord</span>
+                                <span class="button-subtitle">Najszybszy kontakt</span>
+                            </div>
+                        </a>
+                        
+                        <a href="mailto:kontakt@exolyte.pl" class="social-button email">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <span class="button-title">Email</span>
+                                <span class="button-subtitle">kontakt@exolyte.pl</span>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-cta">
+                        <p>Potrzebujesz wyceny?</p>
+                        <a href="pricing/pricing.html" class="btn btn-secondary">
+                            <span>Kalkulator Wyceny</span>
+                            <i class="fas fa-calculator"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <a href="#home">
+                            <span class="logo-text">EXOLYTE</span>
+                            <div class="logo-dot"></div>
+                        </a>
+                    </div>
+                    <p>
+                        Tworzymy nowoczesne strony internetowe i aplikacje webowe, które wyróżniają się designem, 
+                        funkcjonalnością i przynoszą realne rezultaty biznesowe.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61582608156964" target="_blank" rel="noopener" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/exolyte.studios/" target="_blank" rel="noopener" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://dc.exolyte.pl" target="_blank" rel="noopener" aria-label="Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://github.com/exolyte-studios" target="_blank" rel="noopener" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Nawigacja</h4>
+                        <ul>
+                            <li><a href="#home">Start</a></li>
+                            <li><a href="#about">O Nas</a></li>
+                            <li><a href="#services">Usługi</a></li>
+                            <li><a href="#portfolio">Portfolio</a></li>
+                            <li><a href="#team">Zespół</a></li>
+                            <li><a href="#contact">Kontakt</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Usługi</h4>
+                        <ul>
+                            <li><a href="#services">Strony Internetowe</a></li>
+                            <li><a href="#services">Sklepy E-commerce</a></li>
+                            <li><a href="#services">Aplikacje Webowe</a></li>
+                            <li><a href="#services">Optymalizacja SEO</a></li>
+                            <li><a href="#services">Branding & Design</a></li>
+                            <li><a href="#services">Wsparcie Techniczne</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Informacje</h4>
+                        <ul>
+                            <li><a href="info/rules/n/policy.html">Polityka Prywatności</a></li>
+                            <li><a href="info/rules/n/terms.html">Regulamin</a></li>
+                            <li><a href="info/rules/n/tos.html">Warunki Usługi</a></li>
+                            <li><a href="info/rules/n/cookies.html">Polityka Cookies</a></li>
+                            <li><a href="info/rules/n/cooperation.html">Współpraca</a></li>
+                            <li><a href="pricing/pricing.html">Cennik</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Kontakt</h4>
+                        <ul>
+                            <li><a href="mailto:kontakt@exolyte.pl">kontakt@exolyte.pl</a></li>
+                            <li><a href="mailto:zamowienia@exolyte.pl">zamowienia@exolyte.pl</a></li>
+                            <li><a href="https://dc.exolyte.pl" target="_blank" rel="noopener">Discord Server</a></li>
+                            <li><span>Wsparcie 24/7</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             
-            switch(error.code) {
-              case 'auth/popup-closed-by-user':
-                errorMessage = 'Logowanie zostało anulowane';
-                break;
-              case 'auth/popup-blocked':
-                errorMessage = 'Popup został zablokowany przez przeglądarkę';
-                break;
-              case 'auth/network-request-failed':
-                errorMessage = 'Błąd połączenia internetowego';
-                break;
-              default:
-                errorMessage = 'Błąd logowania Facebook: ' + error.message;
-            }
-            
-            if (emailError) {
-              emailError.style.color = '#c00';
-              emailError.textContent = errorMessage;
-            }
-          });
-      });
-    }
+            <div class="footer-bottom">
+                <p>&copy; 2024 Exolyte Studios. Wszelkie prawa zastrzeżone.</p>
+                <div class="footer-bottom-links">
+                    <a href="info/rules/n/policy.html">Polityka Prywatności</a>
+                    <span class="separator">|</span>
+                    <a href="info/rules/n/terms.html">Regulamin</a>
+                    <span class="separator">|</span>
+                    <a href="info/rules/n/cookies.html">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    // Zapomniałem hasło
-    if (btnForgotPassword) {
-      btnForgotPassword.addEventListener('click', function() {
-        const email = document.getElementById('login-email').value;
-        if (!email) {
-          if (emailError) emailError.textContent = 'Podaj email aby zresetować hasło';
-          return;
-        }
-        
-        firebase.auth().sendPasswordResetEmail(email)
-          .then(function() {
-            if (emailError) {
-              emailError.style.color = 'green';
-              emailError.textContent = 'Link do resetowania hasła został wysłany na email';
-            }
-          })
-          .catch(function(error) {
-            if (emailError) emailError.textContent = 'Błąd: ' + error.message;
-          });
-      });
-    }
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Wróć na górę strony">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
-    // Wylogowanie
-    if (btnLogout) {
-      btnLogout.addEventListener('click', function() {
-        firebase.auth().signOut();
-      });
-    }
-
-    // Zamykanie modali
-    if (loginCancel) {
-      loginCancel.addEventListener('click', closeLoginModal);
-    }
-
-    if (registerCancel) {
-      registerCancel.addEventListener('click', closeRegisterModal);
-    }
-
-    // Przełączanie między modalami
-    if (btnRegisterLink) {
-      btnRegisterLink.addEventListener('click', openRegisterModal);
-    }
-
-    if (btnLoginLink) {
-      btnLoginLink.addEventListener('click', function() {
-        closeRegisterModal();
-        openLoginModal();
-      });
-    }
-
-    // Zamykanie modali po kliknięciu w tło
-    if (loginModal) {
-      loginModal.addEventListener('click', function(e) {
-        if (e.target === loginModal) closeLoginModal();
-      });
-    }
-
-    if (registerModal) {
-      registerModal.addEventListener('click', function(e) {
-        if (e.target === registerModal) closeRegisterModal();
-      });
-    }
-
-    // Logowanie email
-    if (emailForm) {
-      emailForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = document.getElementById('login-email').value;
-        const password = document.getElementById('login-password').value;
-        
-        firebase.auth().signInWithEmailAndPassword(email, password)
-          .then(function() {
-            closeLoginModal();
-          })
-          .catch(function(error) {
-            let errorMessage = 'Błąd logowania';
-            
-            switch(error.code) {
-              case 'auth/wrong-password':
-                errorMessage = 'Błędne hasło';
-                break;
-              case 'auth/user-not-found':
-                errorMessage = 'Nie znaleziono użytkownika o tym adresie email';
-                break;
-              case 'auth/invalid-email':
-                errorMessage = 'Nieprawidłowy adres email';
-                break;
-              case 'auth/user-disabled':
-                errorMessage = 'Konto zostało zablokowane';
-                break;
-              case 'auth/too-many-requests':
-                errorMessage = 'Zbyt wiele prób logowania. Spróbuj ponownie później';
-                break;
-              case 'auth/network-request-failed':
-                errorMessage = 'Błąd połączenia internetowego';
-                break;
-              default:
-                errorMessage = 'Błąd logowania: ' + error.message;
-            }
-            
-            if (emailError) {
-              emailError.style.color = '#c00';
-              emailError.textContent = errorMessage;
-            }
-          });
-      });
-    }
-
-    // Rejestracja
-    if (registerForm) {
-      registerForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = document.getElementById('register-email').value;
-        const password = document.getElementById('register-password').value;
-        const confirmPassword = document.getElementById('register-password-confirm').value;
-        
-        if (password !== confirmPassword) {
-          if (registerError) {
-            registerError.style.color = '#c00';
-            registerError.textContent = 'Hasła nie są identyczne';
-          }
-          return;
-        }
-        
-        if (password.length < 6) {
-          if (registerError) {
-            registerError.style.color = '#c00';
-            registerError.textContent = 'Hasło musi mieć co najmniej 6 znaków';
-          }
-          return;
-        }
-        
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-          .then(function() {
-            closeRegisterModal();
-          })
-          .catch(function(error) {
-            let errorMessage = 'Błąd rejestracji';
-            
-            switch(error.code) {
-              case 'auth/email-already-in-use':
-                errorMessage = 'Ten adres email jest już używany';
-                break;
-              case 'auth/invalid-email':
-                errorMessage = 'Nieprawidłowy adres email';
-                break;
-              case 'auth/weak-password':
-                errorMessage = 'Hasło jest zbyt słabe';
-                break;
-              case 'auth/network-request-failed':
-                errorMessage = 'Błąd połączenia internetowego';
-                break;
-              default:
-                errorMessage = 'Błąd rejestracji: ' + error.message;
-            }
-            
-            if (registerError) {
-              registerError.style.color = '#c00';
-              registerError.textContent = errorMessage;
-            }
-          });
-      });
-    }
-
-    // Formularz kontaktowy
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = 'kontakt@wudart.pl';
-      const user = firebase.auth().currentUser;
-      const senderInfo = user ? user.email || user.displayName || 'Zalogowany użytkownik' : 'Gość';
-      const subj = encodeURIComponent(document.getElementById('subject').value || 'Wiadomość ze strony');
-      const msg = encodeURIComponent('Od: ' + senderInfo + '\n\n' + document.getElementById('message').value);
-      window.location.href = 'mailto:' + email + '?subject=' + subj + '&body=' + msg;
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
