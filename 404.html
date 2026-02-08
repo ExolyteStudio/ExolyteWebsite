@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strona Nie Znaleziona - Exolyte Studios</title>
-    <link rel="stylesheet" href="404.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // Natychmiastowe przewinięcie na górę
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
+    </script>
 </head>
 <body class="error-page">
     <!-- Dark Mode Toggle -->
@@ -77,44 +82,6 @@
                         Skontaktuj Się
                     </a>
                 </div>
-
-                <div class="error-search">
-                    <p>Czy chcesz czegoś poszukać?</p>
-                    <div class="search-box">
-                        <input type="text" id="errorSearch" placeholder="Wpisz czego szukasz...">
-                        <button class="search-btn">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="error-stats">
-                    <div class="stat-item">
-                        <i class="fas fa-clock"></i>
-                        <span>Strona wróci za <span id="countdown">10</span>s</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Jesteś tutaj: Strona 404</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="error-visual">
-                <div class="floating-elements">
-                    <div class="floating-element element-1">
-                        <i class="fas fa-file-code"></i>
-                    </div>
-                    <div class="floating-element element-2">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <div class="floating-element element-3">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <div class="floating-element element-4">
-                        <i class="fas fa-database"></i>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -123,19 +90,21 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <a href="index.html">
-                        <span class="logo-text">EXOLYTE</span>
-                        <div class="logo-dot"></div>
-                    </a>
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <a href="index.html">
+                            <span class="logo-text">EXOLYTE</span>
+                            <div class="logo-dot"></div>
+                        </a>
+                    </div>
                     <p>Tworzymy nowoczesne strony internetowe, które przynoszą rezultaty.</p>
                 </div>
                 
                 <div class="footer-links">
                     <div class="footer-column">
-                        <h4>Szybkie Linki</h4>
+                        <h4>Nawigacja</h4>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.html">Start</a></li>
                             <li><a href="index.html#about">O Nas</a></li>
                             <li><a href="index.html#services">Usługi</a></li>
                             <li><a href="index.html#portfolio">Portfolio</a></li>
@@ -143,6 +112,29 @@
                     </div>
                     
                     <div class="footer-column">
+                        <h4>Kontakt</h4>
+                        <ul>
+                            <li><a href="mailto:kontakt@exolyte.pl">kontakt@exolyte.pl</a></li>
+                            <li><a href="https://dc.exolyte.pl" target="_blank">Discord</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Exolyte Studios. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Wróć na górę">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
                         <h4>Usługi</h4>
                         <ul>
                             <li><a href="index.html#services">Strony WWW</a></li>
