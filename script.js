@@ -1,21 +1,39 @@
-// Dark Mode Toggle
+// ===================================
+// EXOLYTE STUDIOS - MAIN JAVASCRIPT
+// Version: 2.0
+// ===================================
+
+'use strict';
+
+// ===================================
+// SCROLL TO TOP ON PAGE LOAD
+// ===================================
+// Natychmiastowe przewinięcie na górę przy ładowaniu/odświeżaniu strony
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
+// ===================================
+// DARK MODE FUNCTIONALITY
+// ===================================
 const darkModeToggle = document.getElementById('darkModeToggle');
 const body = document.body;
 
-// Sprawdź, czy użytkownik ma zapisane preferencje trybu ciemnego
+// Check for saved dark mode preference
 const isDarkMode = localStorage.getItem('darkMode') === 'true';
 
-// Ustaw początkowy tryb
+// Set initial mode
 if (isDarkMode) {
     body.classList.add('dark-mode');
     darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
 }
 
-// Przełącz tryb ciemny
+// Toggle dark mode
 darkModeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
     
-    // Zmień ikonę
+    // Update icon and save preference
     if (body.classList.contains('dark-mode')) {
         darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
         localStorage.setItem('darkMode', 'true');
@@ -25,7 +43,9 @@ darkModeToggle.addEventListener('click', () => {
     }
 });
 
-// Preloader
+// ===================================
+// PRELOADER
+// ===================================
 window.addEventListener('load', function() {
     const preloader = document.querySelector('.preloader');
     setTimeout(() => {
@@ -33,10 +53,12 @@ window.addEventListener('load', function() {
         setTimeout(() => {
             preloader.style.display = 'none';
         }, 500);
-    }, 1500);
+    }, 800); // Zmienione z 1500ms na 800ms - szybsze ładowanie
 });
 
-// Navigation
+// ===================================
+// NAVIGATION
+// ===================================
 const navbar = document.querySelector('.navbar');
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
@@ -46,6 +68,13 @@ const navLinks = document.querySelectorAll('.nav-link');
 navToggle.addEventListener('click', () => {
     navToggle.classList.toggle('active');
     navMenu.classList.toggle('active');
+    
+    // Prevent body scroll when menu is open
+    if (navMenu.classList.contains('active')) {
+        body.style.overflow = 'hidden';
+    } else {
+        body.style.overflow = '';
+    }
 });
 
 // Close mobile menu when clicking on a link
@@ -53,23 +82,61 @@ navLinks.forEach(link => {
     link.addEventListener('click', () => {
         navToggle.classList.remove('active');
         navMenu.classList.remove('active');
+        body.style.overflow = '';
     });
 });
 
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        body.style.overflow = '';
+    }
+});
+
 // Navbar scroll effect
+let lastScroll = 0;
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 100) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
+    
+    lastScroll = currentScroll;
 });
 
-// Back to top button
+// Active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+
+function highlightNavLink() {
+    const scrollY = window.pageYOffset;
+    
+    sections.forEach(section => {
+        const sectionHeight = section.offsetHeight;
+        const sectionTop = section.offsetTop - 100;
+        const sectionId = section.getAttribute('id');
+        const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+        
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            if (navLink) navLink.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', highlightNavLink);
+
+// ===================================
+// BACK TO TOP BUTTON
+// ===================================
 const backToTop = document.getElementById('backToTop');
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
+    if (window.pageYOffset > 300) {
         backToTop.classList.add('show');
     } else {
         backToTop.classList.remove('show');
@@ -83,14 +150,19 @@ backToTop.addEventListener('click', () => {
     });
 });
 
-// Animate stats counter
+// ===================================
+// STATS COUNTER ANIMATION
+// ===================================
 const stats = document.querySelectorAll('.stat-number');
+let statsAnimated = false;
 
 function animateStats() {
+    if (statsAnimated) return;
+    
     stats.forEach(stat => {
         const target = parseInt(stat.getAttribute('data-count'));
-        const duration = 2000; // 2 seconds
-        const step = target / (duration / 16); // 60fps
+        const duration = 2000;
+        const step = target / (duration / 16);
         let current = 0;
         
         const timer = setInterval(() => {
@@ -103,11 +175,15 @@ function animateStats() {
             }
         }, 16);
     });
+    
+    statsAnimated = true;
 }
 
-// Intersection Observer for animations
+// ===================================
+// INTERSECTION OBSERVER
+// ===================================
 const observerOptions = {
-    threshold: 0.1,
+    threshold: 0.2,
     rootMargin: '0px 0px -50px 0px'
 };
 
@@ -116,7 +192,7 @@ const observer = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('animate');
             
-            // Animate stats if it's the about section
+            // Animate stats when about section is visible
             if (entry.target.id === 'about') {
                 animateStats();
             }
@@ -124,12 +200,14 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe sections for animation
-document.querySelectorAll('section').forEach(section => {
+// Observe all sections
+sections.forEach(section => {
     observer.observe(section);
 });
 
-// Portfolio filtering
+// ===================================
+// PORTFOLIO FILTERING
+// ===================================
 const filterButtons = document.querySelectorAll('.filter-btn');
 const portfolioItems = document.querySelectorAll('.portfolio-item');
 
@@ -143,12 +221,14 @@ filterButtons.forEach(button => {
         const filterValue = button.getAttribute('data-filter');
         
         portfolioItems.forEach(item => {
-            if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+            const category = item.getAttribute('data-category');
+            
+            if (filterValue === 'all' || category === filterValue) {
                 item.style.display = 'block';
                 setTimeout(() => {
                     item.style.opacity = '1';
                     item.style.transform = 'scale(1)';
-                }, 100);
+                }, 10);
             } else {
                 item.style.opacity = '0';
                 item.style.transform = 'scale(0.8)';
@@ -160,87 +240,22 @@ filterButtons.forEach(button => {
     });
 });
 
-// Testimonials slider
-const testimonialSlides = document.querySelectorAll('.testimonial-slide');
-const dots = document.querySelectorAll('.dot');
-const prevButton = document.querySelector('.slider-prev');
-const nextButton = document.querySelector('.slider-next');
-let currentSlide = 0;
-
-function showSlide(n) {
-    // Hide all slides
-    testimonialSlides.forEach(slide => {
-        slide.classList.remove('active');
-    });
-    
-    // Remove active class from all dots
-    dots.forEach(dot => {
-        dot.classList.remove('active');
-    });
-    
-    // Update current slide index
-    currentSlide = (n + testimonialSlides.length) % testimonialSlides.length;
-    
-    // Show current slide and activate corresponding dot
-    testimonialSlides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
-}
-
-// Next slide
-nextButton.addEventListener('click', () => {
-    showSlide(currentSlide + 1);
-});
-
-// Previous slide
-prevButton.addEventListener('click', () => {
-    showSlide(currentSlide - 1);
-});
-
-// Dot navigation
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        showSlide(index);
-    });
-});
-
-// Auto slide change (optional)
-setInterval(() => {
-    showSlide(currentSlide + 1);
-}, 5000);
-
-// Text animation for hero section
-const heroTitleLines = document.querySelectorAll('.title-line');
-
-function animateText() {
-    heroTitleLines.forEach((line, index) => {
-        setTimeout(() => {
-            line.style.opacity = '1';
-            line.style.transform = 'translateY(0)';
-        }, index * 300);
-    });
-}
-
-// Initialize text animation on page load
-window.addEventListener('load', () => {
-    heroTitleLines.forEach(line => {
-        line.style.opacity = '0';
-        line.style.transform = 'translateY(20px)';
-        line.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    });
-    
-    setTimeout(animateText, 1000);
-});
-
-// Add smooth scrolling for anchor links
+// ===================================
+// SMOOTH SCROLLING
+// ===================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+        const href = this.getAttribute('href');
         
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
+        // Skip if href is just "#"
+        if (href === '#') {
+            e.preventDefault();
+            return;
+        }
         
-        const targetElement = document.querySelector(targetId);
+        const targetElement = document.querySelector(href);
         if (targetElement) {
+            e.preventDefault();
             const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
             
             window.scrollTo({
@@ -250,3 +265,119 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// ===================================
+// HERO TEXT ANIMATION
+// ===================================
+const heroTitleLines = document.querySelectorAll('.title-line');
+
+function animateHeroText() {
+    heroTitleLines.forEach((line, index) => {
+        setTimeout(() => {
+            line.style.opacity = '1';
+            line.style.transform = 'translateY(0)';
+        }, index * 200);
+    });
+}
+
+// Initialize text animation on page load
+window.addEventListener('load', () => {
+    heroTitleLines.forEach(line => {
+        line.style.opacity = '0';
+        line.style.transform = 'translateY(30px)';
+        line.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+    
+    setTimeout(animateHeroText, 1000);
+});
+
+// ===================================
+// LAZY LOADING IMAGES
+// ===================================
+if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                }
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+    
+    document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+
+// ===================================
+// PERFORMANCE OPTIMIZATION
+// ===================================
+
+// Debounce function for scroll events
+function debounce(func, wait = 10, immediate = true) {
+    let timeout;
+    return function() {
+        const context = this, args = arguments;
+        const later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
+// Apply debounce to scroll-heavy functions
+window.addEventListener('scroll', debounce(highlightNavLink, 50));
+
+// ===================================
+// ACCESSIBILITY ENHANCEMENTS
+// ===================================
+
+// Keyboard navigation for mobile menu
+navToggle.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        navToggle.click();
+    }
+});
+
+// Focus trap in mobile menu when open
+const focusableElements = navMenu.querySelectorAll('a, button');
+const firstFocusable = focusableElements[0];
+const lastFocusable = focusableElements[focusableElements.length - 1];
+
+navMenu.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab' && navMenu.classList.contains('active')) {
+        if (e.shiftKey) {
+            if (document.activeElement === firstFocusable) {
+                e.preventDefault();
+                lastFocusable.focus();
+            }
+        } else {
+            if (document.activeElement === lastFocusable) {
+                e.preventDefault();
+                firstFocusable.focus();
+            }
+        }
+    }
+    
+    // Close menu on Escape
+    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        navToggle.click();
+        navToggle.focus();
+    }
+});
+
+// ===================================
+// CONSOLE MESSAGE
+// ===================================
+console.log('%c🚀 Exolyte Studios', 'font-size: 20px; font-weight: bold; color: #e63946;');
+console.log('%cStrona stworzona przez Exolyte Studios', 'font-size: 12px; color: #6c757d;');
+console.log('%cSkontaktuj się z nami: kontakt@exolyte.pl', 'font-size: 12px; color: #6c757d;');

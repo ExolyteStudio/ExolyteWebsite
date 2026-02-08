@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exolyte Studios</title>
+    <title>Exolyte Studios - Profesjonalne strony internetowe</title>
     <link rel="icon" type="image/png" href="assets/main/logo.png">
-    <meta name="description" content="Exolyte Studios – tworzymy profesjonalne strony internetowe, aplikacje webowe i rozwiązania dla firm. Zobacz nasze portfolio!">
+    <meta name="description" content="Exolyte Studios - Tworzymy nowoczesne strony internetowe, aplikacje webowe i rozwiązania e-commerce. Profesjonalny design, optymalizacja SEO i wsparcie techniczne.">
+    <meta name="keywords" content="strony internetowe, tworzenie stron, aplikacje web, e-commerce, SEO, web development">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // Natychmiastowe przewinięcie na górę przy odświeżaniu
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
+    </script>
 </head>
 <body>
     <!-- Dark Mode Toggle -->
-    <div class="dark-mode-toggle" id="darkModeToggle">
+    <div class="dark-mode-toggle" id="darkModeToggle" aria-label="Przełącz tryb ciemny">
         <i class="fas fa-moon"></i>
     </div>
 
@@ -28,26 +35,25 @@
         </div>
     </div>
 
-    <!-- Navigations -->
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="#home">
+                <a href="#home" aria-label="Strona główna Exolyte Studios">
                     <span class="logo-text">EXOLYTE</span>
                     <div class="logo-dot"></div>
                 </a>
             </div>
             <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
+                <a href="#home" class="nav-link">Start</a>
                 <a href="#about" class="nav-link">O Nas</a>
                 <a href="#services" class="nav-link">Usługi</a>
                 <a href="#portfolio" class="nav-link">Portfolio</a>
-                <a href="#process" class="nav-link">Proces</a>
                 <a href="#team" class="nav-link">Zespół</a>
-                <a href="#testimonials" class="nav-link">Opinie</a>
                 <a href="#contact" class="nav-link">Kontakt</a>
+                <a href="pricing/pricing.html" class="nav-link nav-cta">Wycena</a>
             </div>
-            <div class="nav-toggle" id="nav-toggle">
+            <div class="nav-toggle" id="nav-toggle" aria-label="Menu mobilne">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -59,19 +65,42 @@
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-award"></i>
+                    <span>Profesjonalne rozwiązania webowe</span>
+                </div>
                 <h1 class="hero-title">
                     <span class="title-line">Tworzymy</span>
-                    <span class="title-line">Niezwykłe</span>
-                    <span class="title-line">Doświadczenia</span>
-                    <span class="title-line highlight">Digital</span>
+                    <span class="title-line">Wyjątkowe</span>
+                    <span class="title-line highlight">Strony Internetowe</span>
                 </h1>
                 <p class="hero-description">
-                    Exolyte Studios to agencja specjalizująca się w tworzeniu nowoczesnych, responsywnych stron internetowych, które wyróżniają się na tle konkurencji i przynoszą realne rezultaty.
+                    Specjalizujemy się w projektowaniu i tworzeniu nowoczesnych, responsywnych stron internetowych oraz aplikacji webowych. 
+                    Łączymy kreatywny design z zaawansowanymi technologiami, aby dostarczyć rozwiązania, które wyróżniają Twoją markę i zwiększają konwersję.
                 </p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Projektów</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Satysfakcji</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Wsparcie</span>
+                    </div>
+                </div>
                 <div class="hero-buttons">
-                    <a href="#portfolio" class="btn btn-primary">Zobacz Portfolio</a>
-                    <a href="#contact" class="btn btn-secondary">Skontaktuj Się</a>
-                    <a href="pricing/pricing.html" class="btn btn-secondary">Wyceń Stronę</a>
+                    <a href="#contact" class="btn btn-primary">
+                        <span>Rozpocznij Projekt</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#portfolio" class="btn btn-secondary">
+                        <span>Zobacz Realizacje</span>
+                        <i class="fas fa-eye"></i>
+                    </a>
                 </div>
             </div>
             <div class="hero-visual">
@@ -81,8 +110,8 @@
                     <div class="shape shape-3"></div>
                     <div class="shape shape-4"></div>
                 </div>
-                <div class="image-container">
-                    <div class="image-placeholder"></div>
+                <div class="hero-image-wrapper">
+                    <img src="assets/main/baner.png" alt="Exolyte Studios - Profesjonalne strony internetowe" class="hero-image">
                 </div>
             </div>
         </div>
@@ -96,13 +125,53 @@
     <section id="about" class="about">
         <div class="section-container">
             <div class="section-header">
-                <h2 class="section-title">O Exolyte Studios</h2>
-                <p class="section-subtitle">Tworzymy przyszłość w cyfrowym świecie</p>
+                <span class="section-badge">O Nas</span>
+                <h2 class="section-title">Poznaj Exolyte Studios</h2>
+                <p class="section-subtitle">Pasja, doświadczenie i innowacyjne podejście do tworzenia stron internetowych</p>
             </div>
             <div class="about-content">
                 <div class="about-text">
-                    <h3>Kim Jesteśmy?</h3>
-                    <p>Exolyte Studios to zespół pasjonatów technologii i designu, którzy łączą kreatywność z nowoczesnymi rozwiązaniami programistycznymi. Nasza misja to tworzenie stron internetowych, które nie tylko zachwycają wyglądem, ale także zapewniają doskonałe doświadczenia użytkownika.</p>
+                    <h3>Dlaczego Warto Wybrać Nas?</h3>
+                    <p>
+                        Exolyte Studios to zespół doświadczonych programistów i designerów, którzy łączą technologiczną wiedzę 
+                        z kreatywnością. Tworzymy strony internetowe, które nie tylko pięknie wyglądają, ale przede wszystkim 
+                        skutecznie realizują cele biznesowe naszych klientów.
+                    </p>
+                    <p>
+                        Każdy projekt traktujemy indywidualnie, dostosowując rozwiązania do specyficznych potrzeb i oczekiwań. 
+                        Stawiamy na nowoczesne technologie, optymalizację wydajności oraz intuicyjny interfejs użytkownika.
+                    </p>
+                    
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Responsywny Design</h4>
+                                <p>Strony działające perfekcyjnie na wszystkich urządzeniach</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Optymalizacja SEO</h4>
+                                <p>Wysoka pozycja w wyszukiwarkach Google</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Szybkie Ładowanie</h4>
+                                <p>Zoptymalizowana wydajność i krótki czas ładowania</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Bezpieczeństwo</h4>
+                                <p>Najwyższe standardy zabezpieczeń i ochrony danych</p>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="stats-container">
                         <div class="stat">
@@ -118,8 +187,8 @@
                             <div class="stat-label">Lata Doświadczenia</div>
                         </div>
                         <div class="stat">
-                            <div class="stat-number" data-count="24">0</div>
-                            <div class="stat-label">Godziny Wsparcia</div>
+                            <div class="stat-number" data-count="100">0</div>
+                            <div class="stat-label">% Satysfakcji</div>
                         </div>
                     </div>
                 </div>
@@ -128,14 +197,17 @@
                         <div class="floating-card card-1">
                             <i class="fas fa-code"></i>
                             <h4>Czysty Kod</h4>
+                            <p>Zgodny ze standardami</p>
                         </div>
                         <div class="floating-card card-2">
                             <i class="fas fa-mobile-alt"></i>
-                            <h4>Responsywność</h4>
+                            <h4>Mobile First</h4>
+                            <p>Priorytet dla urządzeń mobilnych</p>
                         </div>
                         <div class="floating-card card-3">
                             <i class="fas fa-rocket"></i>
-                            <h4>Wydajność</h4>
+                            <h4>Wysoka Wydajność</h4>
+                            <p>Błyskawiczne ładowanie</p>
                         </div>
                     </div>
                 </div>
@@ -147,21 +219,27 @@
     <section id="services" class="services">
         <div class="section-container">
             <div class="section-header">
-                <h2 class="section-title">Nasze Usługi</h2>
-                <p class="section-subtitle">Kompleksowe rozwiązania dla Twojego biznesu</p>
+                <span class="section-badge">Usługi</span>
+                <h2 class="section-title">Co Oferujemy?</h2>
+                <p class="section-subtitle">Kompleksowe rozwiązania webowe dostosowane do Twoich potrzeb</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
-                    <h3>Projektowanie Stron WWW</h3>
-                    <p>Tworzymy nowoczesne, responsywne strony internetowe dopasowane do Twoich potrzeb i celów biznesowych.</p>
+                    <h3>Strony Internetowe</h3>
+                    <p>Tworzymy strony, które nie tylko wyglądają świetnie, ale przede wszystkim sprzedają. Każdy projekt to połączenie nowoczesnego designu z psychologią użytkownika - Twoi klienci będą zachwyceni, a Ty zobaczysz realne rezultaty.</p>
                     <ul class="service-features">
-                        <li>Projekt UI/UX</li>
-                        <li>Responsywność</li>
+                        <li><i class="fas fa-check"></i> Design, który sprzedaje i buduje zaufanie</li>
+                        <li><i class="fas fa-check"></i> Błyskawiczne ładowanie - klienci nie czekają</li>
+                        <li><i class="fas fa-check"></i> Wysoka pozycja w Google od pierwszego dnia</li>
+                        <li><i class="fas fa-check"></i> Perfekcyjny wygląd na każdym urządzeniu</li>
                     </ul>
-                    <a href="#contact" class="service-link">Skontaktuj się <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="service-link">
+                        <span>Zamów Stronę</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
                 
                 <div class="service-card">
@@ -169,27 +247,89 @@
                         <i class="fas fa-shopping-cart"></i>
                     </div>
                     <h3>Sklepy Internetowe</h3>
-                    <p>Kompleksowe rozwiązania e-commerce, które zwiększają sprzedaż i poprawiają doświadczenia zakupowe.</p>
+                    <p>Twój sklep online, który sprzedaje 24/7. Intuicyjny panel, automatyzacja procesów i integracje, które oszczędzają Twój czas. Zacznij zarabiać w internecie już dziś - my zajmiemy się całą technologią.</p>
                     <ul class="service-features">
-                        <li>Integracja płatności</li>
-                        <li>Panel administracyjny</li>
-                        <li>Analiza sprzedaży</li>
+                        <li><i class="fas fa-check"></i> Gotowe integracje z płatnościami i kurierami</li>
+                        <li><i class="fas fa-check"></i> Automatyczne zarządzanie zamówieniami</li>
+                        <li><i class="fas fa-check"></i> Analityka sprzedaży w czasie rzeczywistym</li>
+                        <li><i class="fas fa-check"></i> Mobilny panel - zarządzaj z telefonu</li>
                     </ul>
-                    <a href="#" class="service-link">Jeszcze niedostępne <i class="fas fa-clock"></i></a>
+                    <a href="#contact" class="service-link service-link-disabled">
+                        <span>Wkrótce Dostępne</span>
+                        <i class="fas fa-clock"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Aplikacje Webowe</h3>
+                    <p>Potrzebujesz czegoś więcej niż strona? Stworzymy dedykowaną aplikację, która automatyzuje Twój biznes. CRM, systemy rezerwacji, panele zarządzania - wszystko dopasowane do Twoich potrzeb.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Rozwiązania szyte na miarę Twojego biznesu</li>
+                        <li><i class="fas fa-check"></i> Automatyzacja powtarzalnych zadań</li>
+                        <li><i class="fas fa-check"></i> Bezpieczne API i integracje zewnętrzne</li>
+                        <li><i class="fas fa-check"></i> Skalowalność - rośnij bez ograniczeń</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        <span>Zapytaj o Ofertę</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Optymalizacja SEO</h3>
+                    <p>Twoja strona na pierwszej stronie Google? To możliwe! Profesjonalna optymalizacja SEO, która przyciąga klientów szukających dokładnie tego, co oferujesz. Więcej ruchu = więcej sprzedaży.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Pierwsza strona Google w Twojej branży</li>
+                        <li><i class="fas fa-check"></i> Więcej klientów bez płacenia za reklamy</li>
+                        <li><i class="fas fa-check"></i> Szczegółowe raporty i monitoring pozycji</li>
+                        <li><i class="fas fa-check"></i> Długoterminowe rezultaty i wzrost ruchu</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        <span>Zwiększ Widoczność</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
                 
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-paint-brush"></i>
                     </div>
-                    <h3>Identyfikacja Wizualna</h3>
-                    <p>Tworzymy spójną identyfikację wizualną, która buduje rozpoznawalność Twojej marki.</p>
+                    <h3>Branding & Design</h3>
+                    <p>Wyróżnij się na tle konkurencji! Tworzymy spójną identyfikację wizualną, która zostaje w pamięci. Logo, materiały marketingowe, social media - wszystko w jednym stylu, który buduje rozpoznawalność.</p>
                     <ul class="service-features">
-                        <li>Logo i branding</li>
-                        <li>Materiały marketingowe</li>
-                        <li>Style guide</li>
+                        <li><i class="fas fa-check"></i> Logo, które zapadnie w pamięć</li>
+                        <li><i class="fas fa-check"></i> Kompletna identyfikacja wizualna marki</li>
+                        <li><i class="fas fa-check"></i> Materiały gotowe do druku i social media</li>
+                        <li><i class="fas fa-check"></i> Księga znaku - spójność na lata</li>
                     </ul>
-                    <a href="" class="service-link">Dowiedz się więcej <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="service-link">
+                        <span>Stwórz Markę</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Wsparcie Techniczne</h3>
+                    <p>Nie zostawiamy Cię samego! Wsparcie 24/7, regularne aktualizacje i monitoring bezpieczeństwa. Śpij spokojnie - my pilnujemy, żeby Twoja strona działała bez zarzutu.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Odpowiedź w ciągu 24h - zawsze</li>
+                        <li><i class="fas fa-check"></i> Automatyczne backupy i aktualizacje</li>
+                        <li><i class="fas fa-check"></i> Monitoring 24/7 - wykrywamy problemy wcześniej</li>
+                        <li><i class="fas fa-check"></i> Szybkie poprawki i rozbudowa funkcji</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        <span>Zapewnij Wsparcie</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -199,86 +339,75 @@
     <section id="portfolio" class="portfolio">
         <div class="section-container">
             <div class="section-header">
-                <h2 class="section-title">Nasze Portfolio</h2>
-                <p class="section-subtitle">Zobacz nasze najnowsze projekty</p>
+                <span class="section-badge">Portfolio</span>
+                <h2 class="section-title">Nasze Realizacje</h2>
+                <p class="section-subtitle">Zobacz projekty, które stworzyliśmy dla naszych klientów</p>
             </div>
             <div class="portfolio-filter">
                 <button class="filter-btn active" data-filter="all">Wszystkie</button>
                 <button class="filter-btn" data-filter="web">Strony WWW</button>
                 <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
-                <button class="filter-btn" data-filter="mobile">Aplikacje</button>
+                <button class="filter-btn" data-filter="app">Aplikacje</button>
                 <button class="filter-btn" data-filter="branding">Branding</button>
             </div>
             
             <div class="portfolio-grid">
                 <div class="portfolio-item" data-category="web">
                     <div class="portfolio-image">
-                        <img src="assets/portfolio/web/1.png" alt="Project Image">
+                        <img src="assets/portfolio/web/1.png" alt="Modern Finance - Strona internetowa dla firmy finansowej">
                         <div class="portfolio-overlay">
-                            <h3>Modern Finance</h3>
-                            <p>Strona internetowa dla firmy finansowej</p>
-                            <a href="#" class="portfolio-link">Zobacz projekt</a>
-                        </div>
-                    </div>
-                </div>
-                
-            <!--
-                <div class="portfolio-item" data-category="ecommerce">
-                    <div class="portfolio-image">
-                        <div class="image-placeholder"></div>
-                        <div class="portfolio-overlay">
-                            <h3>Fashion Store</h3>
-                            <p>Sklep internetowy z odzieżą</p>
-                            <a href="#" class="portfolio-link">Zobacz projekt</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item" data-category="mobile">
-                    <div class="portfolio-image">
-                        <div class="image-placeholder"></div>
-                        <div class="portfolio-overlay">
-                            <h3>Health Tracker</h3>
-                            <p>Aplikacja do śledzenia zdrowia</p>
-                            <a href="#" class="portfolio-link">Zobacz projekt</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item" data-category="branding">
-                    <div class="portfolio-image">
-                        <div class="image-placeholder"></div>
-                        <div class="portfolio-overlay">
-                            <h3>Tech Startup</h3>
-                            <p>Identyfikacja wizualna dla startupu</p>
-                            <a href="#" class="portfolio-link">Zobacz projekt</a>
+                            <div class="portfolio-info">
+                                <span class="portfolio-category">Strona WWW</span>
+                                <h3>Modern Finance</h3>
+                                <p>Nowoczesna strona internetowa dla firmy finansowej z intuicyjnym interfejsem i zaawansowanymi funkcjami.</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">HTML5</span>
+                                    <span class="tag">CSS3</span>
+                                    <span class="tag">JavaScript</span>
+                                    <span class="tag">Responsive</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="portfolio-item" data-category="web">
                     <div class="portfolio-image">
-                        <div class="image-placeholder"></div>
+                        <div class="portfolio-placeholder">
+                            <i class="fas fa-image"></i>
+                            <p>Wkrótce więcej projektów</p>
+                        </div>
                         <div class="portfolio-overlay">
-                            <h3>Creative Agency</h3>
-                            <p>Strona dla agencji kreatywnej</p>
-                            <a href="#" class="portfolio-link">Zobacz projekt</a>
+                            <div class="portfolio-info">
+                                <span class="portfolio-category">Strona WWW</span>
+                                <h3>Kolejny Projekt</h3>
+                                <p>Pracujemy nad kolejnymi ekscytującymi projektami dla naszych klientów.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="portfolio-item" data-category="ecommerce">
+                <div class="portfolio-item" data-category="branding">
                     <div class="portfolio-image">
-                        <div class="image-placeholder"></div>
+                        <div class="portfolio-placeholder">
+                            <i class="fas fa-palette"></i>
+                            <p>Projekty brandingowe</p>
+                        </div>
                         <div class="portfolio-overlay">
-                            <h3>Electro Shop</h3>
-                            <p>Sklep z elektroniką</p>
-                            <a href="#" class="portfolio-link">Zobacz projekt</a>
+                            <div class="portfolio-info">
+                                <span class="portfolio-category">Branding</span>
+                                <h3>Identyfikacja Wizualna</h3>
+                                <p>Kompleksowe projekty brandingowe dla różnych branż.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            -->
+            
+            <div class="portfolio-cta">
+                <p>Chcesz zobaczyć więcej naszych prac?</p>
+                <a href="#contact" class="btn btn-primary">Skontaktuj się z nami</a>
+            </div>
         </div>
     </section>
 
@@ -286,66 +415,78 @@
     <section id="team" class="team">
         <div class="section-container">
             <div class="section-header">
-                <h2 class="section-title">Nasz Zespół</h2>
-                <p class="section-subtitle">Poznaj ekspertów stojących za naszymi projektami</p>
+                <span class="section-badge">Zespół</span>
+                <h2 class="section-title">Poznaj Nasz Zespół</h2>
+                <p class="section-subtitle">Pasjonaci technologii i designu, którzy tworzą wyjątkowe projekty</p>
             </div>
             <div class="team-grid">
                 <div class="team-member">
                     <div class="member-image">
-                        <img src="assets/team/fryze10.jpeg" class="image-placeholder" alt="Team Member">
+                        <img src="assets/team/fryze10.jpeg" alt="Fryze10 - Full Stack Developer w Exolyte Studios">
                         <div class="member-social">
-                            <a href="https://discord.com/users/1011610256574529577"><i class="fab fa-discord"></i></a>
-                            <a href="mailto:fryze10@exolyte.pl"><i class="fas fa-envelope-open"></i></a>
-                            <a href="https://github.com/FryZe10D"><i class="fab fa-github"></i></a>
+                            <a href="https://discord.com/users/1011610256574529577" aria-label="Discord Fryze10" title="Discord">
+                                <i class="fab fa-discord"></i>
+                            </a>
+                            <a href="mailto:fryze10@exolyte.pl" aria-label="Email Fryze10" title="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://github.com/FryZe10D" aria-label="GitHub Fryze10" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
                         </div>
                     </div>
                     <div class="member-info">
                         <h3>Fryze10</h3>
-                        <p>Developer</p>
+                        <p class="member-role">Full Stack Developer</p>
+                        <p class="member-description">Specjalista od front-endu i back-endu, tworzy kompleksowe rozwiązania webowe.</p>
                     </div>
                 </div>
                 
                 <div class="team-member">
                     <div class="member-image">
-                        <img src="assets/team/acarto.png" class="image-placeholder" alt="Team Member">
+                        <img src="assets/team/acarto.png" alt="Acarto - Web Developer w Exolyte Studios">
                         <div class="member-social">
-                            <a href="https://discord.com/users/1264899470357696522"><i class="fab fa-discord"></i></a>
-                            <a href="mailto:acarto@exolyte.pl"><i class="fas fa-envelope-open"></i></a>
-                            <a href="https://github.com/acartok"><i class="fab fa-github"></i></a>
+                            <a href="https://discord.com/users/1264899470357696522" aria-label="Discord Acarto" title="Discord">
+                                <i class="fab fa-discord"></i>
+                            </a>
+                            <a href="mailto:acarto@exolyte.pl" aria-label="Email Acarto" title="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://github.com/acartok" aria-label="GitHub Acarto" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
                         </div>
                     </div>
                     <div class="member-info">
                         <h3>Acarto</h3>
-                        <p>Developer</p>
+                        <p class="member-role">Web Developer</p>
+                        <p class="member-description">Ekspert w tworzeniu responsywnych i wydajnych stron internetowych.</p>
                     </div>
                 </div>
                 
                 <div class="team-member">
                     <div class="member-image">
-                        <img src="assets/team/Cezary19.jpeg" class="image-placeholder" alt="Team Member">
+                        <img src="assets/team/Cezary19.jpeg" alt="Cezaryy19 - Frontend Developer w Exolyte Studios">
                         <div class="member-social">
-                            <a href="https://discord.com/users/1309590575774826547"><i class="fab fa-discord"></i></a>
-                            <a href="mailto:cezary@exolyte.pl"><i class="fas fa-envelope-open"></i></a>
-                            <a href="https://github.com/Cezary19"><i class="fab fa-github"></i></a>
+                            <a href="https://discord.com/users/1309590575774826547" aria-label="Discord Cezaryy19" title="Discord">
+                                <i class="fab fa-discord"></i>
+                            </a>
+                            <a href="mailto:cezary@exolyte.pl" aria-label="Email Cezaryy19" title="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://github.com/Cezary19" aria-label="GitHub Cezaryy19" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
                         </div>
                     </div>
                     <div class="member-info">
-                        <h3>cezaryy19</h3>
-                        <p>Developer</p>
+                        <h3>Cezaryy19</h3>
+                        <p class="member-role">Frontend Developer</p>
+                        <p class="member-description">Specjalista od interfejsów użytkownika i doświadczeń UX.</p>
                     </div>
                 </div>
                 
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="assets/team/recrutation.png" class="image-placeholder" alt="Rekrutation">
-                        <div class="member-social">
-                            <a href="application/ourteam/save.html"><i class="fas fa-bullhorn"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <div class="hero-buttons"> <a href="pricing/pricing.html" class="btn btn-secondary">Dołącz do zespołu!</a> </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
@@ -354,60 +495,112 @@
     <section id="contact" class="contact">
         <div class="section-container">
             <div class="section-header">
+                <span class="section-badge">Kontakt</span>
                 <h2 class="section-title">Skontaktuj Się z Nami</h2>
-                <p class="section-subtitle">Wybierz dogodny dla Ciebie sposób kontaktu</p>
+                <p class="section-subtitle">Masz pytania? Chcesz rozpocząć projekt? Jesteśmy do Twojej dyspozycji!</p>
             </div>
             <div class="contact-content">
                 <div class="contact-info">
-                    <h3>Porozmawiajmy o Twoim projekcie</h3>
-                    <p>Masz pomysł na stronę internetową lub aplikację? Skontaktuj się z nami, a my pomożemy Ci go zrealizować.</p>
+                    <h3>Porozmawiajmy o Twoim Projekcie</h3>
+                    <p>
+                        Masz pomysł na stronę internetową lub aplikację? A może potrzebujesz wsparcia przy istniejącym projekcie? 
+                        Skontaktuj się z nami, a my pomożemy Ci zrealizować Twoje cele biznesowe.
+                    </p>
                     
                     <div class="contact-details">
-                        
                         <div class="contact-item">
                             <div class="contact-icon">
                                 <i class="fas fa-envelope"></i>
                             </div>
                             <div class="contact-text">
                                 <h4>Email</h4>
-                                <p>kontakt@exolyte.pl</p>
-                                <p>zamowienia@exolyte.pl</p>
+                                <p><a href="mailto:kontakt@exolyte.pl">kontakt@exolyte.pl</a></p>
+                                <p><a href="mailto:zamowienia@exolyte.pl">zamowienia@exolyte.pl</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Godziny Pracy</h4>
+                                <p>Poniedziałek - Piątek: 9:00 - 18:00</p>
+                                <p>Wsparcie 24/7 przez Discord</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Wsparcie Techniczne</h4>
+                                <p>Dostępne przez Discord i Email</p>
+                                <p>Szybka odpowiedź w ciągu 24h</p>
                             </div>
                         </div>
                     </div>
                     
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61582608156964" target="_blank" rel="noopener" aria-label="Facebook Exolyte Studios">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/exolyte.studios/" target="_blank" rel="noopener" aria-label="Instagram Exolyte Studios">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://dc.exolyte.pl" target="_blank" rel="noopener" aria-label="Discord Exolyte Studios">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://github.com/exolyte-studios" target="_blank" rel="noopener" aria-label="GitHub Exolyte Studios">
+                            <i class="fab fa-github"></i>
+                        </a>
                     </div>
                 </div>
                 
-                <div class="contact-form">
-                    <h3 style="margin-bottom: 20px; color: var(--text-color);">Wybierz sposób kontaktu</h3>
-                    <p style="color: var(--gray); margin-bottom: 30px;">Kliknij w wybrany przycisk, aby przejść do rozmowy</p>
+                <div class="contact-form-wrapper">
+                    <h3>Wybierz Sposób Kontaktu</h3>
+                    <p>Kliknij w wybrany przycisk, aby rozpocząć rozmowę</p>
                     
                     <div class="social-buttons">
-                        <a href="https://www.facebook.com/profile.php?id=61582608156964" target="_blank" class="social-button facebook">
+                        <a href="https://www.facebook.com/profile.php?id=61582608156964" target="_blank" rel="noopener" class="social-button facebook">
                             <i class="fab fa-facebook-f"></i>
-                            <span>Facebook</span>
+                            <div>
+                                <span class="button-title">Facebook</span>
+                                <span class="button-subtitle">Messenger</span>
+                            </div>
                         </a>
                         
-                        <a href="https://www.instagram.com/exolyte.studios/" target="_blank" class="social-button instagram">
+                        <a href="https://www.instagram.com/exolyte.studios/" target="_blank" rel="noopener" class="social-button instagram">
                             <i class="fab fa-instagram"></i>
-                            <span>Instagram</span>
+                            <div>
+                                <span class="button-title">Instagram</span>
+                                <span class="button-subtitle">Direct Message</span>
+                            </div>
                         </a>
                         
-                        <a href="https://dc.exolyte.pl" target="_blank" class="social-button linkedin">
+                        <a href="https://dc.exolyte.pl" target="_blank" rel="noopener" class="social-button discord">
                             <i class="fab fa-discord"></i>
-                            <span>Discord</span>
+                            <div>
+                                <span class="button-title">Discord</span>
+                                <span class="button-subtitle">Najszybszy kontakt</span>
+                            </div>
                         </a>
                         
-                        <a href="mailto:kontakt@exolytestudios.pl" class="social-button email">
+                        <a href="mailto:kontakt@exolyte.pl" class="social-button email">
                             <i class="fas fa-envelope"></i>
-                            <span>Email</span>
+                            <div>
+                                <span class="button-title">Email</span>
+                                <span class="button-subtitle">kontakt@exolyte.pl</span>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-cta">
+                        <p>Potrzebujesz wyceny?</p>
+                        <a href="pricing/pricing.html" class="btn btn-secondary">
+                            <span>Kalkulator Wyceny</span>
+                            <i class="fas fa-calculator"></i>
                         </a>
                     </div>
                 </div>
@@ -419,58 +612,97 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <a href="#home">
-                        <span class="logo-text">EXOLYTE</span>
-                        <div class="logo-dot"></div>
-                    </a>
-                    <p>Tworzymy nowoczesne strony internetowe, które przynoszą rezultaty.</p>
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <a href="#home">
+                            <span class="logo-text">EXOLYTE</span>
+                            <div class="logo-dot"></div>
+                        </a>
+                    </div>
+                    <p>
+                        Tworzymy nowoczesne strony internetowe i aplikacje webowe, które wyróżniają się designem, 
+                        funkcjonalnością i przynoszą realne rezultaty biznesowe.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61582608156964" target="_blank" rel="noopener" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/exolyte.studios/" target="_blank" rel="noopener" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://dc.exolyte.pl" target="_blank" rel="noopener" aria-label="Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://github.com/exolyte-studios" target="_blank" rel="noopener" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
                 </div>
                 
                 <div class="footer-links">
                     <div class="footer-column">
-                        <h4>Szybkie Linki</h4>
+                        <h4>Nawigacja</h4>
                         <ul>
-                            <li><a href="#home">Home</a></li>
+                            <li><a href="#home">Start</a></li>
                             <li><a href="#about">O Nas</a></li>
                             <li><a href="#services">Usługi</a></li>
                             <li><a href="#portfolio">Portfolio</a></li>
+                            <li><a href="#team">Zespół</a></li>
+                            <li><a href="#contact">Kontakt</a></li>
                         </ul>
                     </div>
                     
                     <div class="footer-column">
                         <h4>Usługi</h4>
                         <ul>
-                            <li><a href="#services">Strony WWW</a></li>
-                            <li><a href="#services">Sklepy Internetowe</a></li>
-                            <li><a href="#services">Aplikacje Mobilne</a></li>
-                            <li><a href="#services">SEO</a></li>
+                            <li><a href="#services">Strony Internetowe</a></li>
+                            <li><a href="#services">Sklepy E-commerce</a></li>
+                            <li><a href="#services">Aplikacje Webowe</a></li>
+                            <li><a href="#services">Optymalizacja SEO</a></li>
+                            <li><a href="#services">Branding & Design</a></li>
+                            <li><a href="#services">Wsparcie Techniczne</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Informacje</h4>
+                        <ul>
+                            <li><a href="info/rules/n/policy.html">Polityka Prywatności</a></li>
+                            <li><a href="info/rules/n/terms.html">Regulamin</a></li>
+                            <li><a href="info/rules/n/tos.html">Warunki Usługi</a></li>
+                            <li><a href="info/rules/n/cookies.html">Polityka Cookies</a></li>
+                            <li><a href="info/rules/n/cooperation.html">Współpraca</a></li>
+                            <li><a href="pricing/pricing.html">Cennik</a></li>
                         </ul>
                     </div>
                     
                     <div class="footer-column">
                         <h4>Kontakt</h4>
                         <ul>
-                            <li><a href="mailto:kontakt@exolytestudios.pl">kontakt@exolytestudios.pl</a></li>
-                            <li><a href="tel:+48123456789">+48 123 456 789</a></li>
-                            <li>ul. Nowoczesna 123, Warszawa</li>
+                            <li><a href="mailto:kontakt@exolyte.pl">kontakt@exolyte.pl</a></li>
+                            <li><a href="mailto:zamowienia@exolyte.pl">zamowienia@exolyte.pl</a></li>
+                            <li><a href="https://dc.exolyte.pl" target="_blank" rel="noopener">Discord Server</a></li>
+                            <li><span>Wsparcie 24/7</span></li>
                         </ul>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 Exolyte Studios. Wszelkie prawa zastrzeżone.</p>
+                <p>&copy; 2024 Exolyte Studios. Wszelkie prawa zastrzeżone.</p>
                 <div class="footer-bottom-links">
-                    <a href="info/rules/policy.html">Polityka Prywatności</a>
-                    <a href="info/rules/terms.html">Warunki Korzystania</a>
+                    <a href="info/rules/n/policy.html">Polityka Prywatności</a>
+                    <span class="separator">|</span>
+                    <a href="info/rules/n/terms.html">Regulamin</a>
+                    <span class="separator">|</span>
+                    <a href="info/rules/n/cookies.html">Cookies</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop">
+    <button class="back-to-top" id="backToTop" aria-label="Wróć na górę strony">
         <i class="fas fa-chevron-up"></i>
     </button>
 
