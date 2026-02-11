@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ABSOLUTE CINEMA | The Future of Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-black: #000000;
+            --neon-red: #FF0055;
+            --neon-blue: #007AFF;
+            --neon-purple: #9D00FF;
+            --glass: rgba(255, 255, 255, 0.04);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; background: #000; overflow-x: hidden; }
+        
+        body {
+            background-color: var(--bg-black);
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6; /* Lekko ciaśniejsza interlinia */
+            text-align: left; /* Przyczepione do lewej */
+        }
+
+        /* --- AMBIENT ENGINE --- */
+        .ambient-engine {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; filter: blur(70px); opacity: 0.4; transform: translateZ(0);
+        }
+        .blob {
+            position: absolute; width: 120vw; height: 120vw; border-radius: 50%;
+            animation: move 25s infinite alternate ease-in-out;
+            mix-blend-mode: screen;
+        }
+        .b-1 { background: var(--neon-red); top: -30%; left: -40%; }
+        .b-2 { background: var(--neon-blue); bottom: -30%; right: -40%; animation-delay: -7s; }
+        
+        @keyframes move {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(10%, 10%) scale(1.1); }
+        }
+
+        /* --- NAV --- */
+        .nav-shell {
+            position: fixed; top: env(safe-area-inset-top, 15px); left: 50%; 
+            transform: translateX(-50%); width: 92%; max-width: 1200px;
+            height: 60px; z-index: 1000; display: flex; justify-content: space-between;
+            align-items: center; padding: 0 20px; background: var(--glass);
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
+            border: 1px solid var(--border); border-radius: 15px;
+        }
+        .logo { font-weight: 800; font-size: 0.85rem; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 8px; letter-spacing: 1px; }
+        .logo span { background: var(--neon-red); padding: 4px 10px; border-radius: 6px; }
+
+        /* --- CONTENT WRAPPER --- */
+        .container { padding: 120px 24px 60px; width: 100%; max-width: 850px; margin: 0 auto; }
+
+        /* --- HERO --- */
+        .hero h1 { 
+            font-size: clamp(3rem, 12vw, 8rem); font-weight: 800; line-height: 0.85; 
+            letter-spacing: -2px; margin-bottom: 60px; text-transform: uppercase;
+            text-align: left;
+        }
+        .hero h1 em { font-style: normal; color: var(--neon-red); text-shadow: 0 0 30px var(--neon-red); }
+
+        /* --- SECTIONS --- */
+        .section { margin-bottom: 100px; text-align: left; }
+        .section h2 { 
+            font-size: clamp(1.8rem, 6vw, 3.5rem); font-weight: 800; margin-bottom: 30px; 
+            letter-spacing: -1.5px; line-height: 1.1; color: #fff;
+        }
+        .section p { 
+            font-size: 1.05rem; /* Zmniejszona czcionka */
+            color: #bbb; 
+            margin-bottom: 20px; 
+            font-weight: 400;
+            max-width: 700px; /* Dla lepszej czytelności przy wyrównaniu do lewej */
+        }
+        .section b { color: #fff; font-weight: 600; }
+
+        /* --- GRID SEANSE --- */
+        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 40px; }
+        .card { 
+            background: rgba(255,255,255,0.02); border: 1px solid var(--border); 
+            padding: 30px; border-radius: 25px; backdrop-filter: blur(15px);
+            text-align: left;
+        }
+        .card h3 { font-size: 1.6rem; margin: 10px 0; font-weight: 800; letter-spacing: -0.5px; }
+        .card small { color: var(--neon-blue); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: 0.7rem; }
+        .card p { font-size: 0.95rem; line-height: 1.5; }
+        
+        .btn { 
+            display: block; width: 100%; padding: 16px; background: #fff; 
+            color: #000; text-align: center; border-radius: 50px; 
+            text-decoration: none; font-weight: 800; margin-top: 20px;
+            font-size: 0.9rem; transition: 0.3s;
+        }
+
+        /* --- MODAL --- */
+        #modal {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.98);
+            z-index: 10000; display: none; justify-content: center; align-items: center;
+            padding: 25px; backdrop-filter: blur(20px);
+        }
+        .m-box { 
+            background: #0a0a0a; border: 1px solid var(--neon-red); 
+            padding: 40px 25px; border-radius: 30px; text-align: left; width: 100%; max-width: 450px;
+        }
+
+        footer { padding: 60px 24px; text-align: left; font-size: 0.75rem; color: #333; border-top: 1px solid #111; }
+        footer a { color: var(--neon-blue); text-decoration: none; }
+
+        /* --- DESKTOP FIXES --- */
+        @media (min-width: 1024px) {
+            .container { padding-top: 180px; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+            .section p { font-size: 1.15rem; }
+            .btn { width: auto; padding: 15px 40px; display: inline-block; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="modal">
+        <div class="m-box">
+            <h2 style="color:var(--neon-red); font-size: 2rem; margin-bottom: 15px; letter-spacing: -1px;">SYSTEM HALT</h2>
+            <p style="margin-bottom: 20px; font-size: 1rem; color: #eee;">To jedynie demo. Pełna infrastruktura dostępna pod adresem:</p>
+            <a href="https://exolyte.pl" style="color:var(--neon-blue); font-size: 1.8rem; text-decoration: none; font-weight: 800;">exolyte.pl</a>
+            <div onclick="closeM()" style="margin-top: 35px; color: #444; cursor: pointer; font-weight: 800; font-size: 0.8rem; letter-spacing: 2px;">POWRÓT</div>
+        </div>
+    </div>
+
+    <div class="ambient-engine">
+        <div class="blob b-1"></div>
+        <div class="blob b-2"></div>
+    </div>
+
+    <nav class="nav-shell">
+        <a href="#" class="logo">ABSOLUTE <span>CINEMA</span></a>
+        <div style="font-size: 0.6rem; font-weight: 800; color: rgba(255,255,255,0.3); letter-spacing: 1px;">CORE_BUILD_2026</div>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <h1>ABSOLUTE<br>VISION<em>.</em></h1>
+        </div>
+
+        <section class="section">
+            <h2>Manifest Kinematografii Totalnej</h2>
+            <p>
+                W <b>Absolute Cinema</b> nie uznajemy kompromisów. Podczas gdy tradycyjne kina wciąż opierają się na technologii sprzed dekady, my stworzyliśmy przestrzeń, która redefiniuje pojęcie <b>immersji</b>. Nasza wizja opiera się na trzech filarach: Absolutnej Czerni, Chirurgicznym Dźwięku i Biometrycznym Komforcie. 
+            </p>
+            <p>
+                Sercem naszych sal jest technologia <b>Quantum-OLED Hyper-Lumen</b>. To nie są zwykłe ekrany. To modularne ściany światła, które generują kontrast nieskończony. Czerń w naszym kinie jest tak głęboka, że ludzkie oko traci poczucie odległości, co pozwala na uzyskanie efektu <b>naturalnego 3D</b> bez konieczności zakładania niewygodnych okularów.
+            </p>
+            <p>
+                <b>Akustyka</b> w Absolute Cinema to osobny rozdział inżynierii. Ściany sal zostały pokryte kompozytem grafenowym, który całkowicie eliminuje fale stojące. Nasz system <b>Vortex-Audio</b> składa się z 256 niezależnych emiterów rozmieszczonych nie tylko wokół Ciebie, ale i wewnątrz Twojego fotela. 
+            </p>
+            <p>
+                Wierzymy, że ciało nie powinno być przeszkodą w odbiorze sztuki. Dlatego nasze fotele <b>Stellar-Cradle</b> wykorzystują technologię zmiennego ciśnienia. Monitorują one napięcie Twoich mięśni i temperaturę ciała, dostosowując twardość i nachylenie w czasie rzeczywistym.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Aktualne Transmisje</h2>
+            <div class="grid">
+                <div class="card">
+                    <small>Tech-Noir / 120 FPS</small>
+                    <h3>CHROME SOUL</h3>
+                    <p>Wizualny poemat o architekturze światła w deszczowym megapolis. Idealny test dla czerni naszych matryc.</p>
+                    <a href="javascript:void(0)" onclick="openM()" class="btn">REZERWUJ</a>
+                </div>
+                <div class="card">
+                    <small>Sci-Fi / Atmos X</small>
+                    <h3>VOID WALKER</h3>
+                    <p>Podróż przez horyzont zdarzeń. Poczuj nieskończoną pustkę kosmosu dzięki systemowi Vortex-Audio.</p>
+                    <a href="javascript:void(0)" onclick="openM()" class="btn">REZERWUJ</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Architektura Doznań</h2>
+            <p>
+                Za każdym seansem stoi potężna infrastruktura. Nasza serwerownia <b>"Core-Zero"</b> przetwarza petabajty danych, aby renderować obraz w czasie rzeczywistym. Dzięki systemowi <b>Adaptive Geometry</b>, obraz wygląda idealnie prosto z każdego miejsca na sali.
+            </p>
+            <p>
+                <b>Absolute Cinema</b> to nie tylko technologia, to higiena cyfrowa. Nasze sale są strefami <b>Signal-Void</b> – całkowite odcięcie od sieci GSM i Wi-Fi pozwala na 100% skupienia. Tutaj telefon staje się zbędnym gadżetem, a Ty odzyskujesz zdolność do głębokiego przeżywania emocji.
+            </p>
+        </section>
+
+        <footer>
+            ABSOLUTE CINEMA // 2026<br>
+            Zrealizowane przez <a href="https://exolyte.pl" target="_blank">exolyte.pl</a>
+        </footer>
+    </div>
+
+    <script>
+        function openM() { document.getElementById('modal').style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+        function closeM() { document.getElementById('modal').style.display = 'none'; document.body.style.overflow = 'auto'; }
+        lucide.createIcons();
+    </script>
+</body>
+</html>
