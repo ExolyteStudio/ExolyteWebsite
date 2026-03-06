@@ -1,711 +1,834 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exolyte Studios - Profesjonalne strony internetowe</title>
-    <link rel="icon" type="image/png" href="assets/main/logo.png">
-    <meta name="description" content="Exolyte Studios - Tworzymy nowoczesne strony internetowe, aplikacje webowe i rozwiązania e-commerce. Profesjonalny design, optymalizacja SEO i wsparcie techniczne.">
-    <meta name="keywords" content="strony internetowe, tworzenie stron, aplikacje web, e-commerce, SEO, web development">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        // Natychmiastowe przewinięcie na górę przy odświeżaniu
-        window.onbeforeunload = function () {
-            window.scrollTo(0, 0);
-        }
-    </script>
+<meta name="description" content="Exolyte — Projektujemy nowoczesne, szybkie i skuteczne strony internetowe, które realnie wspierają rozwój Twojego biznesu.">
+<meta name="keywords" content="strony internetowe, tworzenie stron, exolyte, marketing, web design">
+<meta name="author" content="Exolyte">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://exolyte.pl/">
+<meta property="og:title" content="Exolyte — Tworzymy Strony Które Działają">
+<meta property="og:description" content="Twoja strona to Twoja wizytówka. Zadbamy o to, by była nowoczesna, responsywna i przyciągała klientów.">
+<meta property="og:image" content="https://twojadomena.pl/img/og-image.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://exolyte.pl/">
+<meta name="twitter:title" content="Exolyte — Tworzymy Strony Które Działają">
+<meta name="twitter:description" content="Projektujemy nowoczesne i skuteczne strony internetowe. Sprawdź nasze realizacje!">
+<meta name="twitter:image" content="https://twojadomena.pl/img/og-image.jpg">
+
+<meta name="theme-color" content="#4A90E2">
+<style>
+  :root {
+    --purple: #8B5CF6;
+    --purple-light: #A78BFA;
+    --purple-dark: #6D28D9;
+    --purple-glow: rgba(139,92,246,0.4);
+    --bg: #080810;
+    --bg2: #0D0D1A;
+    --bg3: #111122;
+    --card: #0F0F1E;
+    --border: rgba(139,92,246,0.15);
+    --text: #E8E8F0;
+    --text-dim: #7070A0;
+    --white: #ffffff;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+  body::before {
+    content:''; position:fixed; inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events:none; z-index:9998; opacity:0.5;
+  }
+
+  /* ── TOPBAR ── */
+  nav {
+    position:fixed; top:20px; left:50%; transform:translateX(-50%);
+    width:calc(100% - 40px); max-width:1200px; z-index:1000;
+    background:rgba(8,8,16,0.6);
+    backdrop-filter:blur(24px) saturate(180%);
+    -webkit-backdrop-filter:blur(24px) saturate(180%);
+    border:1px solid var(--border); border-radius:20px;
+    padding:14px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+    transition:all 0.4s ease;
+    box-shadow:0 8px 40px rgba(0,0,0,0.4);
+  }
+  nav.scrolled {
+    background:rgba(8,8,16,0.9);
+    box-shadow:0 8px 60px rgba(0,0,0,0.6),0 0 30px var(--purple-glow);
+    border-color:rgba(139,92,246,0.3);
+  }
+  .logo {
+    font-weight:800; font-size:1.4rem; letter-spacing:-0.02em;
+    background:linear-gradient(135deg,var(--white) 30%,var(--purple-light));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    text-decoration:none;
+  }
+  .logo span { -webkit-text-fill-color:var(--purple); }
+  .nav-links { display:flex; gap:8px; list-style:none; align-items:center; }
+  .nav-links a {
+    color:var(--text-dim); text-decoration:none; font-size:0.875rem;
+    font-weight:500; padding:8px 14px; border-radius:10px; transition:all 0.3s;
+  }
+  .nav-links a:hover { color:var(--white); background:rgba(139,92,246,0.1); }
+  .nav-cta {
+    background:var(--purple) !important; color:white !important;
+    padding:9px 20px !important; border-radius:12px !important;
+    font-weight:600 !important; box-shadow:0 0 20px rgba(139,92,246,0.4);
+    transition:all 0.3s !important;
+  }
+  .nav-cta:hover { background:var(--purple-light) !important; box-shadow:0 0 35px rgba(139,92,246,0.6) !important; transform:translateY(-1px) !important; }
+
+  /* hamburger — pure button, no background */
+  .hamburger {
+    display:none; flex-direction:column; gap:5px;
+    background:none; border:none; cursor:pointer; padding:6px; outline:none;
+  }
+  .hamburger span {
+    display:block; width:22px; height:2px;
+    background:var(--text); border-radius:2px;
+    transition:all 0.3s ease; pointer-events:none;
+  }
+  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+  /* MOBILE MENU — animated slide down */
+  .mobile-menu {
+    position:fixed; top:90px; left:20px; right:20px;
+    background:rgba(13,13,26,0.97); backdrop-filter:blur(30px);
+    border:1px solid var(--border); border-radius:20px;
+    padding:20px; z-index:999;
+    display:flex; flex-direction:column; gap:8px;
+    opacity:0; transform:translateY(-16px) scaleY(0.95);
+    transform-origin:top center;
+    pointer-events:none;
+    transition:opacity 0.3s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+  .mobile-menu.open { opacity:1; transform:translateY(0) scaleY(1); pointer-events:all; }
+  .mobile-menu a {
+    color:var(--text); text-decoration:none;
+    padding:12px 16px; border-radius:12px;
+    font-size:0.95rem; font-weight:500; transition:all 0.2s;
+    display:flex; align-items:center; gap:10px;
+  }
+  .mobile-menu a:hover { background:rgba(139,92,246,0.15); color:var(--purple-light); }
+  .mobile-menu .nav-cta { background:var(--purple) !important; color:white !important; justify-content:center; margin-top:4px; box-shadow:0 0 20px rgba(139,92,246,0.3); }
+
+  /* ── HERO ── */
+  .hero { min-height:100vh; display:flex; align-items:center; position:relative; overflow:hidden; padding:120px 20px 80px; }
+  .grid-bg {
+    position:absolute; inset:0;
+    background-image: linear-gradient(rgba(139,92,246,0.06) 1px,transparent 1px), linear-gradient(90deg,rgba(139,92,246,0.06) 1px,transparent 1px);
+    background-size:60px 60px; animation:gridMove 20s linear infinite;
+    mask-image:radial-gradient(ellipse 80% 70% at 50% 50%,black 30%,transparent 100%);
+  }
+  @keyframes gridMove { 0%{transform:translateY(0)} 100%{transform:translateY(60px)} }
+  .orb { position:absolute; border-radius:50%; filter:blur(80px); pointer-events:none; animation:orbFloat 8s ease-in-out infinite; }
+  .orb-1 { width:500px;height:500px;background:radial-gradient(circle,rgba(139,92,246,.25) 0%,transparent 70%);top:-100px;left:-100px; }
+  .orb-2 { width:400px;height:400px;background:radial-gradient(circle,rgba(109,40,217,.2) 0%,transparent 70%);bottom:-50px;right:-80px;animation-delay:3s; }
+  .orb-3 { width:300px;height:300px;background:radial-gradient(circle,rgba(167,139,250,.15) 0%,transparent 70%);top:40%;right:20%;animation-delay:5s; }
+  @keyframes orbFloat { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-30px) scale(1.05)} }
+  #particles { position:absolute; inset:0; pointer-events:none; z-index:1; }
+
+  .hero-content { max-width:1200px; margin:0 auto; width:100%; position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+  .hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(139,92,246,.1); border:1px solid rgba(139,92,246,.3); color:var(--purple-light); padding:6px 16px; border-radius:100px; font-size:0.8rem; font-weight:500; margin-bottom:24px; letter-spacing:0.05em; text-transform:uppercase; animation:fadeInDown .8s ease both; }
+  .hero-badge i { animation:pulse 2s ease-in-out infinite; }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .hero h1 { font-size:clamp(2.5rem,5vw,4.2rem); font-weight:800; line-height:1.05; letter-spacing:-0.03em; margin-bottom:24px; animation:fadeInUp .8s .1s ease both; }
+  .gradient-text { background:linear-gradient(135deg,var(--purple-light) 0%,var(--purple) 50%,#C084FC 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .hero p { color:var(--text-dim); font-size:1.1rem; line-height:1.7; max-width:480px; margin-bottom:40px; font-weight:300; animation:fadeInUp .8s .2s ease both; }
+  .hero-btns { display:flex; gap:16px; flex-wrap:wrap; animation:fadeInUp .8s .3s ease both; }
+
+  .btn-primary { display:inline-flex; align-items:center; gap:10px; background:var(--purple); color:white; padding:14px 28px; border-radius:14px; font-weight:600; font-size:0.95rem; text-decoration:none; position:relative; overflow:hidden; box-shadow:0 0 30px rgba(139,92,246,.5),0 4px 20px rgba(0,0,0,.3); transition:all .3s ease; }
+  .btn-primary::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent); transition:left .5s; }
+  .btn-primary:hover::before { left:100%; }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 0 50px rgba(139,92,246,.7),0 8px 30px rgba(0,0,0,.4); background:var(--purple-light); }
+  .btn-secondary { display:inline-flex; align-items:center; gap:10px; background:transparent; color:var(--text); padding:14px 28px; border-radius:14px; font-weight:500; font-size:0.95rem; text-decoration:none; border:1px solid var(--border); transition:all .3s; }
+  .btn-secondary:hover { border-color:var(--purple); color:var(--purple-light); background:rgba(139,92,246,.08); transform:translateY(-2px); }
+
+  .hero-visual { animation:fadeInRight 1s .4s ease both; }
+  .mockup-window { background:var(--card); border:1px solid var(--border); border-radius:20px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 60px rgba(139,92,246,.1); transform:perspective(1000px) rotateY(-8deg) rotateX(3deg); transition:transform .5s; }
+  .mockup-window:hover { transform:perspective(1000px) rotateY(-3deg) rotateX(1deg); }
+  .mockup-bar { background:rgba(255,255,255,.03); padding:14px 18px; display:flex; align-items:center; gap:14px; border-bottom:1px solid var(--border); }
+  .mockup-dots { display:flex; gap:6px; }
+  .mockup-dots span { width:10px; height:10px; border-radius:50%; }
+  .mockup-dots span:nth-child(1){background:#FF5F57} .mockup-dots span:nth-child(2){background:#FFBD2E} .mockup-dots span:nth-child(3){background:#28CA41}
+  .mockup-url { flex:1; background:rgba(255,255,255,.05); border-radius:8px; padding:6px 14px; font-size:.75rem; color:var(--text-dim); display:flex; align-items:center; gap:8px; }
+  .mockup-url i { color:#28CA41; font-size:.65rem; }
+  .mockup-content { padding:24px; min-height:300px; background:linear-gradient(135deg,var(--bg2),var(--bg3)); overflow:hidden; }
+  .mockup-hero-bar { height:60px; background:rgba(139,92,246,.08); border-radius:10px; margin-bottom:16px; border:1px solid rgba(139,92,246,.15); display:flex; align-items:center; padding:0 16px; gap:8px; }
+  .mockup-hero-bar .dot { width:8px; height:8px; border-radius:50%; background:var(--purple); box-shadow:0 0 8px var(--purple); animation:pulse 2s ease-in-out infinite; }
+  .mockup-skeleton { height:10px; background:rgba(255,255,255,.05); border-radius:6px; margin-bottom:10px; position:relative; overflow:hidden; }
+  .mockup-skeleton::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(139,92,246,.15),transparent); animation:shimmer 2s infinite; }
+  @keyframes shimmer{0%{left:-100%}100%{left:100%}}
+  .mockup-cards-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:16px; }
+  .mockup-card-mini { height:70px; background:rgba(139,92,246,.06); border-radius:10px; border:1px solid rgba(139,92,246,.12); animation:cardPulse 3s ease-in-out infinite; }
+  .mockup-card-mini:nth-child(2){animation-delay:.5s} .mockup-card-mini:nth-child(3){animation-delay:1s}
+  @keyframes cardPulse{0%,100%{border-color:rgba(139,92,246,.12)}50%{border-color:rgba(139,92,246,.35);box-shadow:0 0 15px rgba(139,92,246,.1)}}
+
+  .tech-stack { display:flex; flex-wrap:wrap; gap:10px; margin-top:40px; }
+  .tech-tag { background:rgba(255,255,255,.04); border:1px solid var(--border); color:var(--text-dim); padding:6px 14px; border-radius:8px; font-size:.78rem; font-weight:500; letter-spacing:.04em; transition:all .2s; display:flex; align-items:center; gap:6px; }
+  .tech-tag:hover { border-color:rgba(139,92,246,.4); color:var(--purple-light); background:rgba(139,92,246,.06); }
+  .tech-tag i { color:var(--purple); }
+
+  /* ── STATS ── */
+  .stats-bar { background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:50px 20px; position:relative; overflow:hidden; }
+  .stats-bar::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--purple),transparent); animation:scanLine 3s ease-in-out infinite; }
+  @keyframes scanLine{0%{transform:scaleX(0);opacity:0}50%{transform:scaleX(1);opacity:1}100%{transform:scaleX(0);opacity:0}}
+  .stats-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:40px; text-align:center; }
+  .stat-item { position:relative; }
+  .stat-item::after { content:''; position:absolute; right:0; top:20%; bottom:20%; width:1px; background:var(--border); }
+  .stat-item:last-child::after { display:none; }
+  .stat-number { font-size:2.8rem; font-weight:800; background:linear-gradient(135deg,var(--white),var(--purple-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:6px; }
+  .stat-label { color:var(--text-dim); font-size:.85rem; font-weight:500; letter-spacing:.05em; text-transform:uppercase; }
+
+  /* ── SECTIONS ── */
+  section { padding:100px 20px; }
+  .section-tag { display:inline-flex; align-items:center; gap:8px; color:var(--purple-light); font-size:.8rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; margin-bottom:16px; }
+  .section-tag::before { content:''; width:20px; height:2px; background:var(--purple); border-radius:2px; }
+  h2 { font-size:clamp(2rem,4vw,3rem); font-weight:800; line-height:1.1; letter-spacing:-.025em; margin-bottom:16px; }
+  .section-desc { color:var(--text-dim); font-size:1.05rem; line-height:1.7; max-width:560px; font-weight:300; margin-bottom:60px; }
+  .container { max-width:1200px; margin:0 auto; }
+
+  /* ── SERVICES ── */
+  .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .service-card { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:36px 32px; position:relative; overflow:hidden; transition:all .4s cubic-bezier(.16,1,.3,1); }
+  .service-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(139,92,246,.08) 0%,transparent 60%); opacity:0; transition:opacity .4s; }
+  .service-card:hover::before { opacity:1; }
+  .service-card:hover { transform:translateY(-8px); border-color:rgba(139,92,246,.4); box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 40px rgba(139,92,246,.1); }
+  .service-icon { width:54px; height:54px; background:rgba(139,92,246,.12); border:1px solid rgba(139,92,246,.25); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:var(--purple-light); margin-bottom:24px; position:relative; z-index:1; transition:all .3s; }
+  .service-card:hover .service-icon { background:rgba(139,92,246,.2); box-shadow:0 0 20px rgba(139,92,246,.3); transform:scale(1.05); }
+  .service-card h3 { font-size:1.15rem; font-weight:700; margin-bottom:12px; position:relative; z-index:1; }
+  .service-card p { color:var(--text-dim); font-size:.9rem; line-height:1.7; position:relative; z-index:1; }
+  .service-card.featured { background:linear-gradient(135deg,rgba(139,92,246,.12),rgba(109,40,217,.08)); border-color:rgba(139,92,246,.3); }
+
+  /* ── PROCESS ── */
+  .process { background:var(--bg2); position:relative; overflow:hidden; }
+  .process::before { content:''; position:absolute; width:600px; height:600px; background:radial-gradient(circle,rgba(139,92,246,.06) 0%,transparent 70%); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; }
+  .process-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:30px; position:relative; }
+  .process-steps::before { content:''; position:absolute; top:30px; left:calc(12.5% + 15px); right:calc(12.5% + 15px); height:2px; background:linear-gradient(90deg,var(--purple),var(--purple-light),var(--purple)); z-index:0; opacity:.3; }
+  .step { text-align:center; position:relative; z-index:1; }
+  .step-num { width:60px; height:60px; background:var(--bg); border:2px solid rgba(139,92,246,.3); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.85rem; font-weight:800; color:var(--purple-light); margin:0 auto 20px; position:relative; transition:all .4s; letter-spacing:.05em; }
+  .step:hover .step-num { background:rgba(139,92,246,.15); border-color:var(--purple); box-shadow:0 0 25px rgba(139,92,246,.4); transform:scale(1.1); }
+  .step-num::before { content:''; position:absolute; inset:-6px; border-radius:50%; border:1px dashed rgba(139,92,246,.2); animation:spinSlow 8s linear infinite; }
+  @keyframes spinSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  .step h3 { font-size:1rem; font-weight:700; margin-bottom:10px; }
+  .step p { color:var(--text-dim); font-size:.85rem; line-height:1.6; }
+
+  /* ── PORTFOLIO horizontal scroll ── */
+  .portfolio { background:var(--bg); }
+  .portfolio-scroll { display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding-bottom:4px; scroll-behavior:smooth; }
+  .portfolio-scroll::-webkit-scrollbar { display:none; }
+  .portfolio-item { min-width:340px; border-radius:20px; overflow:hidden; position:relative; aspect-ratio:4/3; background:var(--card); border:1px solid var(--border); transition:all .4s; scroll-snap-align:start; flex-shrink:0; }
+  .portfolio-item:hover { transform:translateY(-6px); box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 40px rgba(139,92,246,.1); border-color:rgba(139,92,246,.3); }
+  .portfolio-preview { width:100%; height:100%; display:flex; flex-direction:column; }
+  .p-bar { height:32px; background:rgba(255,255,255,.03); border-bottom:1px solid rgba(255,255,255,.05); display:flex; align-items:center; padding:0 12px; gap:6px; flex-shrink:0; }
+  .p-bar span { width:7px; height:7px; border-radius:50%; }
+  .p-bar span:nth-child(1){background:#FF5F57} .p-bar span:nth-child(2){background:#FFBD2E} .p-bar span:nth-child(3){background:#28CA41}
+  .p-content { flex:1; padding:16px; display:flex; flex-direction:column; gap:8px; }
+  .p1 .p-content{background:linear-gradient(135deg,#0a0a1a,#13082b)} .p2 .p-content{background:linear-gradient(135deg,#080f1a,#051525)} .p3 .p-content{background:linear-gradient(135deg,#100820,#08141a)} .p4 .p-content{background:linear-gradient(135deg,#0e0e0e,#1a0a0a)} .p5 .p-content{background:linear-gradient(135deg,#081010,#050f08)} .p6 .p-content{background:linear-gradient(135deg,#0a0818,#180820)}
+  .p-nav { height:28px; background:rgba(139,92,246,.08); border-radius:6px; margin-bottom:6px; border:1px solid rgba(139,92,246,.12); flex-shrink:0; }
+  .p-hero-block { flex:1; border-radius:8px; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+  .p1 .p-hero-block{background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(109,40,217,.1))} .p2 .p-hero-block{background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(29,78,216,.1))} .p3 .p-hero-block{background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(5,150,105,.1))} .p4 .p-hero-block{background:linear-gradient(135deg,rgba(239,68,68,.15),rgba(185,28,28,.1))} .p5 .p-hero-block{background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(180,83,9,.1))} .p6 .p-hero-block{background:linear-gradient(135deg,rgba(236,72,153,.12),rgba(219,39,119,.08))}
+  .p-title-tag { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; }
+  .p-title-tag .icon { font-size:1.8rem; opacity:.6; }
+  .p1 .icon{color:var(--purple-light)} .p2 .icon{color:#60A5FA} .p3 .icon{color:#34D399} .p4 .icon{color:#F87171} .p5 .icon{color:#FCD34D} .p6 .icon{color:#F472B6}
+  .p-rows { display:flex; flex-direction:column; gap:5px; margin-top:auto; }
+  .p-row { height:6px; border-radius:3px; background:rgba(255,255,255,.06); }
+  .p-row.accent { background:rgba(139,92,246,.25); width:40%; }
+  .portfolio-overlay { position:absolute; inset:0; background:rgba(8,8,16,.85); backdrop-filter:blur(6px); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; opacity:0; transition:opacity .3s; }
+  .portfolio-item:hover .portfolio-overlay { opacity:1; }
+  .portfolio-overlay h4 { font-weight:700; font-size:1.05rem; }
+  .portfolio-overlay p { color:var(--text-dim); font-size:.8rem; }
+  .overlay-btn { background:var(--purple); color:white; padding:8px 20px; border-radius:10px; font-size:.8rem; font-weight:600; text-decoration:none; transition:all .2s; display:flex; align-items:center; gap:6px; }
+  .overlay-btn:hover { background:var(--purple-light); transform:scale(1.05); }
+  .scroll-dots { display:flex; gap:8px; justify-content:center; margin-top:20px; }
+  .scroll-dot { width:8px; height:8px; border-radius:50%; background:rgba(139,92,246,.25); border:none; cursor:pointer; transition:all .3s; padding:0; }
+  .scroll-dot.active { background:var(--purple); width:24px; border-radius:4px; }
+  .portfolio-footer { display:flex; justify-content:center; margin-top:32px; }
+
+  /* ── PRICING horizontal scroll ── */
+  .pricing { background:var(--bg2); }
+  .pricing-scroll { display:flex; gap:24px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding-bottom:4px; scroll-behavior:smooth; }
+  .pricing-scroll::-webkit-scrollbar { display:none; }
+  .price-card { min-width:320px; flex-shrink:0; scroll-snap-align:center; background:var(--card); border:1px solid var(--border); border-radius:24px; padding:36px 32px; transition:all .4s; position:relative; overflow:hidden; }
+  .price-card:hover { transform:translateY(-8px); box-shadow:0 20px 60px rgba(0,0,0,.4); }
+  .price-card.popular { border-color:var(--purple); background:linear-gradient(160deg,rgba(139,92,246,.1) 0%,var(--card) 50%); box-shadow:0 0 60px rgba(139,92,246,.12); }
+  .price-card.popular:hover { box-shadow:0 20px 80px rgba(0,0,0,.5),0 0 60px rgba(139,92,246,.2); }
+  .popular-badge { position:absolute; top:20px; right:20px; background:var(--purple); color:white; font-size:.7rem; font-weight:700; padding:4px 12px; border-radius:100px; letter-spacing:.08em; text-transform:uppercase; box-shadow:0 0 16px rgba(139,92,246,.5); }
+  .price-name { font-size:.8rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--purple-light); margin-bottom:16px; }
+  .price-amount { font-size:3rem; font-weight:800; line-height:1; letter-spacing:-.04em; margin-bottom:4px; }
+  .price-amount span { font-size:1.2rem; font-weight:400; color:var(--text-dim); }
+  .price-desc { color:var(--text-dim); font-size:.85rem; margin-bottom:28px; line-height:1.5; }
+  .price-divider { height:1px; background:var(--border); margin-bottom:24px; }
+  .price-features { list-style:none; margin-bottom:32px; }
+  .price-features li { display:flex; align-items:center; gap:12px; font-size:.88rem; color:var(--text-dim); padding:7px 0; transition:color .2s; }
+  .price-features li:hover { color:var(--text); }
+  .price-features i { color:var(--purple); font-size:.75rem; flex-shrink:0; }
+  .price-btn { display:flex; align-items:center; justify-content:center; gap:8px; padding:13px; border-radius:14px; font-weight:600; font-size:.9rem; text-decoration:none; transition:all .3s; width:100%; }
+  .price-btn.outline { border:1px solid var(--border); color:var(--text); }
+  .price-btn.outline:hover { border-color:var(--purple); color:var(--purple-light); background:rgba(139,92,246,.08); }
+  .price-btn.filled { background:var(--purple); color:white; box-shadow:0 0 24px rgba(139,92,246,.4); }
+  .price-btn.filled:hover { background:var(--purple-light); box-shadow:0 0 40px rgba(139,92,246,.6); transform:translateY(-1px); }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background:var(--bg); overflow:hidden; }
+  .testimonials-track { display:flex; gap:20px; animation:scrollTrack 30s linear infinite; width:max-content; }
+  .testimonials-track:hover { animation-play-state:paused; }
+  @keyframes scrollTrack{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .testimonial-card { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:28px; width:340px; flex-shrink:0; transition:all .3s; }
+  .testimonial-card:hover { border-color:rgba(139,92,246,.3); transform:translateY(-4px); }
+  .stars { color:var(--purple); font-size:.75rem; letter-spacing:2px; margin-bottom:14px; }
+  .testimonial-card p { color:var(--text-dim); font-size:.88rem; line-height:1.7; margin-bottom:20px; font-style:italic; }
+  .testimonial-author { display:flex; align-items:center; gap:12px; }
+  .author-avatar { width:38px; height:38px; border-radius:50%; background:rgba(139,92,246,.2); border:2px solid rgba(139,92,246,.3); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem; color:var(--purple-light); flex-shrink:0; }
+  .author-name { font-weight:600; font-size:.88rem; margin-bottom:2px; }
+  .author-role { color:var(--text-dim); font-size:.75rem; }
+  .testimonials-actions { display:flex; gap:14px; justify-content:center; margin-top:36px; flex-wrap:wrap; padding:0 20px; }
+
+  /* ── TEAM ── */
+  .team { background:var(--bg2); }
+  .team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+  .team-card { background:var(--card); border:1px solid var(--border); border-radius:24px; padding:36px 28px; text-align:center; transition:all .4s cubic-bezier(.16,1,.3,1); position:relative; overflow:hidden; }
+  .team-card::before { content:''; position:absolute; inset:0; background:linear-gradient(160deg,rgba(139,92,246,.07) 0%,transparent 60%); opacity:0; transition:opacity .4s; }
+  .team-card:hover::before { opacity:1; }
+  .team-card:hover { transform:translateY(-8px); border-color:rgba(139,92,246,.35); box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 40px rgba(139,92,246,.08); }
+  .team-avatar { width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,rgba(139,92,246,.3),rgba(109,40,217,.15)); border:2px solid rgba(139,92,246,.35); display:flex; align-items:center; justify-content:center; font-size:1.6rem; font-weight:800; color:var(--purple-light); margin:0 auto 20px; position:relative; box-shadow:0 0 24px rgba(139,92,246,.2); transition:all .3s; }
+  .team-card:hover .team-avatar { box-shadow:0 0 36px rgba(139,92,246,.4); transform:scale(1.05); }
+  .team-avatar::after { content:''; position:absolute; inset:-5px; border-radius:50%; border:1px dashed rgba(139,92,246,.25); animation:spinSlow 10s linear infinite; }
+  .team-name { font-size:1.15rem; font-weight:700; margin-bottom:6px; }
+  .team-role { color:var(--purple-light); font-size:.82rem; font-weight:500; letter-spacing:.06em; text-transform:uppercase; margin-bottom:16px; }
+  .team-desc { color:var(--text-dim); font-size:.87rem; line-height:1.6; margin-bottom:22px; }
+  .team-links { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .team-link { display:inline-flex; align-items:center; gap:7px; padding:7px 14px; border-radius:10px; font-size:.78rem; font-weight:600; text-decoration:none; transition:all .25s; letter-spacing:.02em; }
+  .team-link.discord { background:rgba(88,101,242,.12); border:1px solid rgba(88,101,242,.3); color:#7289da; }
+  .team-link.discord:hover { background:rgba(88,101,242,.22); box-shadow:0 0 14px rgba(88,101,242,.3); transform:translateY(-1px); }
+  .team-link.github { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); color:var(--text); }
+  .team-link.github:hover { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.25); transform:translateY(-1px); }
+  .team-link.web { background:rgba(139,92,246,.1); border:1px solid rgba(139,92,246,.28); color:var(--purple-light); }
+  .team-link.web:hover { background:rgba(139,92,246,.2); box-shadow:0 0 14px rgba(139,92,246,.25); transform:translateY(-1px); }
+
+  /* ── DISCORD BANNER ── */
+  .discord-section { padding:0 20px 80px; }
+  .discord-banner { max-width:1200px; margin:0 auto; background:linear-gradient(135deg,rgba(88,101,242,.12),rgba(88,101,242,.06)); border:1px solid rgba(88,101,242,.3); border-radius:24px; padding:60px 40px; text-align:center; position:relative; overflow:hidden; }
+  .discord-banner::before { content:''; position:absolute; width:500px; height:500px; background:radial-gradient(circle,rgba(88,101,242,.1) 0%,transparent 70%); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; }
+  .discord-icon { font-size:3.5rem; color:#7289da; margin-bottom:18px; display:block; animation:orbFloat 4s ease-in-out infinite; position:relative; z-index:1; }
+  .discord-banner h3 { font-size:1.8rem; font-weight:800; margin-bottom:12px; letter-spacing:-.02em; position:relative; z-index:1; }
+  .discord-banner p { color:var(--text-dim); font-size:1rem; line-height:1.6; max-width:460px; margin:0 auto 28px; position:relative; z-index:1; }
+  .discord-btn { display:inline-flex; align-items:center; gap:12px; background:#5865F2; color:white; padding:15px 36px; border-radius:14px; font-weight:700; font-size:1rem; text-decoration:none; box-shadow:0 0 30px rgba(88,101,242,.45); transition:all .3s; letter-spacing:.02em; position:relative; z-index:1; }
+  .discord-btn:hover { background:#4752c4; box-shadow:0 0 50px rgba(88,101,242,.65); transform:translateY(-3px) scale(1.02); }
+  .discord-members { display:flex; align-items:center; gap:8px; justify-content:center; margin-top:20px; color:var(--text-dim); font-size:.82rem; position:relative; z-index:1; }
+  .discord-members i { color:#23d18b; }
+
+  /* ── CTA ── */
+  .cta-section { padding:120px 20px; background:var(--bg2); position:relative; overflow:hidden; text-align:center; }
+  .cta-section::before { content:''; position:absolute; width:800px; height:400px; background:radial-gradient(ellipse,rgba(139,92,246,.12) 0%,transparent 70%); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; }
+  .cta-inner { position:relative; z-index:1; }
+  .cta-inner h2 { font-size:clamp(2rem,5vw,3.5rem); margin-bottom:20px; }
+  .cta-inner p { color:var(--text-dim); font-size:1.1rem; max-width:500px; margin:0 auto 40px; line-height:1.7; }
+  .cta-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+  /* ── FOOTER ── */
+  footer { background:var(--bg); border-top:1px solid var(--border); padding:60px 20px 30px; }
+  .footer-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:60px; margin-bottom:50px; }
+  .footer-brand p { color:var(--text-dim); font-size:.9rem; line-height:1.7; margin-top:16px; max-width:280px; }
+  /* identical to topbar logo */
+  .footer-logo { font-weight:800; font-size:1.4rem; letter-spacing:-.02em; background:linear-gradient(135deg,var(--white) 30%,var(--purple-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; display:inline-block; margin-bottom:8px; text-decoration:none; }
+  .footer-logo span { -webkit-text-fill-color:var(--purple); }
+  .social-links { display:flex; gap:10px; margin-top:20px; }
+  .social-link { width:38px; height:38px; background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--text-dim); font-size:.9rem; text-decoration:none; transition:all .3s; }
+  .social-link:hover { background:rgba(139,92,246,.15); border-color:var(--purple); color:var(--purple-light); transform:translateY(-2px); box-shadow:0 0 15px rgba(139,92,246,.2); }
+  .footer-col h4 { font-size:.85rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text); margin-bottom:18px; }
+  .footer-col ul { list-style:none; }
+  .footer-col ul li { margin-bottom:10px; }
+  .footer-col ul a { color:var(--text-dim); text-decoration:none; font-size:.88rem; transition:all .2s; display:flex; align-items:center; gap:6px; }
+  .footer-col ul a:hover { color:var(--purple-light); transform:translateX(4px); }
+  .footer-bottom { max-width:1200px; margin:0 auto; padding-top:24px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .footer-bottom p { color:var(--text-dim); font-size:.82rem; }
+  .footer-bottom a { color:var(--purple-light); text-decoration:none; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity:0; transform:translateY(40px); transition:opacity .7s ease,transform .7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .reveal-delay-1{transition-delay:.1s} .reveal-delay-2{transition-delay:.2s} .reveal-delay-3{transition-delay:.3s}
+  @keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+  .glow-line { height:2px; background:linear-gradient(90deg,transparent,var(--purple),transparent); opacity:.4; }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:1024px){
+    .hero-content{grid-template-columns:1fr;gap:50px} .hero-visual{display:none}
+    .services-grid{grid-template-columns:repeat(2,1fr)} .stats-grid{grid-template-columns:repeat(2,1fr);gap:30px}
+    .process-steps{grid-template-columns:repeat(2,1fr)} .process-steps::before{display:none}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:40px} .team-grid{grid-template-columns:1fr}
+    .team-card{max-width:420px;margin:0 auto;width:100%}
+  }
+  @media(max-width:768px){
+    .nav-links{display:none} .hamburger{display:flex}
+    .services-grid{grid-template-columns:1fr} .stats-grid{grid-template-columns:repeat(2,1fr)}
+    section{padding:70px 20px} .footer-grid{grid-template-columns:1fr;gap:32px}
+    .hero-btns{flex-direction:column} .btn-primary,.btn-secondary{justify-content:center}
+    .process-steps{grid-template-columns:1fr 1fr} .cta-btns{flex-direction:column;align-items:center}
+    .discord-banner{padding:36px 24px} .testimonials-actions{flex-direction:column;align-items:center}
+  }
+  @media(max-width:480px){
+    .stats-grid{grid-template-columns:1fr 1fr} .stat-item::after{display:none}
+    nav{padding:12px 18px;top:12px;width:calc(100% - 24px)} .process-steps{grid-template-columns:1fr}
+  }
+</style>
 </head>
 <body>
-    <!-- Dark Mode Toggle -->
-    <div class="dark-mode-toggle" id="darkModeToggle" aria-label="Przełącz tryb ciemny">
-        <i class="fas fa-moon"></i>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="logo">Exo<span>lyte</span></a>
+  <ul class="nav-links">
+    <li><a href="#uslugi">Usługi</a></li>
+    <li><a href="#proces">Proces</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#zespol">Zespół</a></li>
+    <li><a href="#cennik">Cennik</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#kontakt" class="nav-cta"><i class="fa-solid fa-bolt"></i> Zamów stronę</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#uslugi" onclick="closeMobileMenu()"><i class="fa-solid fa-layer-group" style="color:var(--purple)"></i>Usługi</a>
+  <a href="#proces" onclick="closeMobileMenu()"><i class="fa-solid fa-arrows-rotate" style="color:var(--purple)"></i>Proces</a>
+  <a href="#portfolio" onclick="closeMobileMenu()"><i class="fa-solid fa-briefcase" style="color:var(--purple)"></i>Portfolio</a>
+  <a href="#zespol" onclick="closeMobileMenu()"><i class="fa-solid fa-users" style="color:var(--purple)"></i>Zespół</a>
+  <a href="#cennik" onclick="closeMobileMenu()"><i class="fa-solid fa-tag" style="color:var(--purple)"></i>Cennik</a>
+  <a href="#kontakt" onclick="closeMobileMenu()"><i class="fa-solid fa-envelope" style="color:var(--purple)"></i>Kontakt</a>
+  <a href="https://order.exolyte.pl/new" class="nav-cta" onclick="closeMobileMenu()"><i class="fa-solid fa-bolt"></i> Zamów stronę</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="particles"></canvas>
+  <div class="grid-bg"></div>
+  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge"><i class="fa-solid fa-circle"></i> Otwieramy zapisy — 3 miejsca wolne</div>
+      <h1>Strony, które<br><span class="gradient-text">konwertują</span><br>i zachwycają.</h1>
+      <p>Tworzymy nowoczesne, szybkie i eleganckie strony internetowe dla zwykłych użytkowników, oraz firm, które chcą wyróżniać się w sieci. Zero kompromisów w kwestii designu.</p>
+      <div class="hero-btns">
+        <a href="https://order.exolyte.pl/new" class="btn-primary"><i class="fa-solid fa-rocket"></i> Zamów swoją stronę</a>
+        <a href="#portfolio" class="btn-secondary"><i class="fa-solid fa-eye"></i> Zobacz portfolio</a>
+      </div>
     </div>
-
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="preloader-inner">
-            <div class="preloader-logo">
-                <span class="logo-text">EXOLYTE</span>
-                <div class="logo-dot"></div>
-            </div>
-            <div class="preloader-progress">
-                <div class="progress-bar"></div>
-            </div>
+    <div class="hero-visual">
+      <div class="mockup-window">
+        <div class="mockup-bar">
+          <div class="mockup-dots"><span></span><span></span><span></span></div>
+          <div class="mockup-url"><i class="fa-solid fa-lock"></i> twojastrona.pl</div>
         </div>
+        <div class="mockup-content">
+          <div class="mockup-hero-bar"><div class="dot"></div><div style="flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px"></div><div style="width:50px;height:18px;background:rgba(139,92,246,.3);border-radius:6px"></div></div>
+          <div class="mockup-skeleton" style="width:75%"></div>
+          <div class="mockup-skeleton" style="width:60%"></div>
+          <div class="mockup-skeleton" style="width:80%"></div>
+          <div style="height:8px"></div>
+          <div class="mockup-skeleton" style="width:40%;height:28px;border-radius:8px;background:rgba(139,92,246,.2)"></div>
+          <div class="mockup-cards-row"><div class="mockup-card-mini"></div><div class="mockup-card-mini"></div><div class="mockup-card-mini"></div></div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="#home" aria-label="Strona główna Exolyte Studios">
-                    <span class="logo-text">EXOLYTE</span>
-                    <div class="logo-dot"></div>
-                </a>
-            </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Start</a>
-                <a href="#about" class="nav-link">O Nas</a>
-                <a href="#services" class="nav-link">Usługi</a>
-                <a href="#portfolio" class="nav-link">Portfolio</a>
-                <a href="#team" class="nav-link">Zespół</a>
-                <a href="#contact" class="nav-link">Kontakt</a>
-                <a href="pricing/pricing.html" class="nav-link nav-cta">Wycena</a>
-            </div>
-            <div class="nav-toggle" id="nav-toggle" aria-label="Menu mobilne">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat-item reveal"><div class="stat-number" data-count="69">0</div><div class="stat-label">Zrealizowanych projektów</div></div>
+    <div class="stat-item reveal reveal-delay-1"><div class="stat-number" data-count="95">0<span>%</span></div><div class="stat-label">Zadowolonych klientów</div></div>
+    <div class="stat-item reveal reveal-delay-2"><div class="stat-number" data-count="1">0<span> rok</span></div><div class="stat-label">Na rynku</div></div>
+    <div class="stat-item reveal reveal-delay-3"><div class="stat-number" data-count="2">0<span>h</span></div><div class="stat-label">Czas odpowiedzi</div></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="uslugi">
+  <div class="container">
+    <div class="section-tag">Co robimy</div>
+    <h2>Kompleksowe usługi <span class="gradient-text">webowe</span></h2>
+    <p class="section-desc">Od prostej wizytówki po rozbudowany sklep — dostarczamy rozwiązania skrojone pod Twoje potrzeby i budżet.</p>
+    <div class="services-grid">
+      <div class="service-card reveal"><div class="service-icon"><i class="fa-solid fa-palette"></i></div><h3>Landing Page</h3><p>Efektowne strony docelowe, które zamieniają odwiedzających w klientów. Optymalizowane pod konwersję i SEO.</p></div>
+      <div class="service-card featured reveal reveal-delay-1"><div class="service-icon"><i class="fa-solid fa-store"></i></div><h3>Sklep Internetowy</h3><p>Profesjonalne e-commerce z integracją płatności, systemem logowania i zamówień, oraz panelem zarządzania produktami.</p></div>
+      <div class="service-card reveal reveal-delay-2"><div class="service-icon"><i class="fa-solid fa-briefcase"></i></div><h3>Strona Firmowa</h3><p>Reprezentacyjna witryna dla Twojego biznesu. Nowoczesny design, który buduje zaufanie i profesjonalny wizerunek.</p></div>
+      <div class="service-card reveal reveal-delay-1"><div class="service-icon"><i class="fa-solid fa-magnifying-glass"></i></div><h3>Pozycjonowanie SEO</h3><p>Optymalizacja techniczna i treściowa. Docieraj do klientów, którzy szukają właśnie Ciebie w Google.</p></div>
+      <div class="service-card reveal reveal-delay-2"><div class="service-icon"><i class="fa-solid fa-gear"></i></div><h3>Redesign Strony</h3><p>Odświeżamy stare, wolne witryny. Nowoczesny wygląd, lepsza wydajność i wyższe pozycje w wyszukiwarkach.</p></div>
+      <div class="service-card reveal reveal-delay-3"><div class="service-icon"><i class="fa-solid fa-headset"></i></div><h3>Opieka i Wsparcie</h3><p>Pakiety miesięczne obejmujące aktualizacje, backup, monitoring bezpieczeństwa i pomoc techniczną.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- PROCESS -->
+<section class="process" id="proces">
+  <div class="container">
+    <div class="section-tag">Jak działamy</div>
+    <h2>Od pomysłu do <span class="gradient-text">gotowej strony</span></h2>
+    <p class="section-desc">Prosty i przejrzysty proces w 4 krokach. Zawsze wiesz, na jakim etapie jesteśmy i co dzieje się dalej.</p>
+    <div class="process-steps">
+      <div class="step reveal"><div class="step-num">01</div><h3>Briefing</h3><p>Bezpłatna konsultacja. Poznajemy Twój biznes, cele i grupę docelową. Ustalamy zakres i harmonogram.</p></div>
+      <div class="step reveal reveal-delay-1"><div class="step-num">02</div><h3>Projekt UI/UX</h3><p>Tworzymy makiety i prototypy. Akceptujesz wygląd przed napisaniem linijki kodu.</p></div>
+      <div class="step reveal reveal-delay-2"><div class="step-num">03</div><h3>Realizacja</h3><p>Kodujemy stronę z pełną dbałością o szczegóły. Regularne aktualizacje statusu projektu.</p></div>
+      <div class="step reveal reveal-delay-3"><div class="step-num">04</div><h3>Launch & Support</h3><p>Wdrożenie na serwer, konfiguracja domeny i SSL. Szkolenie i dalsze wsparcie techniczne.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <div class="section-tag">Nasze prace</div>
+    <h2>Wybrane <span class="gradient-text">realizacje</span></h2>
+    <p class="section-desc">Każdy projekt to unikalne wyzwanie. Oto kilka stron, z których jesteśmy szczególnie dumni.</p>
+    <div class="portfolio-scroll" id="portfolioScroll">
+      <div class="portfolio-item p1"><div class="portfolio-preview"><div class="p-bar"><span></span><span></span><span></span></div><div class="p-content"><div class="p-nav"></div><div class="p-hero-block"><div class="p-title-tag"><i class="fa-solid fa-dumbbell icon"></i></div></div><div class="p-rows"><div class="p-row accent"></div><div class="p-row"></div></div></div></div><div class="portfolio-overlay"><h4>Soon</h4><p>Soon</p><a href="#kontakt" class="overlay-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Zobacz więcej</a></div></div>
+      <div class="portfolio-item p2"><div class="portfolio-preview"><div class="p-bar"><span></span><span></span><span></span></div><div class="p-content"><div class="p-nav"></div><div class="p-hero-block"><div class="p-title-tag"><i class="fa-solid fa-building icon"></i></div></div><div class="p-rows"><div class="p-row" style="background:rgba(59,130,246,.25);width:50%"></div><div class="p-row"></div></div></div></div><div class="portfolio-overlay"><h4>Soon</h4><p>Soon</p><a href="#kontakt" class="overlay-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Zobacz więcej</a></div></div>
+      <div class="portfolio-item p3"><div class="portfolio-preview"><div class="p-bar"><span></span><span></span><span></span></div><div class="p-content"><div class="p-nav"></div><div class="p-hero-block"><div class="p-title-tag"><i class="fa-solid fa-leaf icon"></i></div></div><div class="p-rows"><div class="p-row" style="background:rgba(16,185,129,.25);width:45%"></div><div class="p-row"></div></div></div></div><div class="portfolio-overlay"><h4>Soon</h4><p>Soon</p><a href="#kontakt" class="overlay-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Zobacz więcej</a></div></div>
+      <div class="portfolio-item p4"><div class="portfolio-preview"><div class="p-bar"><span></span><span></span><span></span></div><div class="p-content"><div class="p-nav"></div><div class="p-hero-block"><div class="p-title-tag"><i class="fa-solid fa-utensils icon"></i></div></div><div class="p-rows"><div class="p-row" style="background:rgba(239,68,68,.25);width:55%"></div><div class="p-row"></div></div></div></div><div class="portfolio-overlay"><h4>Soon</h4><p>Soon</p><a href="#kontakt" class="overlay-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Zobacz więcej</a></div></div>
+      <div class="portfolio-item p5"><div class="portfolio-preview"><div class="p-bar"><span></span><span></span><span></span></div><div class="p-content"><div class="p-nav"></div><div class="p-hero-block"><div class="p-title-tag"><i class="fa-solid fa-graduation-cap icon"></i></div></div><div class="p-rows"><div class="p-row" style="background:rgba(245,158,11,.25);width:60%"></div><div class="p-row"></div></div></div></div><div class="portfolio-overlay"><h4>Soon</h4><p>Soon</p><a href="#kontakt" class="overlay-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Zobacz więcej</a></div></div>
+      <div class="portfolio-item p6"><div class="portfolio-preview"><div class="p-bar"><span></span><span></span><span></span></div><div class="p-content"><div class="p-nav"></div><div class="p-hero-block"><div class="p-title-tag"><i class="fa-solid fa-camera icon"></i></div></div><div class="p-rows"><div class="p-row" style="background:rgba(236,72,153,.25);width:35%"></div><div class="p-row"></div></div></div></div><div class="portfolio-overlay"><h4>Soon</h4><p>Soon</p><a href="#kontakt" class="overlay-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Zobacz więcej</a></div></div>
+    </div>
+    <div class="scroll-dots" id="portfolioDots"></div>
+    <div class="portfolio-footer">
+      <a href="https://exolyte.pl/projects#websites" class="btn-secondary"><i class="fa-solid fa-grid-2"></i> Zobacz wszystkie projekty</a>
+    </div>
+  </div>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- TEAM -->
+<section class="team" id="zespol">
+  <div class="container">
+    <div class="section-tag">Nasz zespół</div>
+    <h2>Ludzie za <span class="gradient-text">Exolyte</span></h2>
+    <p class="section-desc">Pasjonaci kodu i designu, którzy każdy projekt traktują jak własny. Poznaj nas bliżej.</p>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-avatar"><img src="https://kw.pl"></div>
+        <div class="team-name">Aixor</div>
+        <div class="team-role">Frontend Developer</div>
+        <div class="team-desc"></div>
+        <div class="team-links">
+          <a href="#" class="team-link discord"><i class="fa-brands fa-discord"></i> Discord</a>
+          <a href="#" class="team-link github"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a href="#" class="team-link web"><i class="fa-solid fa-globe"></i> Strona</a>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-award"></i>
-                    <span>Profesjonalne rozwiązania webowe</span>
-                </div>
-                <h1 class="hero-title">
-                    <span class="title-line">Tworzymy</span>
-                    <span class="title-line">Wyjątkowe</span>
-                    <span class="title-line highlight">Strony Internetowe</span>
-                </h1>
-                <p class="hero-description">
-                    Specjalizujemy się w projektowaniu i tworzeniu nowoczesnych, responsywnych stron internetowych oraz aplikacji webowych. 
-                    Łączymy kreatywny design z zaawansowanymi technologiami, aby dostarczyć rozwiązania, które wyróżniają Twoją markę i zwiększają konwersję.
-                </p>
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <span class="stat-number">10+</span>
-                        <span class="stat-label">Projektów</span>
-                    </div>
-                    <div class="hero-stat">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Satysfakcji</span>
-                    </div>
-                    <div class="hero-stat">
-                        <span class="stat-number">24/7</span>
-                        <span class="stat-label">Wsparcie</span>
-                    </div>
-                </div>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">
-                        <span>Rozpocznij Projekt</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="#portfolio" class="btn btn-secondary">
-                        <span>Zobacz Realizacje</span>
-                        <i class="fas fa-eye"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="floating-shapes">
-                    <div class="shape shape-1"></div>
-                    <div class="shape shape-2"></div>
-                    <div class="shape shape-3"></div>
-                    <div class="shape shape-4"></div>
-                </div>
-                <div class="hero-image-wrapper">
-                    <img src="assets/main/baner.png" alt="Exolyte Studios - Profesjonalne strony internetowe" class="hero-image">
-                </div>
-            </div>
+      </div>
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-avatar"><img src="https://acarto.exolyte.pl/acarto.pn"></div>
+        <div class="team-name">Acarto</div>
+        <div class="team-role">Backend Developer</div>
+        <div class="team-desc">Łączy estetykę z funkcjonalnością. Odpowiada za to, że nasze strony nie tylko wyglądają, ale również działają</div>
+        <div class="team-links">
+          <a href="#" class="team-link discord"><i class="fa-brands fa-discord"></i> Discord</a>
+          <a href="#" class="team-link github"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a href="#" class="team-link web"><i class="fa-solid fa-globe"></i> Strona</a>
         </div>
-        <div class="scroll-indicator">
-            <div class="scroll-line"></div>
-            <span>Przewiń w dół</span>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-avatar">AR</div>
+        <div class="team-name">Aster</div>
+        <div class="team-role">UI/UX Designer &amp; SEO Specialist</div>
+        <div class="team-desc">Dba o to, żeby strony były nie tylko piękne, ale też szybkie i widoczne w Google. Ekspert od optymalizacji i wydajności.</div>
+        <div class="team-links">
+          <a href="#" class="team-link discord"><i class="fa-brands fa-discord"></i> Discord</a>
+          <a href="#" class="team-link github"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a href="#" class="team-link web"><i class="fa-solid fa-globe"></i> Strona</a>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="section-container">
-            <div class="section-header">
-                <span class="section-badge">O Nas</span>
-                <h2 class="section-title">Poznaj Exolyte Studios</h2>
-                <p class="section-subtitle">Pasja, doświadczenie i innowacyjne podejście do tworzenia stron internetowych</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Dlaczego Warto Wybrać Nas?</h3>
-                    <p>
-                        Exolyte Studios to zespół doświadczonych programistów i designerów, którzy łączą technologiczną wiedzę 
-                        z kreatywnością. Tworzymy strony internetowe, które nie tylko pięknie wyglądają, ale przede wszystkim 
-                        skutecznie realizują cele biznesowe naszych klientów.
-                    </p>
-                    <p>
-                        Każdy projekt traktujemy indywidualnie, dostosowując rozwiązania do specyficznych potrzeb i oczekiwań. 
-                        Stawiamy na nowoczesne technologie, optymalizację wydajności oraz intuicyjny interfejs użytkownika.
-                    </p>
-                    
-                    <div class="about-features">
-                        <div class="about-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <h4>Responsywny Design</h4>
-                                <p>Strony działające perfekcyjnie na wszystkich urządzeniach</p>
-                            </div>
-                        </div>
-                        <div class="about-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <h4>Optymalizacja SEO</h4>
-                                <p>Wysoka pozycja w wyszukiwarkach Google</p>
-                            </div>
-                        </div>
-                        <div class="about-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <h4>Szybkie Ładowanie</h4>
-                                <p>Zoptymalizowana wydajność i krótki czas ładowania</p>
-                            </div>
-                        </div>
-                        <div class="about-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <h4>Bezpieczeństwo</h4>
-                                <p>Najwyższe standardy zabezpieczeń i ochrony danych</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="stats-container">
-                        <div class="stat">
-                            <div class="stat-number" data-count="10">0</div>
-                            <div class="stat-label">Zrealizowanych Projektów</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number" data-count="8">0</div>
-                            <div class="stat-label">Zadowolonych Klientów</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number" data-count="2">0</div>
-                            <div class="stat-label">Lata Doświadczenia</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number" data-count="100">0</div>
-                            <div class="stat-label">% Satysfakcji</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-visual">
-                    <div class="visual-container">
-                        <div class="floating-card card-1">
-                            <i class="fas fa-code"></i>
-                            <h4>Czysty Kod</h4>
-                            <p>Zgodny ze standardami</p>
-                        </div>
-                        <div class="floating-card card-2">
-                            <i class="fas fa-mobile-alt"></i>
-                            <h4>Mobile First</h4>
-                            <p>Priorytet dla urządzeń mobilnych</p>
-                        </div>
-                        <div class="floating-card card-3">
-                            <i class="fas fa-rocket"></i>
-                            <h4>Wysoka Wydajność</h4>
-                            <p>Błyskawiczne ładowanie</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- DISCORD BANNER -->
+<div class="discord-section reveal">
+  <div class="discord-banner">
+    <i class="fa-brands fa-discord discord-icon"></i>
+    <h3>Dołącz do naszego <span class="gradient-text">Discorda</span></h3>
+    <p>Bądź na bieżąco z projektami, porozmawiaj z zespołem i społecznością. Czekamy na Ciebie!</p>
+    <a href="https://dc.gg/exolyte" class="discord-btn">
+      <i class="fa-brands fa-discord"></i> Dołącz do serwera
+    </a>
+    <div class="discord-members"><i class="fa-solid fa-circle"></i> Dołącz do ponad <strong style="color:var(--text);margin:0 4px">500+</strong> członków</div>
+  </div>
+</div>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="section-container">
-            <div class="section-header">
-                <span class="section-badge">Usługi</span>
-                <h2 class="section-title">Co Oferujemy?</h2>
-                <p class="section-subtitle">Kompleksowe rozwiązania webowe dostosowane do Twoich potrzeb</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Strony Internetowe</h3>
-                    <p>Tworzymy strony, które nie tylko wyglądają świetnie, ale przede wszystkim sprzedają. Każdy projekt to połączenie nowoczesnego designu z psychologią użytkownika - Twoi klienci będą zachwyceni, a Ty zobaczysz realne rezultaty.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Design, który sprzedaje i buduje zaufanie</li>
-                        <li><i class="fas fa-check"></i> Błyskawiczne ładowanie - klienci nie czekają</li>
-                        <li><i class="fas fa-check"></i> Wysoka pozycja w Google od pierwszego dnia</li>
-                        <li><i class="fas fa-check"></i> Perfekcyjny wygląd na każdym urządzeniu</li>
-                    </ul>
-                    <a href="#contact" class="service-link">
-                        <span>Zamów Stronę</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3>Sklepy Internetowe</h3>
-                    <p>Twój sklep online, który sprzedaje 24/7. Intuicyjny panel, automatyzacja procesów i integracje, które oszczędzają Twój czas. Zacznij zarabiać w internecie już dziś - my zajmiemy się całą technologią.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Gotowe integracje z płatnościami i kurierami</li>
-                        <li><i class="fas fa-check"></i> Automatyczne zarządzanie zamówieniami</li>
-                        <li><i class="fas fa-check"></i> Analityka sprzedaży w czasie rzeczywistym</li>
-                        <li><i class="fas fa-check"></i> Mobilny panel - zarządzaj z telefonu</li>
-                    </ul>
-                    <a href="#contact" class="service-link service-link-disabled">
-                        <span>Wkrótce Dostępne</span>
-                        <i class="fas fa-clock"></i>
-                    </a>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Aplikacje Webowe</h3>
-                    <p>Potrzebujesz czegoś więcej niż strona? Stworzymy dedykowaną aplikację, która automatyzuje Twój biznes. CRM, systemy rezerwacji, panele zarządzania - wszystko dopasowane do Twoich potrzeb.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Rozwiązania szyte na miarę Twojego biznesu</li>
-                        <li><i class="fas fa-check"></i> Automatyzacja powtarzalnych zadań</li>
-                        <li><i class="fas fa-check"></i> Bezpieczne API i integracje zewnętrzne</li>
-                        <li><i class="fas fa-check"></i> Skalowalność - rośnij bez ograniczeń</li>
-                    </ul>
-                    <a href="#contact" class="service-link">
-                        <span>Zapytaj o Ofertę</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3>Optymalizacja SEO</h3>
-                    <p>Twoja strona na pierwszej stronie Google? To możliwe! Profesjonalna optymalizacja SEO, która przyciąga klientów szukających dokładnie tego, co oferujesz. Więcej ruchu = więcej sprzedaży.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Pierwsza strona Google w Twojej branży</li>
-                        <li><i class="fas fa-check"></i> Więcej klientów bez płacenia za reklamy</li>
-                        <li><i class="fas fa-check"></i> Szczegółowe raporty i monitoring pozycji</li>
-                        <li><i class="fas fa-check"></i> Długoterminowe rezultaty i wzrost ruchu</li>
-                    </ul>
-                    <a href="#contact" class="service-link">
-                        <span>Zwiększ Widoczność</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <h3>Branding & Design</h3>
-                    <p>Wyróżnij się na tle konkurencji! Tworzymy spójną identyfikację wizualną, która zostaje w pamięci. Logo, materiały marketingowe, social media - wszystko w jednym stylu, który buduje rozpoznawalność.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Logo, które zapadnie w pamięć</li>
-                        <li><i class="fas fa-check"></i> Kompletna identyfikacja wizualna marki</li>
-                        <li><i class="fas fa-check"></i> Materiały gotowe do druku i social media</li>
-                        <li><i class="fas fa-check"></i> Księga znaku - spójność na lata</li>
-                    </ul>
-                    <a href="#contact" class="service-link">
-                        <span>Stwórz Markę</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>Wsparcie Techniczne</h3>
-                    <p>Nie zostawiamy Cię samego! Wsparcie 24/7, regularne aktualizacje i monitoring bezpieczeństwa. Śpij spokojnie - my pilnujemy, żeby Twoja strona działała bez zarzutu.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Odpowiedź w ciągu 24h - zawsze</li>
-                        <li><i class="fas fa-check"></i> Automatyczne backupy i aktualizacje</li>
-                        <li><i class="fas fa-check"></i> Monitoring 24/7 - wykrywamy problemy wcześniej</li>
-                        <li><i class="fas fa-check"></i> Szybkie poprawki i rozbudowa funkcji</li>
-                    </ul>
-                    <a href="#contact" class="service-link">
-                        <span>Zapewnij Wsparcie</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- PRICING -->
+<section class="pricing" id="cennik">
+  <div class="container">
+    <div class="section-tag" style="display:block;text-align:center">Cennik</div>
+    <h2 style="text-align:center">Przejrzyste <span class="gradient-text">ceny</span></h2>
+    <p class="section-desc" style="text-align:center;margin:0 auto 60px">Żadnych ukrytych kosztów. Wybierz pakiet odpowiedni dla Twojego biznesu.</p>
+    <div class="pricing-scroll">
+      <div class="price-card">
+        <div class="price-name">Starter</div>
+        <div class="price-amount">49 <span>zł</span></div>
+        <div class="price-desc">Idealne dla freelancerów i małych firm stawiających pierwsze kroki w sieci.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-check-circle"></i> Do 5 podstron</li>
+          <li><i class="fa-solid fa-check-circle"></i> Responsywny design</li>
+          <li><i class="fa-solid fa-check-circle"></i> Formularz kontaktowy</li>
+          <li><i class="fa-solid fa-check-circle"></i> Certyfikat SSL</li>
+          <li><i class="fa-solid fa-check-circle"></i> Podstawowe SEO</li>
+          <li><i class="fa-solid fa-check-circle"></i> 6 miesięcy wsparcia</li>
+        </ul>
+        <a href="https://order.exolyte.pl/new?type=web&mode=starter" class="price-btn outline"><i class="fa-solid fa-arrow-right"></i> Zamów Starter</a>
+      </div>
+      <div class="price-card popular">
+        <div class="popular-badge">Najpopularniejszy</div>
+        <div class="price-name">Pro</div>
+        <div class="price-amount">299 <span>zł</span></div>
+        <div class="price-desc">Kompleksowa strona dla rosnącego biznesu z pełnym zestawem funkcji.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-check-circle"></i> Nielimitowane podstrony</li>
+          <li><i class="fa-solid fa-check-circle"></i> Premium design UI/UX</li>
+          <li><i class="fa-solid fa-check-circle"></i> Animacje i efekty</li>
+          <li><i class="fa-solid fa-check-circle"></i> Pełne SEO + sitemap</li>
+          <li><i class="fa-solid fa-check-circle"></i> Google Analytics</li>
+          <li><i class="fa-solid fa-check-circle"></i> Blog / CMS</li>
+          <li><i class="fa-solid fa-check-circle"></i> 3 miesiące wsparcia</li>
+          <li><i class="fa-solid fa-check-circle"></i> Szkolenie z obsługi</li>
+        </ul>
+        <a href="https://order.exolyte.pl/new?type=web&mode=pro" class="price-btn filled"><i class="fa-solid fa-rocket"></i> Zamów Pro</a>
+      </div>
+      <div class="price-card">
+        <div class="price-name">Enterprise</div>
+        <div class="price-amount">Od <span>499 zł</span></div>
+        <div class="price-desc">Rozbudowane rozwiązania dla większych firm — sklepy, platformy i aplikacje webowe.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-check-circle"></i> Sklep e-commerce</li>
+          <li><i class="fa-solid fa-check-circle"></i> Integracje zewnętrzne</li>
+          <li><i class="fa-solid fa-check-circle"></i> Panel administracyjny</li>
+          <li><i class="fa-solid fa-check-circle"></i> Dedykowana domena</li>
+          <li><i class="fa-solid fa-check-circle"></i> Audyt UX &amp; bezpieczeństwa</li>
+          <li><i class="fa-solid fa-check-circle"></i> 12 miesięcy wsparcia</li>
+          <li><i class="fa-solid fa-check-circle"></i> Priorytetowy support</li>
+        </ul>
+        <a href="https://order.exolyte.pl/new?type=web&mode=enterprise" class="price-btn outline"><i class="fa-solid fa-arrow-right"></i> Wycena indywidualna</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
-        <div class="section-container">
-            <div class="section-header">
-                <span class="section-badge">Portfolio</span>
-                <h2 class="section-title">Nasze Realizacje</h2>
-                <p class="section-subtitle">Zobacz projekty, które stworzyliśmy dla naszych klientów</p>
-            </div>
-            <div class="portfolio-filter">
-                <button class="filter-btn active" data-filter="all">Wszystkie</button>
-                <button class="filter-btn" data-filter="web">Strony WWW</button>
-                <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
-                <button class="filter-btn" data-filter="app">Aplikacje</button>
-                <button class="filter-btn" data-filter="branding">Branding</button>
-            </div>
-            
-            <div class="portfolio-item" data-category="web">
-             <a href="https://exolyte.pl/przyklad1" target="_blank" style="text-decoration: none; color: inherit;">
-                  <div class="portfolio-image">
-                    <img src="assets/portfolio/web/1.png" alt="ABSOLUTE CINEMA - Strona internetowa dla kina.">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-info">
-                           <span class="portfolio-category">przyklad1</span>
-                            <h3>Strona Kina</h3>
-                           <p>Nowoczesna strona internetowa dla kina z intuicyjnym interfejsem i zaawansowanymi funkcjami.</p>
-                          <div class="portfolio-tags">
-                               <span class="tag">HTML5</span>
-                                <span class="tag">CSS</span>
-                                 <span class="tag">JavaScript</span>
-                             </div>
-                         </div>
-                    </div>
-                </div>
-          </a>
-        </div>
-                
-                <div class="portfolio-item" data-category="web">
-                    <div class="portfolio-image">
-                        <div class="portfolio-placeholder">
-                            <i class="fas fa-image"></i>
-                            <p>Wkrótce więcej projektów</p>
-                        </div>
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-info">
-                                <span class="portfolio-category">Strona WWW</span>
-                                <h3>Kolejny Projekt</h3>
-                                <p>Pracujemy nad kolejnymi ekscytującymi projektami dla naszych klientów.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item" data-category="branding">
-                    <div class="portfolio-image">
-                        <div class="portfolio-placeholder">
-                            <i class="fas fa-palette"></i>
-                            <p>Projekty brandingowe</p>
-                        </div>
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-info">
-                                <span class="portfolio-category">Branding</span>
-                                <h3>Identyfikacja Wizualna</h3>
-                                <p>Kompleksowe projekty brandingowe dla różnych branż.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="portfolio-cta">
-                <p>Chcesz zobaczyć więcej naszych prac?</p>
-                <a href="#contact" class="btn btn-primary">Skontaktuj się z nami</a>
-            </div>
-        </div>
-    </section>
+<!-- TESTIMONIALS -->
+<section class="testimonials" style="padding:80px 0;overflow:hidden;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 20px;">
+    <div class="section-tag">Opinie</div>
+    <h2 style="margin-bottom:50px">Co mówią <span class="gradient-text">klienci</span></h2>
+  </div>
+  <div style="position:relative;overflow:hidden;">
+    <div style="position:absolute;left:0;top:0;bottom:0;width:100px;background:linear-gradient(90deg,var(--bg),transparent);z-index:2;pointer-events:none;"></div>
+    <div style="position:absolute;right:0;top:0;bottom:0;width:100px;background:linear-gradient(-90deg,var(--bg),transparent);z-index:2;pointer-events:none;"></div>
+    <div class="testimonials-track">
+      <div class="testimonial-card"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Exolyte stworzyli stronę, która przerosła moje oczekiwania. Responsywna, szybka i niesamowicie estetyczna. Polecam z czystym sercem."</p><div class="testimonial-author"><div class="author-avatar">MK</div><div><div class="author-name">Marek Kowalski</div><div class="author-role">CEO · TechStart Polska</div></div></div></div>
+      <div class="testimonial-card"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Profesjonalizm na każdym kroku. Termin dotrzymany, komunikacja bezbłędna. Sklep działa świetnie i sprzedaż wzrosła o 40% po launchu."</p><div class="testimonial-author"><div class="author-avatar">AN</div><div><div class="author-name">Anna Nowak</div><div class="author-role">Właścicielka · GreenStore</div></div></div></div>
+      <div class="testimonial-card"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Strona wygląda jak z top agencji za ułamek ceny. Design jest ultra nowoczesny, klienci non-stop chwalą. Exolyte to strzał w dziesiątkę."</p><div class="testimonial-author"><div class="author-avatar">PW</div><div><div class="author-name">Paweł Wiśniewski</div><div class="author-role">Fotograf · PW Studio</div></div></div></div>
+      <div class="testimonial-card"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Kontakt był bardzo sprawny, projekt dostarczono szybciej niż planowano. Strona jest piękna i pozycje w Google poszły w górę po 2 tygodniach."</p><div class="testimonial-author"><div class="author-avatar">KZ</div><div><div class="author-name">Katarzyna Zając</div><div class="author-role">Dyrektor · EduAkademia</div></div></div></div>
+      <div class="testimonial-card"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Współpraca z Exolyte to czysta przyjemność. Nasza restauracja ma teraz stronę lepszą niż konkurencja z 10x większym budżetem."</p><div class="testimonial-author"><div class="author-avatar">TM</div><div><div class="author-name">Tomasz Majewski</div><div class="author-role">Właściciel · Bistro Nowa</div></div></div></div>
+      <!-- duplicates -->
+      <div class="testimonial-card"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Exolyte stworzyli stronę, która przerosła moje oczekiwania. Responsywna, szybka i niesamowicie estetyczna. Polecam z czystym sercem."</p><div class="testimonial-author"><div class="author-avatar">MK</div><div><div class="author-name">Marek Kowalski</div><div class="author-role">CEO · TechStart Polska</div></div></div></div>
+      <div class="testimonial-card"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Profesjonalizm na każdym kroku. Termin dotrzymany, komunikacja bezbłędna. Sklep działa świetnie i sprzedaż wzrosła o 40% po launchu."</p><div class="testimonial-author"><div class="author-avatar">AN</div><div><div class="author-name">Anna Nowak</div><div class="author-role">Właścicielka · GreenStore</div></div></div></div>
+      <div class="testimonial-card"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Strona wygląda jak z top agencji za ułamek ceny. Design jest ultra nowoczesny, klienci non-stop chwalą. Exolyte to strzał w dziesiątkę."</p><div class="testimonial-author"><div class="author-avatar">PW</div><div><div class="author-name">Paweł Wiśniewski</div><div class="author-role">Fotograf · PW Studio</div></div></div></div>
+      <div class="testimonial-card"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Kontakt był bardzo sprawny, projekt dostarczono szybciej niż planowano. Strona jest piękna i pozycje w Google poszły w górę po 2 tygodniach."</p><div class="testimonial-author"><div class="author-avatar">KZ</div><div><div class="author-name">Katarzyna Zając</div><div class="author-role">Dyrektor · EduAkademia</div></div></div></div>
+      <div class="testimonial-card"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Współpraca z Exolyte to czysta przyjemność. Nasza restauracja ma teraz stronę lepszą niż konkurencja."</p><div class="testimonial-author"><div class="author-avatar">TM</div><div><div class="author-name">Tomasz Majewski</div><div class="author-role">Właściciel · Bistro Nowa</div></div></div></div>
+    </div>
+  </div>
+  <div class="testimonials-actions">
+    <a href="#" class="btn-secondary"><i class="fa-solid fa-comments"></i> Zobacz wszystkie opinie</a>
+    <a href="#" class="btn-primary"><i class="fa-solid fa-pen-to-square"></i> Napisz swoją opinię</a>
+  </div>
+</section>
 
-    <!-- Team Section -->
-    <section id="team" class="team">
-        <div class="section-container">
-            <div class="section-header">
-                <span class="section-badge">Zespół</span>
-                <h2 class="section-title">Poznaj Nasz Zespół</h2>
-                <p class="section-subtitle">Pasjonaci technologii i designu, którzy tworzą wyjątkowe projekty</p>
-            </div>
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="assets/team/bodek5.jpeg" alt="bodek5 - Full Stack Developer w Exolyte Studios">
-                        <div class="member-social">
-                            <a href="https://discord.com/users/1011610256574529577" aria-label="Discord bodek5" title="Discord">
-                                <i class="fab fa-discord"></i>
-                            </a>
-                            <a href="mailto:bodek5@exolyte.pl" aria-label="Email bodek5" title="Email">
-                                <i class="fas fa-envelope"></i>
-                            </a>
-                            <a href="https://github.com/bodek5D" aria-label="GitHub bodek5" title="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3>bodek5</h3>
-                        <p class="member-role">Full Web Developer</p>
-                        <p class="member-description">Ekspert w tworzeniu responsywnych i wydajnych stron internetowych z dobrym stylem i funkcjami.</p>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="assets/team/acarto.png" alt="Acarto - Web Developer w Exolyte Studios">
-                        <div class="member-social">
-                            <a href="https://discord.com/users/1264899470357696522" aria-label="Discord Acarto" title="Discord">
-                                <i class="fab fa-discord"></i>
-                            </a>
-                            <a href="mailto:acarto@exolyte.pl" aria-label="Email Acarto" title="Email">
-                                <i class="fas fa-envelope"></i>
-                            </a>
-                            <a href="https://github.com/acartok" aria-label="GitHub Acarto" title="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3>Acarto</h3>
-                        <p class="member-role">Web Developer</p>
-                        <p class="member-description">Ekspert w tworzeniu responsywnych i wydajnych stron internetowych z dobrym stylem i funkcjami.</p>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="assets/team/Cezary19.jpeg" alt="Cezaryy19 - Frontend Developer w Exolyte Studios">
-                        <div class="member-social">
-                            <a href="https://discord.com/users/1309590575774826547" aria-label="Discord Cezaryy19" title="Discord">
-                                <i class="fab fa-discord"></i>
-                            </a>
-                            <a href="mailto:cezary@exolyte.pl" aria-label="Email Cezaryy19" title="Email">
-                                <i class="fas fa-envelope"></i>
-                            </a>
-                            <a href="https://github.com/Cezary19" aria-label="GitHub Cezaryy19" title="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3>Cezaryy19</h3>
-                        <p class="member-role">Tester</p>
-                        <p class="member-description">Najlepszy tester, znajdzie każdy błąd💪💪</p>
-                    </div>
-                </div>
-                
+<!-- CTA -->
+<section class="cta-section" id="kontakt">
+  <div class="cta-inner reveal">
+    <div class="section-tag" style="display:inline-flex;justify-content:center">Zacznijmy</div>
+    <h2>Gotowy na stronę,<br><span class="gradient-text">która sprzedaje?</span></h2>
+    <p>Napisz do nas, a w ciągu 24h skontaktujemy się z wyceną i planem działania dopasowanym do Twojego projektu.</p>
+    <div class="cta-btns">
+      <a href="https://order.exolyte.pl/new" class="btn-primary" style="font-size:1rem;padding:16px 32px;"><i class="fa-solid fa-envelope"></i> Skontaktuj się</a>
+      <a href="mailto:kontakt@exolyte.pl" class="btn-secondary" style="font-size:1rem;padding:16px 32px;" style="color:#25D366"></i> kontakt@exolyte.pl</a>
+    </div>
+    <div style="display:flex;gap:32px;justify-content:center;margin-top:40px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:10px;color:var(--text-dim);font-size:.85rem;"><i class="fa-solid fa-check-circle" style="color:var(--purple)"></i> Bezpłatna wycena</div>
+      <div style="display:flex;align-items:center;gap:10px;color:var(--text-dim);font-size:.85rem;"><i class="fa-solid fa-check-circle" style="color:var(--purple)"></i> Odpowiedź w 24h</div>
+      <div style="display:flex;align-items:center;gap:10px;color:var(--text-dim);font-size:.85rem;"><i class="fa-solid fa-check-circle" style="color:var(--purple)"></i> Bez zobowiązań</div>
+    </div>
+  </div>
+</section>
 
-            </div>
-        </div>
-    </section>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="footer-logo">Exo<span>lyte</span></a>
+      <p>Tworzymy strony internetowe, które wyróżniają się w tłumie i przynoszą realne wyniki biznesowe. Design + Kod + Wyniki.</p>
+      <div class="social-links">
+        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://discord.gg/exolyte" class="social-link" style="color:#7289da;border-color:rgba(88,101,242,.3)"><i class="fa-brands fa-discord"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" class="social-link"><i class="fa-brands fa-github"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Usługi</h4>
+      <ul>
+        <li><a href="#uslugi"><i class="fa-solid fa-chevron-right" style="font-size:.65rem;color:var(--purple)"></i>Landing Page</a></li>
+        <li><a href="#uslugi"><i class="fa-solid fa-chevron-right" style="font-size:.65rem;color:var(--purple)"></i>Strona Firmowa</a></li>
+        <li><a href="#uslugi"><i class="fa-solid fa-chevron-right" style="font-size:.65rem;color:var(--purple)"></i>Sklep E-commerce</a></li>
+        <li><a href="#uslugi"><i class="fa-solid fa-chevron-right" style="font-size:.65rem;color:var(--purple)"></i>Pozycjonowanie SEO</a></li>
+        <li><a href="#uslugi"><i class="fa-solid fa-chevron-right" style="font-size:.65rem;color:var(--purple)"></i>Opieka Techniczna</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Firma</h4>
+      <ul>
+        <li><a href="#zespol"><i class="fa-solid fa-chevron-right" style="font-size:.65rem;color:var(--purple)"></i>Nasz Zespół</a></li>
+        <li><a href="#portfolio"><i class="fa-solid fa-chevron-right" style="font-size:.65rem;color:var(--purple)"></i>Portfolio</a></li>
+        <li><a href="#cennik"><i class="fa-solid fa-chevron-right" style="font-size:.65rem;color:var(--purple)"></i>Cennik</a></li>
+        <li><a href="#"><i class="fa-solid fa-chevron-right" style="font-size:.65rem;color:var(--purple)"></i>Blog</a></li>
+        <li><a href="#kontakt"><i class="fa-solid fa-chevron-right" style="font-size:.65rem;color:var(--purple)"></i>Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="mailto:hello@exolyte.pl"><i class="fa-solid fa-envelope" style="color:var(--purple)"></i>hello@exolyte.pl</a></li>
+        <li><a href="tel:+48000000000"><i class="fa-solid fa-phone" style="color:var(--purple)"></i>+48 000 000 000</a></li>
+        <li><a href="https://discord.gg/exolyte"><i class="fa-brands fa-discord" style="color:#7289da"></i>Discord</a></li>
+        <li style="padding-top:8px;"><a href="#kontakt" style="background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.3);color:var(--purple-light);padding:8px 16px;border-radius:10px;font-size:.82rem;font-weight:600;"><i class="fa-solid fa-rocket" style="margin-right:6px"></i>Zamów stronę</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 - 2026 Exolyte. Wszelkie prawa zastrzeżone. Made with <i class="fa-solid fa-heart" style="color:var(--purple)"></i></p>
+    <p><a href="#">Polityka Prywatności</a> · <a href="#">Regulamin</a></p>
+  </div>
+</footer>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="section-container">
-            <div class="section-header">
-                <span class="section-badge">Kontakt</span>
-                <h2 class="section-title">Skontaktuj Się z Nami</h2>
-                <p class="section-subtitle">Masz pytania? Chcesz rozpocząć projekt? Jesteśmy do Twojej dyspozycji!</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Porozmawiajmy o Twoim Projekcie</h3>
-                    <p>
-                        Masz pomysł na stronę internetową lub aplikację? A może potrzebujesz wsparcia przy istniejącym projekcie? 
-                        Skontaktuj się z nami, a my pomożemy Ci zrealizować Twoje cele biznesowe.
-                    </p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Email</h4>
-                                <p><a href="mailto:kontakt@exolyte.pl">kontakt@exolyte.pl</a></p>
-                                <p><a href="mailto:zamowienia@exolyte.pl">zamowienia@exolyte.pl</a></p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Godziny Pracy</h4>
-                                <p>Poniedziałek - Piątek: 9:00 - 18:00</p>
-                                <p>Wsparcie 24/7 przez Discord</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-headset"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Wsparcie Techniczne</h4>
-                                <p>Dostępne przez Discord i Email</p>
-                                <p>Szybka odpowiedź w ciągu 24h</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/profile.php?id=61582608156964" target="_blank" rel="noopener" aria-label="Facebook Exolyte Studios">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://www.instagram.com/exolyte.studios/" target="_blank" rel="noopener" aria-label="Instagram Exolyte Studios">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://dc.exolyte.pl" target="_blank" rel="noopener" aria-label="Discord Exolyte Studios">
-                            <i class="fab fa-discord"></i>
-                        </a>
-                        <a href="https://github.com/exolyte-studios" target="_blank" rel="noopener" aria-label="GitHub Exolyte Studios">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="contact-form-wrapper">
-                    <h3>Wybierz Sposób Kontaktu</h3>
-                    <p>Kliknij w wybrany przycisk, aby rozpocząć rozmowę</p>
-                    
-                    <div class="social-buttons">
-                        <a href="https://www.facebook.com/profile.php?id=61582608156964" target="_blank" rel="noopener" class="social-button facebook">
-                            <i class="fab fa-facebook-f"></i>
-                            <div>
-                                <span class="button-title">Facebook</span>
-                                <span class="button-subtitle">Messenger</span>
-                            </div>
-                        </a>
-                        
-                        <a href="https://www.instagram.com/exolyte.studios/" target="_blank" rel="noopener" class="social-button instagram">
-                            <i class="fab fa-instagram"></i>
-                            <div>
-                                <span class="button-title">Instagram</span>
-                                <span class="button-subtitle">Direct Message</span>
-                            </div>
-                        </a>
-                        
-                        <a href="https://dc.exolyte.pl" target="_blank" rel="noopener" class="social-button discord">
-                            <i class="fab fa-discord"></i>
-                            <div>
-                                <span class="button-title">Discord</span>
-                                <span class="button-subtitle">Najszybszy kontakt</span>
-                            </div>
-                        </a>
-                        
-                        <a href="mailto:kontakt@exolyte.pl" class="social-button email">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <span class="button-title">Email</span>
-                                <span class="button-subtitle">kontakt@exolyte.pl</span>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <div class="contact-cta">
-                        <p>Potrzebujesz wyceny?</p>
-                        <a href="pricing/pricing.html" class="btn btn-secondary">
-                            <span>Kalkulator Wyceny</span>
-                            <i class="fas fa-calculator"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<script>
+// NAV SCROLL
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">
-                        <a href="#home">
-                            <span class="logo-text">EXOLYTE</span>
-                            <div class="logo-dot"></div>
-                        </a>
-                    </div>
-                    <p>
-                        Tworzymy nowoczesne strony internetowe i aplikacje webowe, które wyróżniają się designem, 
-                        funkcjonalnością i przynoszą realne rezultaty biznesowe.
-                    </p>
-                    <div class="footer-social">
-                        <a href="https://www.facebook.com/profile.php?id=61582608156964" target="_blank" rel="noopener" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://www.instagram.com/exolyte.studios/" target="_blank" rel="noopener" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://dc.exolyte.pl" target="_blank" rel="noopener" aria-label="Discord">
-                            <i class="fab fa-discord"></i>
-                        </a>
-                        <a href="https://github.com/exolyte-studios" target="_blank" rel="noopener" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Nawigacja</h4>
-                        <ul>
-                            <li><a href="#home">Start</a></li>
-                            <li><a href="#about">O Nas</a></li>
-                            <li><a href="#services">Usługi</a></li>
-                            <li><a href="#portfolio">Portfolio</a></li>
-                            <li><a href="#team">Zespół</a></li>
-                            <li><a href="#contact">Kontakt</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h4>Usługi</h4>
-                        <ul>
-                            <li><a href="#services">Strony Internetowe</a></li>
-                            <li><a href="#services">Sklepy E-commerce</a></li>
-                            <li><a href="#services">Aplikacje Webowe</a></li>
-                            <li><a href="#services">Optymalizacja SEO</a></li>
-                            <li><a href="#services">Branding & Design</a></li>
-                            <li><a href="#services">Wsparcie Techniczne</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h4>Informacje</h4>
-                        <ul>
-                            <li><a href="info/rules/n/policy.html">Polityka Prywatności</a></li>
-                            <li><a href="info/rules/n/terms.html">Regulamin</a></li>
-                            <li><a href="info/rules/n/tos.html">Warunki Usługi</a></li>
-                            <li><a href="info/rules/n/cookies.html">Polityka Cookies</a></li>
-                            <li><a href="info/rules/n/cooperation.html">Współpraca</a></li>
-                            <li><a href="pricing/pricing.html">Cennik</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h4>Kontakt</h4>
-                        <ul>
-                            <li><a href="mailto:kontakt@exolyte.pl">kontakt@exolyte.pl</a></li>
-                            <li><a href="mailto:zamowienia@exolyte.pl">zamowienia@exolyte.pl</a></li>
-                            <li><a href="https://dc.exolyte.pl" target="_blank" rel="noopener">Discord Server</a></li>
-                            <li><span>Wsparcie 24/7</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 Exolyte Studios. Wszelkie prawa zastrzeżone.</p>
-                <div class="footer-bottom-links">
-                    <a href="info/rules/n/policy.html">Polityka Prywatności</a>
-                    <span class="separator">|</span>
-                    <a href="info/rules/n/terms.html">Regulamin</a>
-                    <span class="separator">|</span>
-                    <a href="info/rules/n/cookies.html">Cookies</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+// HAMBURGER — animated mobile menu
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMobileMenu() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop" aria-label="Wróć na górę strony">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+// SCROLL REVEAL
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
 
-    <script src="script.js"></script>
+// COUNTER
+function animateCount(el, target) {
+  const hasSuffix = !!el.querySelector('span');
+  const suffix = hasSuffix ? el.querySelector('span').outerHTML : '';
+  let current = 0;
+  const step = Math.ceil(target / 60);
+  const timer = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.innerHTML = current + (hasSuffix ? suffix : '');
+    if (current >= target) clearInterval(timer);
+  }, 20);
+}
+const statNums = document.querySelectorAll('.stat-number[data-count]');
+const statObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { animateCount(e.target, parseInt(e.target.dataset.count)); statObs.unobserve(e.target); } });
+}, { threshold: 0.5 });
+statNums.forEach(el => statObs.observe(el));
+
+// PARTICLES
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+resize(); window.addEventListener('resize', resize);
+class Particle {
+  constructor() { this.reset(); }
+  reset() { this.x=Math.random()*W; this.y=Math.random()*H; this.vx=(Math.random()-.5)*.3; this.vy=(Math.random()-.5)*.3-.1; this.alpha=Math.random()*.5+.1; this.size=Math.random()*1.5+.5; this.life=0; this.maxLife=Math.random()*300+200; }
+  update() { this.x+=this.vx; this.y+=this.vy; this.life++; if(this.life>this.maxLife||this.y<-10) this.reset(); }
+  draw() { const a=this.alpha*(1-this.life/this.maxLife); ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fillStyle=`rgba(139,92,246,${a})`; ctx.fill(); }
+}
+for(let i=0;i<80;i++) particles.push(new Particle());
+function drawLines() {
+  for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++){
+    const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y, d=Math.sqrt(dx*dx+dy*dy);
+    if(d<100){ ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.strokeStyle=`rgba(139,92,246,${.06*(1-d/100)})`; ctx.lineWidth=.5; ctx.stroke(); }
+  }
+}
+function animP() { ctx.clearRect(0,0,W,H); particles.forEach(p=>{p.update();p.draw();}); drawLines(); requestAnimationFrame(animP); }
+animP();
+
+// PORTFOLIO AUTO-SCROLL + dots
+const pScroll = document.getElementById('portfolioScroll');
+const pDotsContainer = document.getElementById('portfolioDots');
+const pItems = Array.from(pScroll.querySelectorAll('.portfolio-item'));
+let pDots = [];
+pItems.forEach((item, i) => {
+  const d = document.createElement('button');
+  d.className = 'scroll-dot' + (i===0?' active':'');
+  d.addEventListener('click', () => scrollToP(i));
+  pDotsContainer.appendChild(d);
+  pDots.push(d);
+});
+let pCurrent = 0;
+function scrollToP(idx) {
+  pCurrent = (idx + pItems.length) % pItems.length;
+  pScroll.scrollTo({ left: pItems[pCurrent].offsetLeft, behavior: 'smooth' });
+  pDots.forEach((d,i) => d.classList.toggle('active', i===pCurrent));
+}
+let pTimer = setInterval(() => scrollToP(pCurrent + 1), 3000);
+pScroll.addEventListener('mouseenter', () => clearInterval(pTimer));
+pScroll.addEventListener('mouseleave', () => { pTimer = setInterval(() => scrollToP(pCurrent+1), 3000); });
+pScroll.addEventListener('scroll', () => {
+  const itemW = pItems[0].offsetWidth + 20;
+  const idx = Math.round(pScroll.scrollLeft / itemW);
+  pDots.forEach((d,i) => d.classList.toggle('active', i===idx));
+  pCurrent = idx;
+}, { passive: true });
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if(id==='#') return;
+    const el = document.querySelector(id);
+    if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+</script>
 </body>
 </html>
